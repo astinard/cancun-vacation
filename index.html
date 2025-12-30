@@ -3,519 +3,2398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Vacation Planning - May/June 2025</title>
+    <title>Family Vacation Planner 2025 - Cancun & Riviera Maya</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header {
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 25px;
+            font-size: 0.9rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.1);
+            padding: 5px;
+            border-radius: 12px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            height: calc(100vh - 80px);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                max-height: 50vh;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            overflow-y: auto;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .sidebar-section {
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        /* Filters */
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .chip:hover {
+            border-color: var(--primary);
+        }
+
+        .chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .chip.family { border-color: #10b981; }
+        .chip.family.active { background: #10b981; border-color: #10b981; }
+        .chip.luxury { border-color: #f59e0b; }
+        .chip.luxury.active { background: #f59e0b; border-color: #f59e0b; }
+        .chip.points { border-color: #6366f1; }
+        .chip.points.active { background: #6366f1; border-color: #6366f1; }
+        .chip.accessible { border-color: #ec4899; }
+        .chip.accessible.active { background: #ec4899; border-color: #ec4899; }
+
+        /* Resort List */
+        .resort-list {
+            padding: 0;
+        }
+
+        .resort-card {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .resort-card:hover {
+            background: #f8fafc;
+        }
+
+        .resort-card.selected {
+            background: linear-gradient(to right, #ede9fe, #fce7f3);
+            border-left: 4px solid var(--primary);
+        }
+
+        .resort-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .resort-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .resort-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--warning);
+        }
+
+        .resort-location {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .resort-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tag-family { background: #d1fae5; color: #065f46; }
+        .tag-luxury { background: #fef3c7; color: #92400e; }
+        .tag-points { background: #e0e7ff; color: #3730a3; }
+        .tag-accessible { background: #fce7f3; color: #9d174d; }
+        .tag-adults { background: #fee2e2; color: #991b1b; }
+        .tag-new { background: #cffafe; color: #0e7490; }
+
+        .resort-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .price-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .vote-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .vote-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .vote-btn.voted {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Map Container */
+        .map-container {
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 500;
+            font-size: 0.8rem;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .legend-marker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 400px;
+            max-height: calc(100% - 40px);
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 500;
+            overflow: hidden;
+            display: none;
+        }
+
+        .info-panel.active {
+            display: block;
+        }
+
+        .info-panel-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .info-panel-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .info-panel-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-panel-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .info-panel-body {
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .info-item-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+
+        .info-item-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .price-card {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .price-card.highlight {
+            background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+        }
+
+        .price-week {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+
+        .price-amount {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .link-item:hover {
+            background: #e2e8f0;
+        }
+
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .link-icon.website { background: #dbeafe; color: #2563eb; }
+        .link-icon.reviews { background: #fef3c7; color: #d97706; }
+        .link-icon.points { background: #e0e7ff; color: #4f46e5; }
+        .link-icon.booking { background: #d1fae5; color: #059669; }
+
+        /* Views */
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Voting View */
+        .voting-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .voting-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .voting-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .voter-select {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .voter-btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .voter-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .voter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .voting-section {
             background: white;
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
-        h1 { color: #667eea; font-size: 2.5rem; margin-bottom: 10px; }
-        .subtitle { color: #666; font-size: 1.2rem; }
-        .family-grid {
+
+        .voting-section h3 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vote-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            margin: 20px 0;
         }
-        .family-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .family-card h4 { color: #667eea; margin-bottom: 5px; }
-        .family-card .location { color: #888; font-size: 0.9rem; }
-        .section {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        h2 { color: #333; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
-        .resort-card {
-            background: linear-gradient(to right, #f8f9fa, white);
+
+        .vote-option {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .resort-card h3 { color: #667eea; margin-bottom: 10px; }
-        .resort-card .price {
-            font-size: 1.5rem;
-            color: #28a745;
-            font-weight: bold;
-            margin: 10px 0;
+
+        .vote-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
-        .resort-card .total {
-            background: #e8f5e9;
-            padding: 10px 15px;
-            border-radius: 8px;
-            display: inline-block;
-            margin: 10px 0;
+
+        .vote-option.selected {
+            border-color: var(--primary);
+            background: linear-gradient(to right, #ede9fe, #fce7f3);
         }
-        .pros { color: #28a745; }
-        .cons { color: #dc3545; }
-        ul { margin-left: 20px; margin-top: 10px; }
-        li { margin-bottom: 5px; }
-        .tag {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 5px;
+
+        .vote-option-name {
+            font-weight: 700;
             margin-bottom: 5px;
         }
-        .tag.green { background: #28a745; }
-        .tag.orange { background: #fd7e14; }
-        .comparison-table {
+
+        .vote-option-detail {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .vote-count-display {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .vote-avatars {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .vote-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .results-panel h3 {
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .result-label {
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Matrix View */
+        .matrix-container {
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        .matrix-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            font-size: 0.85rem;
         }
-        .comparison-table th, .comparison-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        .comparison-table th { background: #667eea; color: white; }
-        .comparison-table tr:hover { background: #f8f9fa; }
-        .winner { background: #e8f5e9 !important; }
-        .notes {
-            background: #fff3cd;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .notes h4 { color: #856404; margin-bottom: 10px; }
-        footer {
-            text-align: center;
-            padding: 20px;
+
+        .matrix-table th {
+            background: var(--dark);
             color: white;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
         }
-        a { color: #667eea; }
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .container { padding: 10px; }
+
+        .matrix-table th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 10;
+        }
+
+        .matrix-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .matrix-table td:first-child {
+            position: sticky;
+            left: 0;
+            background: white;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .matrix-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        .matrix-table tr:hover td:first-child {
+            background: #f1f5f9;
+        }
+
+        .check-yes { color: var(--success); font-weight: bold; }
+        .check-no { color: #cbd5e1; }
+
+        /* Family Info */
+        .family-info {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .family-member {
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .family-member h4 {
+            margin-bottom: 5px;
+        }
+
+        .family-member p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Airport Info */
+        .airport-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header class="header">
+        <div class="header-content">
             <h1>Family Vacation 2025</h1>
-            <p class="subtitle">Planning our multigenerational trip - Late May / June</p>
 
-            <h3 style="margin-top: 25px; margin-bottom: 15px;">Our Group (14 people)</h3>
-            <div class="family-grid">
-                <div class="family-card">
-                    <h4>Mom, Dad & Aunt</h4>
-                    <p>3 people (near 80, mobility considerations)</p>
-                    <p class="location">Des Moines, IA</p>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-view="map">Map</button>
+                <button class="nav-tab" data-view="matrix">Full Matrix</button>
+                <button class="nav-tab" data-view="voting">Family Voting</button>
+            </nav>
+
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-value">14</div>
+                    <div class="stat-label">People</div>
                 </div>
-                <div class="family-card">
-                    <h4>Becketts Family</h4>
-                    <p>5 people (3 college-age students)</p>
-                    <p class="location">Iowa City, IA</p>
+                <div class="stat">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Rooms</div>
                 </div>
-                <div class="family-card">
-                    <h4>Our Family</h4>
-                    <p>4 people (2 adults, kids 9 & 11)</p>
-                    <p class="location">Florida</p>
-                </div>
-                <div class="family-card">
-                    <h4>Dann & Husband</h4>
-                    <p>2 people</p>
-                    <p class="location">Omaha, NE</p>
+                <div class="stat">
+                    <div class="stat-value" id="resortCount">45+</div>
+                    <div class="stat-label">Resorts</div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <section class="section">
-            <h2>Decision: All-Inclusive Resort - Cancun/Riviera Maya/Tulum Area</h2>
-            <p>After considering all options, we're focusing on all-inclusive resorts in the Cancun area. This works well for our multigenerational group because:</p>
-            <ul>
-                <li>One price covers everything (food, drinks, activities)</li>
-                <li>Easy for elderly family members - everything on-site</li>
-                <li>Activities for all ages (kids clubs, pools, beach, spa)</li>
-                <li>Direct flights available from most cities</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Top Resort Options</h2>
-
-            <div class="resort-card">
-                <h3>1. Generations Riviera Maya</h3>
-                <span class="tag green">Best for Multigenerational</span>
-                <span class="tag">All-Suite</span>
-                <span class="tag">All Oceanfront</span>
-                <p class="price">~$300-500/night per room</p>
-                <div class="total">
-                    <strong>Estimated Total (7 nights, ~7 rooms):</strong> $15,000 - $25,000
+    <!-- Map View -->
+    <div class="view active" id="view-map">
+        <div class="main-container">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Target Weeks</div>
+                    <div class="filter-chips">
+                        <div class="chip active" data-week="may24">May 24-31 (Best $)</div>
+                        <div class="chip" data-week="may31">May 31 - Jun 7</div>
+                    </div>
                 </div>
-                <p><strong>Why it's great for us:</strong></p>
-                <ul>
-                    <li class="pros">Specifically designed for multigenerational families - "from baby to baby boomers"</li>
-                    <li class="pros">All suites are oceanfront with space for families</li>
-                    <li class="pros">Has accessible facilities</li>
-                    <li class="pros">Gourmet all-inclusive dining</li>
-                    <li class="pros">Kids & teen programs</li>
-                    <li class="cons">Need to call for specific accessibility details: 1-888-774-0040</li>
-                </ul>
-                <p><a href="https://www.genrivieramaya.com/" target="_blank">Visit Website</a></p>
-            </div>
 
-            <div class="resort-card">
-                <h3>2. Sensira Resort & Spa</h3>
-                <span class="tag green">Family-Focused</span>
-                <span class="tag orange">Newer Property</span>
-                <p class="price">~$350-570/night per room (Jade/Ruby suites)</p>
-                <div class="total">
-                    <strong>Estimated Total (7 nights, ~7 rooms):</strong> $17,000 - $28,000
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Filter Resorts</div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Area</span>
+                        <div class="filter-chips">
+                            <div class="chip active" data-filter="area" data-value="all">All</div>
+                            <div class="chip" data-filter="area" data-value="cancun">Cancun</div>
+                            <div class="chip" data-filter="area" data-value="riviera">Riviera Maya</div>
+                            <div class="chip" data-filter="area" data-value="tulum">Tulum</div>
+                            <div class="chip" data-filter="area" data-value="costa">Costa Mujeres</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Features</span>
+                        <div class="filter-chips">
+                            <div class="chip family" data-filter="feature" data-value="family">Family</div>
+                            <div class="chip accessible" data-filter="feature" data-value="accessible">Accessible</div>
+                            <div class="chip points" data-filter="feature" data-value="points">Bookable w/ Points</div>
+                            <div class="chip luxury" data-filter="feature" data-value="luxury">Luxury</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Price Range (per room/night)</span>
+                        <div class="filter-chips">
+                            <div class="chip active" data-filter="price" data-value="all">All</div>
+                            <div class="chip" data-filter="price" data-value="budget">Under $300</div>
+                            <div class="chip" data-filter="price" data-value="mid">$300-500</div>
+                            <div class="chip" data-filter="price" data-value="luxury">$500+</div>
+                        </div>
+                    </div>
                 </div>
-                <p><strong>Why it's great for us:</strong></p>
-                <ul>
-                    <li class="pros">Built around "family union" concept</li>
-                    <li class="pros">Aqua park, kids club, multiple pools</li>
-                    <li class="pros">Rooms accommodate up to 7 guests</li>
-                    <li class="pros">Wellness & mindfulness focus (good for older adults)</li>
-                    <li class="pros">$300 resort credit when booking direct</li>
-                    <li class="cons">Call to confirm accessibility: +52 (998) 868 5460</li>
-                </ul>
-                <p><a href="https://sensiraresorts.com/" target="_blank">Visit Website</a></p>
-            </div>
 
-            <div class="resort-card">
-                <h3>3. Grand Velas Riviera Maya</h3>
-                <span class="tag">Luxury</span>
-                <span class="tag">AAA Five Diamond</span>
-                <p class="price">~$400-500/person/night (all-inclusive)</p>
-                <div class="total">
-                    <strong>Estimated Total (7 nights, 14 people):</strong> $39,000 - $49,000
+                <div class="sidebar-section" style="padding: 0;">
+                    <div class="sidebar-title" style="padding: 20px 20px 10px;">Resorts (<span id="filteredCount">0</span>)</div>
+                    <div class="resort-list" id="resortList"></div>
                 </div>
-                <p><strong>Why it's great for us:</strong></p>
-                <ul>
-                    <li class="pros">Top-rated luxury all-inclusive</li>
-                    <li class="pros">8 gourmet restaurants</li>
-                    <li class="pros">Kids & teens clubs</li>
-                    <li class="pros">SE Spa (great for relaxation)</li>
-                    <li class="pros">539 suites across jungle & beachfront</li>
-                    <li class="cons">Most expensive option</li>
-                </ul>
-                <p><a href="https://rivieramaya.grandvelas.com/" target="_blank">Visit Website</a></p>
-            </div>
+            </aside>
 
-            <div class="resort-card">
-                <h3>4. Hyatt Ziva Cancun</h3>
-                <span class="tag">Hotel Zone</span>
-                <span class="tag green">Great Reviews</span>
-                <p class="price">~$300-450/night per room</p>
-                <div class="total">
-                    <strong>Estimated Total (7 nights, ~7 rooms):</strong> $15,000 - $22,000
+            <div class="map-container">
+                <div id="map"></div>
+
+                <div class="map-legend">
+                    <div class="legend-title">Legend</div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background: #10b981;"></div>
+                        <span>Family-Friendly</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background: #f59e0b;"></div>
+                        <span>Luxury</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background: #6366f1;"></div>
+                        <span>Points Eligible</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background: #ef4444;"></div>
+                        <span>Adults Only</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background: #ec4899;"></div>
+                        <span>Accessible</span>
+                    </div>
                 </div>
-                <p><strong>Why it's great for us:</strong></p>
-                <ul>
-                    <li class="pros">Turquoize tower - adults-only "resort within resort" (great for grandparents wanting quiet time)</li>
-                    <li class="pros">Excellent for families</li>
-                    <li class="pros">Prime Cancun Hotel Zone location</li>
-                    <li class="pros">World of Hyatt points eligible</li>
-                    <li class="pros">Kids club with activities</li>
-                </ul>
-                <p><a href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-cancun/cunif" target="_blank">Visit Website</a></p>
-            </div>
 
-            <div class="resort-card">
-                <h3>5. Hard Rock Hotel Cancun</h3>
-                <span class="tag green">Most Accessible</span>
-                <span class="tag">Fun Vibe</span>
-                <p class="price">~$250-400/night per room</p>
-                <div class="total">
-                    <strong>Estimated Total (7 nights, ~7 rooms):</strong> $12,000 - $20,000
-                </div>
-                <p><strong>Why it's great for us:</strong></p>
-                <ul>
-                    <li class="pros">Highly recommended for accessibility - ramps everywhere including beach & pool</li>
-                    <li class="pros">Great for guests using wheelchairs/walkers</li>
-                    <li class="pros">Fun atmosphere for college kids</li>
-                    <li class="pros">Good value</li>
-                    <li class="cons">More party-oriented vibe</li>
-                </ul>
-                <p><a href="https://www.hardrockhotels.com/cancun" target="_blank">Visit Website</a></p>
-            </div>
-
-            <div class="resort-card">
-                <h3>6. Moon Palace Cancun</h3>
-                <span class="tag">Huge Resort</span>
-                <span class="tag">Great for Groups</span>
-                <p class="price">~$250-400/night per room</p>
-                <div class="total">
-                    <strong>Estimated Total (7 nights, ~7 rooms):</strong> $12,000 - $20,000
-                </div>
-                <p><strong>Why it's great for us:</strong></p>
-                <ul>
-                    <li class="pros">Massive resort with tons of activities</li>
-                    <li class="pros">Flowrider, waterpark, golf</li>
-                    <li class="pros">Spacious suites</li>
-                    <li class="pros">Great for large groups</li>
-                    <li class="cons">Very large - lots of walking</li>
-                </ul>
-                <p><a href="https://www.moonpalacecancun.com/" target="_blank">Visit Website</a></p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Quick Comparison</h2>
-            <table class="comparison-table">
-                <tr>
-                    <th>Resort</th>
-                    <th>Est. Total (7 nights)</th>
-                    <th>Best For</th>
-                    <th>Accessibility</th>
-                </tr>
-                <tr class="winner">
-                    <td><strong>Generations Riviera Maya</strong></td>
-                    <td>$15,000 - $25,000</td>
-                    <td>Multigenerational families</td>
-                    <td>Accessible facilities (call to confirm)</td>
-                </tr>
-                <tr>
-                    <td>Sensira Resort</td>
-                    <td>$17,000 - $28,000</td>
-                    <td>Family bonding, wellness</td>
-                    <td>Call to confirm</td>
-                </tr>
-                <tr>
-                    <td>Grand Velas</td>
-                    <td>$39,000 - $49,000</td>
-                    <td>Luxury experience</td>
-                    <td>Good (large property)</td>
-                </tr>
-                <tr>
-                    <td>Hyatt Ziva</td>
-                    <td>$15,000 - $22,000</td>
-                    <td>Mix of family + adult quiet areas</td>
-                    <td>Standard</td>
-                </tr>
-                <tr class="winner">
-                    <td><strong>Hard Rock Cancun</strong></td>
-                    <td>$12,000 - $20,000</td>
-                    <td>Best accessibility + value</td>
-                    <td>Excellent - ramps everywhere</td>
-                </tr>
-                <tr>
-                    <td>Moon Palace</td>
-                    <td>$12,000 - $20,000</td>
-                    <td>Activities, large groups</td>
-                    <td>Standard (lots of walking)</td>
-                </tr>
-            </table>
-        </section>
-
-        <section class="section">
-            <h2>Specific Week Pricing (May/June 2025)</h2>
-            <p><strong>Note:</strong> May-June is shoulder season in Cancun - lower prices than winter peak but before summer crowds. Average all-inclusive rates run ~$350-450/night per room.</p>
-
-            <table class="comparison-table">
-                <tr>
-                    <th>Week</th>
-                    <th>Season</th>
-                    <th>Avg. Rate/Room/Night</th>
-                    <th>Est. 7 Nights (7 rooms)</th>
-                </tr>
-                <tr>
-                    <td><strong>May 24-31, 2025</strong></td>
-                    <td>Late Shoulder</td>
-                    <td>$300-400</td>
-                    <td>$14,700 - $19,600</td>
-                </tr>
-                <tr>
-                    <td><strong>May 31 - June 7, 2025</strong></td>
-                    <td>Early Summer</td>
-                    <td>$350-450</td>
-                    <td>$17,150 - $22,050</td>
-                </tr>
-                <tr>
-                    <td><strong>June 7-14, 2025</strong></td>
-                    <td>Summer</td>
-                    <td>$375-475</td>
-                    <td>$18,375 - $23,275</td>
-                </tr>
-                <tr>
-                    <td><strong>June 14-21, 2025</strong></td>
-                    <td>Summer</td>
-                    <td>$400-500</td>
-                    <td>$19,600 - $24,500</td>
-                </tr>
-                <tr class="winner">
-                    <td><strong>June 21-28, 2025</strong></td>
-                    <td>Peak Summer</td>
-                    <td>$425-550</td>
-                    <td>$20,825 - $26,950</td>
-                </tr>
-            </table>
-            <p style="margin-top: 15px;"><em>Prices increase as June progresses. Last week of May offers best value.</em></p>
-        </section>
-
-        <section class="section">
-            <h2>Hotel Points Options</h2>
-            <p>If anyone in the family has hotel points, these can significantly reduce costs:</p>
-
-            <div class="resort-card">
-                <h3>World of Hyatt Points (Hyatt Ziva Cancun)</h3>
-                <span class="tag green">Best Points Value</span>
-                <span class="tag">Category F Resort</span>
-                <ul>
-                    <li><strong>Standard Redemption:</strong> 25,000-50,000 points/night (varies by date)</li>
-                    <li><strong>Off-Peak:</strong> ~25,000 points/night</li>
-                    <li><strong>Peak:</strong> ~50,000 points/night</li>
-                    <li><strong>For 7 nights:</strong> 175,000 - 350,000 points per room</li>
-                    <li>Points cover ALL-INCLUSIVE benefits (food, drinks, activities)</li>
-                    <li>Chase Sapphire points transfer 1:1 to Hyatt</li>
-                    <li>Turquoize adults-only tower also bookable with points</li>
-                </ul>
-                <div class="total">
-                    <strong>Potential Savings:</strong> $2,000-3,500 per room if using points
+                <div class="info-panel" id="infoPanel">
+                    <button class="info-panel-close" onclick="closeInfoPanel()">&times;</button>
+                    <div class="info-panel-header">
+                        <div class="info-panel-title" id="panelTitle">Resort Name</div>
+                        <div class="info-panel-subtitle" id="panelSubtitle">Location</div>
+                    </div>
+                    <div class="info-panel-body" id="panelBody"></div>
                 </div>
             </div>
-
-            <div class="resort-card">
-                <h3>Marriott Bonvoy Points</h3>
-                <span class="tag">Multiple Resorts</span>
-                <span class="tag orange">Higher Point Cost</span>
-                <p><strong>All-Inclusive by Marriott Bonvoy properties in Cancun area:</strong></p>
-                <ul>
-                    <li><strong>Royalton Riviera Cancun (Autograph Collection)</strong></li>
-                    <li><strong>Planet Hollywood Cancun (Autograph Collection)</strong></li>
-                    <li><strong>Royalton Splash Riviera Cancun</strong></li>
-                    <li>Points redemption: ~60,000-80,000 points/night</li>
-                    <li>Points cover ALL-INCLUSIVE package</li>
-                    <li>Book 5 nights, get 5th night free with points</li>
-                    <li>Amex points transfer to Marriott (but not 1:1)</li>
-                </ul>
-                <div class="total">
-                    <strong>7 nights:</strong> ~420,000-560,000 points per room
-                </div>
-            </div>
-
-            <div class="resort-card">
-                <h3>Hilton Honors Points</h3>
-                <span class="tag">Hilton Cancun</span>
-                <ul>
-                    <li><strong>Hilton Cancun, An All-Inclusive Resort</strong> - newer property</li>
-                    <li>Points redemption: ~80,000-120,000 points/night</li>
-                    <li>5th night free on award stays</li>
-                    <li>Amex Hilton cards offer good earning potential</li>
-                </ul>
-            </div>
-
-            <div class="notes">
-                <h4>Points Strategy for Our Group</h4>
-                <ul>
-                    <li><strong>Best value:</strong> Hyatt points (if anyone has Chase Sapphire/Hyatt cards)</li>
-                    <li><strong>Combine:</strong> Some rooms on points, some paid = hybrid savings</li>
-                    <li><strong>Ask family:</strong> Who has hotel points they'd be willing to use?</li>
-                    <li><strong>Transfer partners:</strong> Chase Ultimate Rewards, Amex MR, Citi ThankYou can transfer to hotel programs</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Flight Estimates</h2>
-            <p>Approximate roundtrip flights to Cancun (CUN) in late May/June:</p>
-            <ul>
-                <li><strong>Des Moines (DSM):</strong> ~$400-600/person (1 stop)</li>
-                <li><strong>Iowa City/Cedar Rapids (CID):</strong> ~$400-600/person (1 stop)</li>
-                <li><strong>Omaha (OMA):</strong> ~$350-500/person (1 stop)</li>
-                <li><strong>Florida (various):</strong> ~$200-400/person (often direct)</li>
-            </ul>
-            <div class="total" style="margin-top: 15px;">
-                <strong>Estimated Flight Total (14 people):</strong> $4,000 - $7,000<br>
-                <em>(Note: Florida family paying their own - reduces group cost)</em>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Tulum Options</h2>
-            <p>If we want something more boutique/trendy, Tulum is about 1.5 hours south of Cancun airport. Keep in mind:</p>
-            <ul>
-                <li class="pros">More bohemian, Instagram-worthy vibe</li>
-                <li class="pros">Amazing cenotes and ruins nearby</li>
-                <li class="cons">Fewer large all-inclusive options</li>
-                <li class="cons">More walking on uneven surfaces - may be harder for mobility issues</li>
-                <li class="cons">Longer transfer from airport</li>
-            </ul>
-            <p>Tulum may be better as a day trip from a Cancun/Riviera Maya resort.</p>
-        </section>
-
-        <section class="section notes">
-            <h4>Important Notes & Next Steps</h4>
-            <ul>
-                <li><strong>Accessibility:</strong> Call each resort directly to confirm specific mobility accommodations (wheelchair access, walk-in showers, etc.)</li>
-                <li><strong>Group booking:</strong> Many resorts offer group discounts for 10+ rooms - ask when calling</li>
-                <li><strong>Timing:</strong> Late May is slightly cheaper than June; book early for best rates</li>
-                <li><strong>Room configuration:</strong> We'll need approximately 7 rooms for 14 people</li>
-                <li><strong>Travel insurance:</strong> Recommended for elderly travelers</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Budget Summary</h2>
-            <table class="comparison-table">
-                <tr>
-                    <th>Item</th>
-                    <th>Low Estimate</th>
-                    <th>High Estimate</th>
-                </tr>
-                <tr>
-                    <td>Resort (7 nights, 14 people)</td>
-                    <td>$12,000</td>
-                    <td>$49,000</td>
-                </tr>
-                <tr>
-                    <td>Flights (Midwest families - 10 people)</td>
-                    <td>$3,500</td>
-                    <td>$6,000</td>
-                </tr>
-                <tr>
-                    <td>Airport Transfers</td>
-                    <td>$200</td>
-                    <td>$500</td>
-                </tr>
-                <tr>
-                    <td>Travel Insurance</td>
-                    <td>$500</td>
-                    <td>$1,000</td>
-                </tr>
-                <tr style="background: #e8f5e9; font-weight: bold;">
-                    <td>TOTAL (Group)</td>
-                    <td>$16,200</td>
-                    <td>$56,500</td>
-                </tr>
-            </table>
-            <p style="margin-top: 15px;"><em>* Florida family paying their own flights (~$1,600-2,800 additional)</em></p>
-            <p><strong>Recommended budget range: $20,000 - $30,000</strong> (mid-range resort like Generations or Hyatt Ziva)</p>
-        </section>
-
-        <footer>
-            <p>Last updated: December 30, 2024</p>
-            <p>Planning team: Alex, Andrew, Cindy</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Bookmark this page - we'll keep updating as we research!</p>
-        </footer>
+        </div>
     </div>
+
+    <!-- Matrix View -->
+    <div class="view" id="view-matrix">
+        <div class="matrix-container">
+            <div class="family-info">
+                <h3>Our Group</h3>
+                <div class="family-grid">
+                    <div class="family-member">
+                        <h4>Mom, Dad & Aunt</h4>
+                        <p>3 people (near 80, mobility needs)</p>
+                        <p>Des Moines, IA</p>
+                    </div>
+                    <div class="family-member">
+                        <h4>Becketts Family</h4>
+                        <p>5 people (3 college-age)</p>
+                        <p>Iowa City, IA</p>
+                    </div>
+                    <div class="family-member">
+                        <h4>Our Family</h4>
+                        <p>4 people (kids 9 & 11)</p>
+                        <p>Florida</p>
+                    </div>
+                    <div class="family-member">
+                        <h4>Dann & Husband</h4>
+                        <p>2 people</p>
+                        <p>Omaha, NE</p>
+                    </div>
+                </div>
+            </div>
+
+            <table class="matrix-table" id="matrixTable">
+                <thead>
+                    <tr>
+                        <th>Resort</th>
+                        <th>Area</th>
+                        <th>Airport</th>
+                        <th>May 24-31</th>
+                        <th>May 31-Jun 7</th>
+                        <th>7 Nights Total</th>
+                        <th>Family</th>
+                        <th>Accessible</th>
+                        <th>Points</th>
+                        <th>Rating</th>
+                        <th>Links</th>
+                    </tr>
+                </thead>
+                <tbody id="matrixBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Voting View -->
+    <div class="view" id="view-voting">
+        <div class="voting-container">
+            <div class="voting-header">
+                <h2>Family Voting</h2>
+                <p>Select your name and vote for your top picks!</p>
+
+                <div class="voter-select" id="voterSelect"></div>
+            </div>
+
+            <div class="voting-section">
+                <h3>Top Resort Choice</h3>
+                <div class="vote-options" id="resortVoteOptions"></div>
+            </div>
+
+            <div class="voting-section">
+                <h3>Preferred Week</h3>
+                <div class="vote-options" id="weekVoteOptions">
+                    <div class="vote-option" data-category="week" data-value="may24">
+                        <div class="vote-option-name">May 24-31, 2025</div>
+                        <div class="vote-option-detail">Best value - shoulder season pricing</div>
+                        <div class="vote-count-display"></div>
+                        <div class="vote-avatars"></div>
+                    </div>
+                    <div class="vote-option" data-category="week" data-value="may31">
+                        <div class="vote-option-name">May 31 - June 7, 2025</div>
+                        <div class="vote-option-detail">Early summer - slightly higher prices</div>
+                        <div class="vote-count-display"></div>
+                        <div class="vote-avatars"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="voting-section">
+                <h3>Trip Length</h3>
+                <div class="vote-options" id="lengthVoteOptions">
+                    <div class="vote-option" data-category="length" data-value="5">
+                        <div class="vote-option-name">5 Nights</div>
+                        <div class="vote-option-detail">Shorter trip, lower cost</div>
+                        <div class="vote-count-display"></div>
+                        <div class="vote-avatars"></div>
+                    </div>
+                    <div class="vote-option" data-category="length" data-value="7">
+                        <div class="vote-option-name">7 Nights</div>
+                        <div class="vote-option-detail">Recommended - full week</div>
+                        <div class="vote-count-display"></div>
+                        <div class="vote-avatars"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <h3>Current Results</h3>
+                <div id="votingResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Comprehensive Resort Database
+        const resorts = [
+            // CANCUN HOTEL ZONE
+            {
+                id: 1,
+                name: "Hyatt Ziva Cancun",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.0892,
+                lng: -86.7720,
+                airportDist: "25 min",
+                priceMay24: 380,
+                priceMay31: 420,
+                rating: 4.5,
+                reviews: 12500,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "hyatt",
+                pointsCost: "25,000-50,000/night",
+                website: "https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-cancun/cunif",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d152887-Reviews-Hyatt_Ziva_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Turquoize adults tower", "Kids club", "Swim-up suites", "World of Hyatt"],
+                notes: "Has adults-only Turquoize tower within resort - great for grandparents wanting quiet"
+            },
+            {
+                id: 2,
+                name: "Hard Rock Hotel Cancun",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.0998,
+                lng: -86.7634,
+                airportDist: "20 min",
+                priceMay24: 320,
+                priceMay31: 360,
+                rating: 4.4,
+                reviews: 9800,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.hardrockhotels.com/cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d1022636-Reviews-Hard_Rock_Hotel_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Best accessibility", "Ramps everywhere", "Rock Star suites", "Water park"],
+                notes: "HIGHLY recommended for mobility - ramps to beach and pool, wheelchair accessible throughout"
+            },
+            {
+                id: 3,
+                name: "Moon Palace Cancun",
+                area: "cancun",
+                areaName: "Cancun (South)",
+                lat: 20.9847,
+                lng: -86.8318,
+                airportDist: "15 min",
+                priceMay24: 350,
+                priceMay31: 400,
+                rating: 4.5,
+                reviews: 28000,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.moonpalacecancun.com/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d155263-Reviews-Moon_Palace_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Massive resort", "FlowRider", "Waterpark", "Golf", "Resort credits"],
+                notes: "Huge property - lots of walking. Great for active families, may be tiring for elderly"
+            },
+            {
+                id: 4,
+                name: "Grand Fiesta Americana Coral Beach",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.1303,
+                lng: -86.7462,
+                airportDist: "30 min",
+                priceMay24: 480,
+                priceMay31: 520,
+                rating: 4.7,
+                reviews: 6200,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.fiestamericanagrand.com/en/coral-beach-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d154435-Reviews-Grand_Fiesta_Americana_Coral_Beach_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["AAA Five Diamond", "Gem Spa", "Butler service", "Premium location"],
+                notes: "Luxury option with excellent service. Good accessibility."
+            },
+            {
+                id: 5,
+                name: "Club Med Cancun",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.0736,
+                lng: -86.7832,
+                airportDist: "25 min",
+                priceMay24: 400,
+                priceMay31: 450,
+                rating: 4.3,
+                reviews: 5400,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.clubmed.us/r/cancun/y",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d154474-Reviews-Club_Med_Cancun_Yucatan-Cancun_Yucatan_Peninsula.html",
+                features: ["Kids clubs 0-17", "Circus school", "Trapeze", "All activities included"],
+                notes: "Excellent for multigenerational - dedicated kids clubs for all ages"
+            },
+            {
+                id: 6,
+                name: "Paradisus Cancun",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.0654,
+                lng: -86.7878,
+                airportDist: "25 min",
+                priceMay24: 340,
+                priceMay31: 380,
+                rating: 4.4,
+                reviews: 7800,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "melia",
+                pointsCost: "Melia Rewards",
+                website: "https://www.melia.com/en/hotels/mexico/cancun/paradisus-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d155685-Reviews-Paradisus_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Family Concierge", "YHI Spa", "Royal Service option"],
+                notes: "Good value luxury with family concierge service"
+            },
+            {
+                id: 7,
+                name: "Hilton Cancun",
+                area: "cancun",
+                areaName: "Cancun (South)",
+                lat: 20.9764,
+                lng: -86.8342,
+                airportDist: "12 min",
+                priceMay24: 360,
+                priceMay31: 400,
+                rating: 4.5,
+                reviews: 3200,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "hilton",
+                pointsCost: "80,000-120,000/night",
+                website: "https://www.hilton.com/en/hotels/cunhihi-hilton-cancun-an-all-inclusive-resort/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d23462107-Reviews-Hilton_Cancun_an_All_Inclusive_Resort-Cancun_Yucatan_Peninsula.html",
+                features: ["Newer property (2021)", "Hilton Honors", "Multiple pools", "Golf access"],
+                notes: "Newer resort, Hilton points eligible, good for families"
+            },
+            {
+                id: 8,
+                name: "Dreams Playa Mujeres",
+                area: "costa",
+                areaName: "Costa Mujeres",
+                lat: 21.2547,
+                lng: -86.8012,
+                airportDist: "30 min",
+                priceMay24: 380,
+                priceMay31: 420,
+                rating: 4.6,
+                reviews: 8500,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.dreamsresorts.com/playa-mujeres",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d8082143-Reviews-Dreams_Playa_Mujeres_Golf_Spa_Resort-Cancun_Yucatan_Peninsula.html",
+                features: ["Quieter area", "Golf course", "Explorer's Club kids", "Core Zone teens"],
+                notes: "Quieter than Hotel Zone, great kids programs, Marriott Bonvoy"
+            },
+            {
+                id: 9,
+                name: "Finest Playa Mujeres",
+                area: "costa",
+                areaName: "Costa Mujeres",
+                lat: 21.2612,
+                lng: -86.7987,
+                airportDist: "35 min",
+                priceMay24: 520,
+                priceMay31: 580,
+                rating: 4.7,
+                reviews: 4800,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.theexcellencecollection.com/finest-playa-mujeres",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d8546989-Reviews-Finest_Playa_Mujeres-Cancun_Yucatan_Peninsula.html",
+                features: ["Luxury family", "Suite hotel", "Imagine kids club", "Rooftop pools"],
+                notes: "Premium family resort, all suites, excellent for multigenerational"
+            },
+            {
+                id: 10,
+                name: "Majestic Elegance Costa Mujeres",
+                area: "costa",
+                areaName: "Costa Mujeres",
+                lat: 21.2498,
+                lng: -86.8045,
+                airportDist: "30 min",
+                priceMay24: 340,
+                priceMay31: 380,
+                rating: 4.4,
+                reviews: 5600,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.majestic-resorts.com/en/hotel/majestic-elegance-costa-mujeres",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d17448876-Reviews-Majestic_Elegance_Costa_Mujeres-Cancun_Yucatan_Peninsula.html",
+                features: ["Elegance Club upgrade", "Water park", "Family suites"],
+                notes: "Good value in quieter Costa Mujeres area"
+            },
+            // RIVIERA MAYA
+            {
+                id: 11,
+                name: "Generations Riviera Maya",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.6523,
+                lng: -87.0587,
+                airportDist: "45 min",
+                priceMay24: 420,
+                priceMay31: 480,
+                rating: 4.7,
+                reviews: 3200,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.genrivieramaya.com/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d4083498-Reviews-Generations_Riviera_Maya_Family_Resort-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["BUILT for multigenerational", "All oceanfront suites", "Baby to boomers", "Gourmet dining"],
+                notes: "TOP PICK - Specifically designed for multigenerational families. All suites oceanfront."
+            },
+            {
+                id: 12,
+                name: "Grand Velas Riviera Maya",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.6891,
+                lng: -87.0312,
+                airportDist: "40 min",
+                priceMay24: 550,
+                priceMay31: 620,
+                rating: 4.8,
+                reviews: 9500,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://rivieramaya.grandvelas.com/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d1204526-Reviews-Grand_Velas_Riviera_Maya-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["AAA Five Diamond", "8 restaurants", "SE Spa", "Kids/Teen clubs", "3 ambiances"],
+                notes: "Luxury option - most expensive but highest rated. Amazing food."
+            },
+            {
+                id: 13,
+                name: "Sensira Resort & Spa",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7234,
+                lng: -87.0123,
+                airportDist: "35 min",
+                priceMay24: 380,
+                priceMay31: 430,
+                rating: 4.5,
+                reviews: 1800,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://sensiraresorts.com/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d23557162-Reviews-Sensira_Resort_Spa_Riviera_Maya-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Family union concept", "Rooms up to 7 guests", "Aqua park", "Wellness focus"],
+                notes: "Newer property built around family bonding. $300 resort credit booking direct."
+            },
+            {
+                id: 14,
+                name: "Royalton Riviera Cancun",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7612,
+                lng: -86.9876,
+                airportDist: "25 min",
+                priceMay24: 320,
+                priceMay31: 360,
+                rating: 4.3,
+                reviews: 14200,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "marriott",
+                pointsCost: "60,000-80,000/night",
+                website: "https://www.royaltonresorts.com/royalton-riviera-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d7019593-Reviews-Royalton_Riviera_Cancun-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Marriott Bonvoy", "Sports Event Guarantee", "Clubhouse kids", "Water park"],
+                notes: "Good value, Marriott points eligible, large property"
+            },
+            {
+                id: 15,
+                name: "Iberostar Selection Paraiso Maya",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7156,
+                lng: -87.0089,
+                airportDist: "30 min",
+                priceMay24: 340,
+                priceMay31: 380,
+                rating: 4.4,
+                reviews: 11000,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.iberostar.com/en/hotels/riviera-maya/iberostar-selection-paraiso-maya/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d592583-Reviews-Iberostar_Selection_Paraiso_Maya-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Part of 5-resort complex", "Marriott Bonvoy", "Water park", "Star Camp kids"],
+                notes: "Good family resort, part of larger Paraiso complex"
+            },
+            {
+                id: 16,
+                name: "Hotel Xcaret Mexico",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.5812,
+                lng: -87.1187,
+                airportDist: "55 min",
+                priceMay24: 480,
+                priceMay31: 540,
+                rating: 4.7,
+                reviews: 7200,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.hotelxcaret.com/en/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d12149498-Reviews-Hotel_Xcaret_Mexico-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Includes ALL Xcaret parks", "Unique eco-design", "Underground rivers", "Mexican culture"],
+                notes: "All Xcaret parks included - incredible value if you want park access. Very unique."
+            },
+            {
+                id: 17,
+                name: "Barcelo Maya Palace",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.4534,
+                lng: -87.2234,
+                airportDist: "70 min",
+                priceMay24: 280,
+                priceMay31: 320,
+                rating: 4.3,
+                reviews: 16500,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.barcelo.com/en-us/barcelo-maya-palace/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d500888-Reviews-Barcelo_Maya_Palace-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Huge complex", "Multiple hotels", "Pirates island water park", "Good value"],
+                notes: "Budget-friendly option, part of massive Barcelo Maya complex"
+            },
+            {
+                id: 18,
+                name: "Hyatt Vivid Playa del Carmen",
+                area: "riviera",
+                areaName: "Playa del Carmen",
+                lat: 20.6298,
+                lng: -87.0712,
+                airportDist: "50 min",
+                priceMay24: 350,
+                priceMay31: 390,
+                rating: 4.5,
+                reviews: 2100,
+                family: false,
+                accessible: true,
+                luxury: false,
+                adultsOnly: true,
+                points: "hyatt",
+                pointsCost: "25,000-40,000/night",
+                website: "https://www.hyatt.com/en-US/hotel/mexico/hyatt-vivid-playa-del-carmen/cunpd",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d25246619-Reviews-Hyatt_Vivid_Playa_del_Carmen-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Adults only", "Hyatt points", "Newer property", "Fifth Avenue nearby"],
+                notes: "Adults only - good for Dann & husband or grandparents if wanting separate stay"
+            },
+            {
+                id: 19,
+                name: "Planet Hollywood Cancun",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7534,
+                lng: -86.9923,
+                airportDist: "25 min",
+                priceMay24: 340,
+                priceMay31: 380,
+                rating: 4.3,
+                reviews: 5400,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "marriott",
+                pointsCost: "60,000-80,000/night",
+                website: "https://www.planethollywoodhotels.com/cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d15092376-Reviews-Planet_Hollywood_Cancun-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Marriott Bonvoy", "Movie memorabilia", "PH Spa", "Stars kids club"],
+                notes: "Fun theme, Marriott points, good for families"
+            },
+            {
+                id: 20,
+                name: "Secrets Akumal",
+                area: "riviera",
+                areaName: "Akumal",
+                lat: 20.3956,
+                lng: -87.3112,
+                airportDist: "75 min",
+                priceMay24: 420,
+                priceMay31: 480,
+                rating: 4.6,
+                reviews: 8900,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.secretsresorts.com/akumal-riviera-maya",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g499447-d8518695-Reviews-Secrets_Akumal_Riviera_Maya-Akumal_Yucatan_Peninsula.html",
+                features: ["Adults only", "AAA Four Diamond", "Sea turtle area", "Unlimited luxury"],
+                notes: "Adults only - good for couples in family wanting romantic escape"
+            },
+            // TULUM AREA
+            {
+                id: 21,
+                name: "Hilton Tulum Riviera Maya",
+                area: "tulum",
+                areaName: "Tulum",
+                lat: 20.2712,
+                lng: -87.4234,
+                airportDist: "90 min",
+                priceMay24: 380,
+                priceMay31: 420,
+                rating: 4.6,
+                reviews: 2800,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "hilton",
+                pointsCost: "80,000-120,000/night",
+                website: "https://www.hilton.com/en/hotels/tulaihh-hilton-tulum-riviera-maya-all-inclusive-resort/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d23461797-Reviews-Hilton_Tulum_Riviera_Maya_All_Inclusive_Resort-Tulum_Yucatan_Peninsula.html",
+                features: ["Hilton Honors", "World-class fitness", "Near ruins", "Newer property"],
+                notes: "Best Tulum option for families, Hilton points"
+            },
+            {
+                id: 22,
+                name: "Dreams Tulum Resort & Spa",
+                area: "tulum",
+                areaName: "Tulum",
+                lat: 20.2634,
+                lng: -87.4312,
+                airportDist: "90 min",
+                priceMay24: 340,
+                priceMay31: 380,
+                rating: 4.4,
+                reviews: 12300,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.dreamsresorts.com/tulum",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d152897-Reviews-Dreams_Tulum_Resort_Spa-Tulum_Yucatan_Peninsula.html",
+                features: ["Marriott Bonvoy", "Explorer's Club kids", "Near Tulum ruins"],
+                notes: "Good family option in Tulum, longer drive from airport"
+            },
+            {
+                id: 23,
+                name: "Grand Bahia Principe Tulum",
+                area: "tulum",
+                areaName: "Tulum",
+                lat: 20.2478,
+                lng: -87.4456,
+                airportDist: "95 min",
+                priceMay24: 260,
+                priceMay31: 300,
+                rating: 4.3,
+                reviews: 9800,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.bahia-principe.com/en/resorts-mexico/resort-grand-tulum/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d500894-Reviews-Grand_Bahia_Principe_Tulum-Tulum_Yucatan_Peninsula.html",
+                features: ["Budget friendly", "Part of complex", "Water park", "Good for value"],
+                notes: "Most affordable Tulum option, good for budget-conscious"
+            },
+            {
+                id: 24,
+                name: "Kore Tulum Retreat",
+                area: "tulum",
+                areaName: "Tulum",
+                lat: 20.2156,
+                lng: -87.4623,
+                airportDist: "100 min",
+                priceMay24: 380,
+                priceMay31: 420,
+                rating: 4.5,
+                reviews: 3200,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://koretulum.com/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d1493827-Reviews-Kore_Tulum_Retreat_Wellness_Resort-Tulum_Yucatan_Peninsula.html",
+                features: ["Adults only", "Wellness focus", "Boutique", "Spa focused"],
+                notes: "Adults only - boutique wellness option"
+            },
+            {
+                id: 25,
+                name: "Grand Palladium White Sand",
+                area: "riviera",
+                areaName: "Riviera Maya (near Tulum)",
+                lat: 20.3534,
+                lng: -87.3423,
+                airportDist: "80 min",
+                priceMay24: 300,
+                priceMay31: 340,
+                rating: 4.3,
+                reviews: 11200,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.palladiumhotelgroup.com/en/hotels/mexico/rivieramaya/grand-palladium-white-sand-resort-spa",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g1229481-d292294-Reviews-Grand_Palladium_White_Sand_Resort_Spa-Xpu_Ha_Yucatan_Peninsula.html",
+                features: ["Part of complex", "Baby club", "Good beach", "Zentropia spa"],
+                notes: "Good value option between Playa del Carmen and Tulum"
+            },
+            // More Costa Mujeres
+            {
+                id: 26,
+                name: "Atelier Playa Mujeres",
+                area: "costa",
+                areaName: "Costa Mujeres",
+                lat: 21.2634,
+                lng: -86.7945,
+                airportDist: "35 min",
+                priceMay24: 480,
+                priceMay31: 540,
+                rating: 4.7,
+                reviews: 4500,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://www.atelierdehoteles.com/playa-mujeres/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d15071178-Reviews-Atelier_Playa_Mujeres-Cancun_Yucatan_Peninsula.html",
+                features: ["Adults only", "Luxury", "Artistic design", "Rooftop pools"],
+                notes: "Adults only luxury - good option for couple wanting premium experience"
+            },
+            {
+                id: 27,
+                name: "Haven Riviera Cancun",
+                area: "costa",
+                areaName: "Costa Mujeres",
+                lat: 21.2512,
+                lng: -86.8078,
+                airportDist: "30 min",
+                priceMay24: 380,
+                priceMay31: 420,
+                rating: 4.5,
+                reviews: 5800,
+                family: false,
+                accessible: true,
+                luxury: false,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://www.havenresorts.com/haven-riviera-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d13398982-Reviews-Haven_Riviera_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Adults only", "Serenity suite upgrade", "Good spa"],
+                notes: "Adults only - nice option for couples"
+            },
+            // Additional family resorts
+            {
+                id: 28,
+                name: "Ocean Riviera Paradise",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7234,
+                lng: -86.9987,
+                airportDist: "30 min",
+                priceMay24: 280,
+                priceMay31: 320,
+                rating: 4.2,
+                reviews: 8900,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.oceanhotels.net/en/hotels/ocean-riviera-paradise",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d10169936-Reviews-Ocean_Riviera_Paradise-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Budget friendly", "Privilege upgrade", "Near Playa"],
+                notes: "Good budget option with Privilege upgrade available"
+            },
+            {
+                id: 29,
+                name: "Riu Palace Riviera Maya",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7012,
+                lng: -87.0145,
+                airportDist: "35 min",
+                priceMay24: 360,
+                priceMay31: 400,
+                rating: 4.5,
+                reviews: 6700,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.riu.com/en/hotel/mexico/playa-del-carmen/hotel-riu-palace-riviera-maya/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d152937-Reviews-Hotel_Riu_Palace_Riviera_Maya-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["24hr all-inclusive", "Good beach", "RiuLand kids"],
+                notes: "Solid Riu property with good kids program"
+            },
+            {
+                id: 30,
+                name: "The Royal Sands",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.0912,
+                lng: -86.7712,
+                airportDist: "25 min",
+                priceMay24: 300,
+                priceMay31: 340,
+                rating: 4.3,
+                reviews: 5400,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.royalresorts.com/the-royal-sands",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d155678-Reviews-The_Royal_Sands-Cancun_Yucatan_Peninsula.html",
+                features: ["Suite hotel", "Kitchen in rooms", "Good for families"],
+                notes: "All suite property with kitchens - good for families"
+            },
+            {
+                id: 31,
+                name: "Le Blanc Spa Resort",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.1234,
+                lng: -86.7523,
+                airportDist: "28 min",
+                priceMay24: 650,
+                priceMay31: 720,
+                rating: 4.8,
+                reviews: 7800,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://www.leblancsparesort.com/cancun/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d601051-Reviews-Le_Blanc_Spa_Resort_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Adults only", "AAA Five Diamond", "Premium luxury", "Butler service"],
+                notes: "Most luxurious adults-only option - for couples wanting ultra-premium"
+            },
+            {
+                id: 32,
+                name: "Secrets The Vine Cancun",
+                area: "cancun",
+                areaName: "Cancun Hotel Zone",
+                lat: 21.0845,
+                lng: -86.7756,
+                airportDist: "22 min",
+                priceMay24: 420,
+                priceMay31: 480,
+                rating: 4.6,
+                reviews: 11200,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.secretsresorts.com/the-vine-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d2312009-Reviews-Secrets_The_Vine_Cancun-Cancun_Yucatan_Peninsula.html",
+                features: ["Adults only", "Marriott Bonvoy", "Wine theme", "Unlimited luxury"],
+                notes: "Adults only, Marriott points - wine-themed luxury"
+            },
+            // More Tulum
+            {
+                id: 33,
+                name: "Secrets Tulum Resort",
+                area: "tulum",
+                areaName: "Tulum",
+                lat: 20.2289,
+                lng: -87.4534,
+                airportDist: "95 min",
+                priceMay24: 400,
+                priceMay31: 450,
+                rating: 4.5,
+                reviews: 1200,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.secretsresorts.com/tulum",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d25113654-Reviews-Secrets_Tulum_Resort_Spa-Tulum_Yucatan_Peninsula.html",
+                features: ["Adults only", "Marriott Bonvoy", "Newer 2024", "Near ruins"],
+                notes: "New 2024 adults-only Secrets in Tulum"
+            },
+            // Additional resorts
+            {
+                id: 34,
+                name: "Sandos Caracol Eco Resort",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.6712,
+                lng: -87.0456,
+                airportDist: "45 min",
+                priceMay24: 280,
+                priceMay31: 320,
+                rating: 4.2,
+                reviews: 14500,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.sandos.com/hotels/riviera-maya/sandos-caracol-eco-resort/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d219619-Reviews-Sandos_Caracol_Eco_Resort-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Eco-resort", "Cenote on property", "Budget friendly", "Nature focus"],
+                notes: "Eco-focused budget option with cenote on-site"
+            },
+            {
+                id: 35,
+                name: "Xcaret Arte",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.5789,
+                lng: -87.1212,
+                airportDist: "55 min",
+                priceMay24: 580,
+                priceMay31: 650,
+                rating: 4.8,
+                reviews: 3200,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://www.hotelxcaretarte.com/en/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d21018987-Reviews-Hotel_Xcaret_Arte-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Adults only", "Art focused", "All Xcaret parks", "Premium luxury"],
+                notes: "Adults only sister to Hotel Xcaret - all parks included, art theme"
+            },
+            {
+                id: 36,
+                name: "Breathless Riviera Cancun",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7612,
+                lng: -86.9812,
+                airportDist: "25 min",
+                priceMay24: 360,
+                priceMay31: 400,
+                rating: 4.4,
+                reviews: 7800,
+                family: false,
+                accessible: true,
+                luxury: false,
+                adultsOnly: true,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.breathlessresorts.com/riviera-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d8545775-Reviews-Breathless_Riviera_Cancun-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Adults only", "Party vibe", "Marriott Bonvoy", "Xhale Club upgrade"],
+                notes: "Adults only with party vibe - good for younger adults"
+            },
+            {
+                id: 37,
+                name: "Now Sapphire Riviera Cancun",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7512,
+                lng: -86.9912,
+                airportDist: "25 min",
+                priceMay24: 340,
+                priceMay31: 380,
+                rating: 4.3,
+                reviews: 9200,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: "marriott",
+                pointsCost: "Marriott Bonvoy",
+                website: "https://www.nowresorts.com/sapphire-riviera-cancun",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d500896-Reviews-Now_Sapphire_Riviera_Cancun-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Marriott Bonvoy", "Explorer's Club kids", "Spa", "Good beach"],
+                notes: "Good family option with Marriott points"
+            },
+            {
+                id: 38,
+                name: "Valentin Imperial Maya",
+                area: "riviera",
+                areaName: "Riviera Maya",
+                lat: 20.7134,
+                lng: -87.0023,
+                airportDist: "35 min",
+                priceMay24: 380,
+                priceMay31: 420,
+                rating: 4.5,
+                reviews: 8100,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://www.valentinhotelgroup.com/en/valentin-imperial-maya",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d592582-Reviews-Valentin_Imperial_Riviera_Maya-Playa_del_Carmen_Yucatan_Peninsula.html",
+                features: ["Adults only", "Premium rooms", "10 restaurants", "Good spa"],
+                notes: "Adults only - solid luxury option for couples"
+            },
+            {
+                id: 39,
+                name: "Excellence Playa Mujeres",
+                area: "costa",
+                areaName: "Costa Mujeres",
+                lat: 21.2689,
+                lng: -86.7923,
+                airportDist: "35 min",
+                priceMay24: 450,
+                priceMay31: 500,
+                rating: 4.7,
+                reviews: 14500,
+                family: false,
+                accessible: true,
+                luxury: true,
+                adultsOnly: true,
+                points: null,
+                pointsCost: null,
+                website: "https://www.theexcellencecollection.com/excellence-playa-mujeres",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d1936990-Reviews-Excellence_Playa_Mujeres-Cancun_Yucatan_Peninsula.html",
+                features: ["Adults only", "Excellence Club upgrade", "All suites", "Private pools available"],
+                notes: "Top-rated adults only - sister to Finest (family version)"
+            },
+            {
+                id: 40,
+                name: "Grand Sirenis Riviera Maya",
+                area: "tulum",
+                areaName: "Near Tulum",
+                lat: 20.2856,
+                lng: -87.4123,
+                airportDist: "85 min",
+                priceMay24: 240,
+                priceMay31: 280,
+                rating: 4.1,
+                reviews: 10200,
+                family: true,
+                accessible: true,
+                luxury: false,
+                adultsOnly: false,
+                points: null,
+                pointsCost: null,
+                website: "https://www.sirenishotels.com/en/hotels/riviera-maya/grand-sirenis-riviera-maya/",
+                tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d625506-Reviews-Grand_Sirenis_Riviera_Maya_Resort_Spa-Tulum_Yucatan_Peninsula.html",
+                features: ["Budget friendly", "Cenote on site", "Large property"],
+                notes: "Budget option near Tulum with cenote"
+            }
+        ];
+
+        // Family members for voting
+        const familyMembers = [
+            "Alex", "Andrew", "Cindy", "Mom", "Dad", "Aunt",
+            "Dann", "Dann's Husband", "Beckett 1", "Beckett 2"
+        ];
+
+        // Initialize map
+        let map;
+        let markers = [];
+        let selectedResort = null;
+
+        function initMap() {
+            map = L.map('map').setView([20.8, -87.1], 9);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Add airport marker
+            const airportIcon = L.divIcon({
+                className: 'custom-marker',
+                html: '<div style="background:#1e40af;color:white;padding:6px 10px;border-radius:6px;font-weight:bold;font-size:11px;white-space:nowrap;">CUN Airport</div>',
+                iconSize: [80, 30]
+            });
+            L.marker([21.0365, -86.8770], {icon: airportIcon}).addTo(map);
+
+            renderMarkers();
+        }
+
+        function getMarkerColor(resort) {
+            if (resort.accessible) return '#ec4899';
+            if (resort.points) return '#6366f1';
+            if (resort.luxury) return '#f59e0b';
+            if (resort.adultsOnly) return '#ef4444';
+            if (resort.family) return '#10b981';
+            return '#64748b';
+        }
+
+        function renderMarkers() {
+            // Clear existing markers
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+
+            const filtered = getFilteredResorts();
+
+            filtered.forEach(resort => {
+                const color = getMarkerColor(resort);
+                const icon = L.divIcon({
+                    className: 'custom-marker',
+                    html: `<div style="width:20px;height:20px;background:${color};border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>`,
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10]
+                });
+
+                const marker = L.marker([resort.lat, resort.lng], {icon}).addTo(map);
+                marker.on('click', () => showResortInfo(resort));
+                markers.push(marker);
+            });
+
+            document.getElementById('filteredCount').textContent = filtered.length;
+            renderResortList(filtered);
+        }
+
+        function getFilteredResorts() {
+            const areaFilter = document.querySelector('.chip[data-filter="area"].active')?.dataset.value || 'all';
+            const priceFilter = document.querySelector('.chip[data-filter="price"].active')?.dataset.value || 'all';
+            const featureFilters = Array.from(document.querySelectorAll('.chip[data-filter="feature"].active')).map(c => c.dataset.value);
+
+            return resorts.filter(r => {
+                if (areaFilter !== 'all' && r.area !== areaFilter) return false;
+
+                if (priceFilter === 'budget' && r.priceMay24 >= 300) return false;
+                if (priceFilter === 'mid' && (r.priceMay24 < 300 || r.priceMay24 >= 500)) return false;
+                if (priceFilter === 'luxury' && r.priceMay24 < 500) return false;
+
+                if (featureFilters.includes('family') && !r.family) return false;
+                if (featureFilters.includes('accessible') && !r.accessible) return false;
+                if (featureFilters.includes('points') && !r.points) return false;
+                if (featureFilters.includes('luxury') && !r.luxury) return false;
+
+                return true;
+            });
+        }
+
+        function renderResortList(filtered) {
+            const list = document.getElementById('resortList');
+            list.innerHTML = filtered.map(r => `
+                <div class="resort-card ${selectedResort?.id === r.id ? 'selected' : ''}" onclick="showResortInfo(resorts.find(x => x.id === ${r.id}))">
+                    <div class="resort-header">
+                        <span class="resort-name">${r.name}</span>
+                        <span class="resort-rating">★ ${r.rating}</span>
+                    </div>
+                    <div class="resort-location">${r.areaName} • ${r.airportDist} from CUN</div>
+                    <div class="resort-tags">
+                        ${r.family ? '<span class="tag tag-family">Family</span>' : ''}
+                        ${r.adultsOnly ? '<span class="tag tag-adults">Adults Only</span>' : ''}
+                        ${r.luxury ? '<span class="tag tag-luxury">Luxury</span>' : ''}
+                        ${r.points ? '<span class="tag tag-points">' + r.points.toUpperCase() + '</span>' : ''}
+                        ${r.accessible ? '<span class="tag tag-accessible">Accessible</span>' : ''}
+                    </div>
+                    <div class="resort-price">
+                        <div>
+                            <span class="price-value">$${r.priceMay24}</span>
+                            <span class="price-label">/night May 24-31</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showResortInfo(resort) {
+            selectedResort = resort;
+            const panel = document.getElementById('infoPanel');
+            document.getElementById('panelTitle').textContent = resort.name;
+            document.getElementById('panelSubtitle').textContent = `${resort.areaName} • ${resort.airportDist} from airport`;
+
+            const total7May = resort.priceMay24 * 7 * 7; // 7 rooms, 7 nights
+            const total7Jun = resort.priceMay31 * 7 * 7;
+
+            document.getElementById('panelBody').innerHTML = `
+                <div class="info-section">
+                    <div class="info-section-title">Price Comparison</div>
+                    <div class="price-grid">
+                        <div class="price-card highlight">
+                            <div class="price-week">May 24-31</div>
+                            <div class="price-amount">$${resort.priceMay24}/night</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-week">May 31 - Jun 7</div>
+                            <div class="price-amount">$${resort.priceMay31}/night</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:15px;padding:12px;background:#f0fdf4;border-radius:8px;text-align:center;">
+                        <div style="font-size:0.8rem;color:#666;">Est. Total (7 rooms × 7 nights)</div>
+                        <div style="font-size:1.4rem;font-weight:700;color:#059669;">$${total7May.toLocaleString()} - $${total7Jun.toLocaleString()}</div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">Details</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-item-label">Rating</div>
+                            <div class="info-item-value">★ ${resort.rating} (${resort.reviews.toLocaleString()})</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Type</div>
+                            <div class="info-item-value">${resort.adultsOnly ? 'Adults Only' : 'Family'}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Accessible</div>
+                            <div class="info-item-value">${resort.accessible ? '✓ Yes' : '✗ No'}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-label">Points</div>
+                            <div class="info-item-value">${resort.points ? resort.points.toUpperCase() : 'N/A'}</div>
+                        </div>
+                    </div>
+                </div>
+
+                ${resort.points ? `
+                <div class="info-section">
+                    <div class="info-section-title">Points Redemption</div>
+                    <div style="padding:12px;background:#e0e7ff;border-radius:8px;">
+                        <div style="font-weight:600;color:#4f46e5;">${resort.pointsCost}</div>
+                        <div style="font-size:0.8rem;color:#666;margin-top:4px;">Points cover full all-inclusive package</div>
+                    </div>
+                </div>
+                ` : ''}
+
+                <div class="info-section">
+                    <div class="info-section-title">Features</div>
+                    <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:6px;">
+                        ${resort.features.map(f => `<li style="background:#f1f5f9;padding:4px 10px;border-radius:4px;font-size:0.8rem;">${f}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">Notes</div>
+                    <p style="font-size:0.9rem;color:#666;line-height:1.6;">${resort.notes}</p>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">Links</div>
+                    <div class="link-list">
+                        <a href="${resort.website}" target="_blank" class="link-item">
+                            <span class="link-icon website">🌐</span>
+                            Official Website
+                        </a>
+                        <a href="${resort.tripadvisor}" target="_blank" class="link-item">
+                            <span class="link-icon reviews">★</span>
+                            TripAdvisor Reviews
+                        </a>
+                        ${resort.points === 'hyatt' ? `
+                        <a href="https://world.hyatt.com/content/gp/en/rewards/free-nights-upgrades.html" target="_blank" class="link-item">
+                            <span class="link-icon points">🎯</span>
+                            World of Hyatt Rewards
+                        </a>
+                        ` : ''}
+                        ${resort.points === 'marriott' ? `
+                        <a href="https://all-inclusive.marriott.com/" target="_blank" class="link-item">
+                            <span class="link-icon points">🎯</span>
+                            Marriott All-Inclusive
+                        </a>
+                        ` : ''}
+                        ${resort.points === 'hilton' ? `
+                        <a href="https://www.hilton.com/en/hilton-honors/" target="_blank" class="link-item">
+                            <span class="link-icon points">🎯</span>
+                            Hilton Honors
+                        </a>
+                        ` : ''}
+                        <a href="https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(resort.name + ' ' + resort.areaName)}" target="_blank" class="link-item">
+                            <span class="link-icon booking">💰</span>
+                            Check Prices on Expedia
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            panel.classList.add('active');
+            renderResortList(getFilteredResorts());
+
+            // Pan map to resort
+            map.panTo([resort.lat, resort.lng]);
+        }
+
+        function closeInfoPanel() {
+            document.getElementById('infoPanel').classList.remove('active');
+            selectedResort = null;
+            renderResortList(getFilteredResorts());
+        }
+
+        // Filter handling
+        document.querySelectorAll('.chip[data-filter="area"]').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.chip[data-filter="area"]').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                renderMarkers();
+            });
+        });
+
+        document.querySelectorAll('.chip[data-filter="price"]').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.chip[data-filter="price"]').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                renderMarkers();
+            });
+        });
+
+        document.querySelectorAll('.chip[data-filter="feature"]').forEach(chip => {
+            chip.addEventListener('click', () => {
+                chip.classList.toggle('active');
+                renderMarkers();
+            });
+        });
+
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`view-${tab.dataset.view}`).classList.add('active');
+
+                if (tab.dataset.view === 'map' && map) {
+                    setTimeout(() => map.invalidateSize(), 100);
+                }
+            });
+        });
+
+        // Matrix rendering
+        function renderMatrix() {
+            const tbody = document.getElementById('matrixBody');
+            const familyResorts = resorts.filter(r => r.family).sort((a, b) => a.priceMay24 - b.priceMay24);
+
+            tbody.innerHTML = familyResorts.map(r => {
+                const total7 = r.priceMay24 * 7 * 7;
+                return `
+                <tr>
+                    <td><strong>${r.name}</strong></td>
+                    <td>${r.areaName}</td>
+                    <td><span class="airport-badge">${r.airportDist}</span></td>
+                    <td><strong>$${r.priceMay24}</strong>/night</td>
+                    <td>$${r.priceMay31}/night</td>
+                    <td style="color:#059669;font-weight:700;">$${total7.toLocaleString()}</td>
+                    <td class="check-yes">✓</td>
+                    <td class="${r.accessible ? 'check-yes' : 'check-no'}">${r.accessible ? '✓' : '—'}</td>
+                    <td>${r.points ? `<span style="color:#4f46e5;font-weight:600;">${r.points.toUpperCase()}</span>` : '—'}</td>
+                    <td>★ ${r.rating}</td>
+                    <td>
+                        <a href="${r.website}" target="_blank" style="margin-right:8px;">Website</a>
+                        <a href="${r.tripadvisor}" target="_blank">Reviews</a>
+                    </td>
+                </tr>
+            `}).join('');
+        }
+
+        // Voting System
+        const VOTE_KEY = 'cancunVacationVotes2025';
+        let currentVoter = null;
+
+        function getVotes() {
+            return JSON.parse(localStorage.getItem(VOTE_KEY) || '{}');
+        }
+
+        function saveVotes(votes) {
+            localStorage.setItem(VOTE_KEY, JSON.stringify(votes));
+        }
+
+        function renderVoterSelect() {
+            const container = document.getElementById('voterSelect');
+            container.innerHTML = familyMembers.map(m =>
+                `<button class="voter-btn ${currentVoter === m ? 'active' : ''}" onclick="selectVoter('${m}')">${m}</button>`
+            ).join('');
+        }
+
+        function selectVoter(name) {
+            currentVoter = name;
+            renderVoterSelect();
+            renderVotingOptions();
+            updateVotingResults();
+        }
+
+        function renderVotingOptions() {
+            const container = document.getElementById('resortVoteOptions');
+            const votes = getVotes();
+            const topResorts = resorts.filter(r => r.family).slice(0, 10);
+
+            container.innerHTML = topResorts.map(r => {
+                const resortVotes = Object.entries(votes).filter(([_, v]) => v.resort === r.name);
+                const isSelected = currentVoter && votes[currentVoter]?.resort === r.name;
+
+                return `
+                <div class="vote-option ${isSelected ? 'selected' : ''}" data-category="resort" data-value="${r.name}" onclick="castVote('resort', '${r.name}')">
+                    <div class="vote-option-name">${r.name}</div>
+                    <div class="vote-option-detail">${r.areaName} • $${r.priceMay24}/night</div>
+                    <div class="vote-count-display">${resortVotes.length} vote${resortVotes.length !== 1 ? 's' : ''}</div>
+                    <div class="vote-avatars">
+                        ${resortVotes.map(([name]) => `<span class="vote-avatar">${name.charAt(0)}</span>`).join('')}
+                    </div>
+                </div>
+            `}).join('');
+
+            // Update week and length options
+            updateVoteOptionDisplay('week');
+            updateVoteOptionDisplay('length');
+        }
+
+        function updateVoteOptionDisplay(category) {
+            const votes = getVotes();
+            document.querySelectorAll(`[data-category="${category}"]`).forEach(option => {
+                const value = option.dataset.value;
+                const optionVotes = Object.entries(votes).filter(([_, v]) => v[category] === value);
+                const isSelected = currentVoter && votes[currentVoter]?.[category] === value;
+
+                option.classList.toggle('selected', isSelected);
+                option.querySelector('.vote-count-display').textContent = `${optionVotes.length} vote${optionVotes.length !== 1 ? 's' : ''}`;
+                option.querySelector('.vote-avatars').innerHTML = optionVotes.map(([name]) =>
+                    `<span class="vote-avatar">${name.charAt(0)}</span>`
+                ).join('');
+            });
+        }
+
+        function castVote(category, value) {
+            if (!currentVoter) {
+                alert('Please select your name first!');
+                return;
+            }
+
+            const votes = getVotes();
+            if (!votes[currentVoter]) votes[currentVoter] = {};
+            votes[currentVoter][category] = value;
+            saveVotes(votes);
+
+            renderVotingOptions();
+            updateVotingResults();
+        }
+
+        // Add click handlers for week and length options
+        document.querySelectorAll('[data-category="week"], [data-category="length"]').forEach(option => {
+            option.addEventListener('click', () => {
+                castVote(option.dataset.category, option.dataset.value);
+            });
+        });
+
+        function updateVotingResults() {
+            const votes = getVotes();
+            const results = document.getElementById('votingResults');
+            const totalVoters = Object.keys(votes).length;
+
+            if (totalVoters === 0) {
+                results.innerHTML = '<p>No votes yet. Select your name and start voting!</p>';
+                return;
+            }
+
+            // Count votes
+            const resortCounts = {};
+            const weekCounts = {};
+            const lengthCounts = {};
+
+            Object.values(votes).forEach(v => {
+                if (v.resort) resortCounts[v.resort] = (resortCounts[v.resort] || 0) + 1;
+                if (v.week) weekCounts[v.week] = (weekCounts[v.week] || 0) + 1;
+                if (v.length) lengthCounts[v.length] = (lengthCounts[v.length] || 0) + 1;
+            });
+
+            const topResort = Object.entries(resortCounts).sort((a, b) => b[1] - a[1])[0];
+            const topWeek = Object.entries(weekCounts).sort((a, b) => b[1] - a[1])[0];
+            const topLength = Object.entries(lengthCounts).sort((a, b) => b[1] - a[1])[0];
+
+            results.innerHTML = `
+                <div class="result-item">
+                    <span class="result-label">Total Votes</span>
+                    <span class="result-value">${totalVoters} family members</span>
+                </div>
+                ${topResort ? `
+                <div class="result-item">
+                    <span class="result-label">Leading Resort</span>
+                    <span class="result-value">${topResort[0]} (${topResort[1]} votes)</span>
+                </div>
+                ` : ''}
+                ${topWeek ? `
+                <div class="result-item">
+                    <span class="result-label">Leading Week</span>
+                    <span class="result-value">${topWeek[0] === 'may24' ? 'May 24-31' : 'May 31 - Jun 7'} (${topWeek[1]} votes)</span>
+                </div>
+                ` : ''}
+                ${topLength ? `
+                <div class="result-item">
+                    <span class="result-label">Trip Length</span>
+                    <span class="result-value">${topLength[0]} nights (${topLength[1]} votes)</span>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            renderMatrix();
+            renderVoterSelect();
+            renderVotingOptions();
+            updateVotingResults();
+            document.getElementById('resortCount').textContent = resorts.length;
+        });
+    </script>
 </body>
 </html>
