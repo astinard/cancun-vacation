@@ -120,12 +120,227 @@
             height: calc(100vh - 80px);
         }
 
+        /* ============================================
+           RESPONSIVE DESIGN - Mobile First Approach
+           ============================================ */
+
+        /* Large Desktop (1400px+) - Full layout */
+        @media (min-width: 1400px) {
+            .header-content {
+                gap: 30px;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .nav-tab {
+                padding: 10px 20px;
+            }
+        }
+
+        /* Desktop (1024px - 1400px) */
+        @media (max-width: 1400px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            .nav-tab {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+            .header-stats {
+                gap: 15px;
+            }
+            .stat-value {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Tablet (768px - 1024px) */
         @media (max-width: 1024px) {
+            .header {
+                padding: 15px 20px;
+            }
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .header h1 {
+                font-size: 1.3rem;
+                text-align: center;
+                justify-content: center;
+            }
+            .nav-tabs {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            .header-stats {
+                justify-content: center;
+                gap: 20px;
+            }
             .main-container {
                 grid-template-columns: 1fr;
+                height: auto;
             }
             .sidebar {
-                max-height: 50vh;
+                max-height: 40vh;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            #map {
+                height: 50vh !important;
+            }
+            .budget-view {
+                padding: 20px;
+            }
+            .budget-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Mobile (under 768px) - iPhone optimized */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 15px;
+            }
+            .header-content {
+                gap: 10px;
+            }
+            .header h1 {
+                font-size: 1.1rem;
+            }
+            .header h1 span {
+                font-size: 1.2rem !important;
+            }
+            .nav-tabs {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start;
+                padding: 4px;
+                gap: 4px;
+            }
+            .nav-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .header-stats {
+                gap: 15px;
+            }
+            .stat-value {
+                font-size: 1rem;
+            }
+            .stat-label {
+                font-size: 0.65rem;
+            }
+            .sidebar {
+                max-height: 35vh;
+            }
+            .sidebar-section {
+                padding: 15px;
+            }
+            .resort-card {
+                padding: 12px 15px;
+            }
+            .resort-name {
+                font-size: 0.9rem;
+            }
+            #map {
+                height: 45vh !important;
+            }
+            /* Budget view mobile */
+            .budget-view {
+                padding: 15px;
+            }
+            .budget-header h2 {
+                font-size: 1.3rem;
+            }
+            .budget-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .budget-card {
+                padding: 16px;
+            }
+            .budget-target-display {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .budget-total-row .amount {
+                font-size: 1rem;
+            }
+            .budget-total-row.grand-total .amount {
+                font-size: 1.4rem;
+            }
+            /* Info panel mobile */
+            .info-panel {
+                width: 100% !important;
+                max-width: none !important;
+                right: 0 !important;
+                bottom: 0;
+                top: auto !important;
+                max-height: 70vh;
+                border-radius: 20px 20px 0 0;
+            }
+            .deal-finder-section {
+                grid-template-columns: 1fr;
+            }
+            /* Matrix table mobile */
+            .matrix-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .matrix-table {
+                font-size: 0.75rem;
+            }
+            .matrix-table th,
+            .matrix-table td {
+                padding: 8px 6px;
+            }
+            /* Voting view mobile */
+            .voting-summary {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .voting-card {
+                padding: 15px;
+            }
+        }
+
+        /* Small Mobile (under 480px) */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 0.95rem;
+            }
+            .nav-tab {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
+            .stat-value {
+                font-size: 0.9rem;
+            }
+            .filter-chips {
+                gap: 6px;
+            }
+            .chip {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+            .resort-name {
+                font-size: 0.85rem;
+            }
+            .price-value {
+                font-size: 0.95rem;
             }
         }
 
