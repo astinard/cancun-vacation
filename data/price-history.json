@@ -1,0 +1,141 @@
+{
+  "lastUpdated": "2025-01-15",
+  "priceHistory": {
+    "1": {
+      "name": "Hyatt Ziva Cancun",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 420, "priceMay31": 460},
+        {"date": "2024-12-15", "priceMay24": 400, "priceMay31": 440},
+        {"date": "2025-01-01", "priceMay24": 390, "priceMay31": 430},
+        {"date": "2025-01-15", "priceMay24": 380, "priceMay31": 420}
+      ],
+      "trend": "down",
+      "percentChange": -9.5,
+      "lowestSeen": 380,
+      "highestSeen": 450,
+      "avgPrice": 400,
+      "dealThreshold": 360
+    },
+    "2": {
+      "name": "Hard Rock Hotel Cancun",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 340, "priceMay31": 380},
+        {"date": "2024-12-15", "priceMay24": 330, "priceMay31": 370},
+        {"date": "2025-01-01", "priceMay24": 325, "priceMay31": 365},
+        {"date": "2025-01-15", "priceMay24": 320, "priceMay31": 360}
+      ],
+      "trend": "down",
+      "percentChange": -5.9,
+      "lowestSeen": 299,
+      "highestSeen": 380,
+      "avgPrice": 335,
+      "dealThreshold": 300
+    },
+    "3": {
+      "name": "Moon Palace Cancun",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 380, "priceMay31": 420},
+        {"date": "2024-12-15", "priceMay24": 370, "priceMay31": 410},
+        {"date": "2025-01-01", "priceMay24": 360, "priceMay31": 405},
+        {"date": "2025-01-15", "priceMay24": 350, "priceMay31": 400}
+      ],
+      "trend": "down",
+      "percentChange": -7.9,
+      "lowestSeen": 320,
+      "highestSeen": 420,
+      "avgPrice": 365,
+      "dealThreshold": 330
+    },
+    "4": {
+      "name": "Grand Fiesta Americana Coral Beach",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 500, "priceMay31": 540},
+        {"date": "2024-12-15", "priceMay24": 490, "priceMay31": 530},
+        {"date": "2025-01-01", "priceMay24": 485, "priceMay31": 525},
+        {"date": "2025-01-15", "priceMay24": 480, "priceMay31": 520}
+      ],
+      "trend": "stable",
+      "percentChange": -4.0,
+      "lowestSeen": 450,
+      "highestSeen": 550,
+      "avgPrice": 495,
+      "dealThreshold": 460
+    },
+    "11": {
+      "name": "Generations Riviera Maya",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 450, "priceMay31": 500},
+        {"date": "2024-12-15", "priceMay24": 440, "priceMay31": 490},
+        {"date": "2025-01-01", "priceMay24": 430, "priceMay31": 485},
+        {"date": "2025-01-15", "priceMay24": 420, "priceMay31": 480}
+      ],
+      "trend": "down",
+      "percentChange": -6.7,
+      "lowestSeen": 380,
+      "highestSeen": 520,
+      "avgPrice": 435,
+      "dealThreshold": 400
+    },
+    "12": {
+      "name": "Grand Velas Riviera Maya",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 580, "priceMay31": 650},
+        {"date": "2024-12-15", "priceMay24": 570, "priceMay31": 640},
+        {"date": "2025-01-01", "priceMay24": 560, "priceMay31": 630},
+        {"date": "2025-01-15", "priceMay24": 550, "priceMay31": 620}
+      ],
+      "trend": "down",
+      "percentChange": -5.2,
+      "lowestSeen": 520,
+      "highestSeen": 700,
+      "avgPrice": 565,
+      "dealThreshold": 530
+    },
+    "16": {
+      "name": "Hotel Xcaret Mexico",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 520, "priceMay31": 580},
+        {"date": "2024-12-15", "priceMay24": 500, "priceMay31": 560},
+        {"date": "2025-01-01", "priceMay24": 490, "priceMay31": 550},
+        {"date": "2025-01-15", "priceMay24": 480, "priceMay31": 540}
+      ],
+      "trend": "down",
+      "percentChange": -7.7,
+      "lowestSeen": 450,
+      "highestSeen": 600,
+      "avgPrice": 500,
+      "dealThreshold": 460
+    },
+    "41": {
+      "name": "Hacienda Magica (Villa)",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 3000, "priceMay31": 3400},
+        {"date": "2024-12-15", "priceMay24": 2950, "priceMay31": 3300},
+        {"date": "2025-01-01", "priceMay24": 2900, "priceMay31": 3250},
+        {"date": "2025-01-15", "priceMay24": 2860, "priceMay31": 3200}
+      ],
+      "trend": "down",
+      "percentChange": -4.7,
+      "lowestSeen": 2700,
+      "highestSeen": 3500,
+      "avgPrice": 2925,
+      "dealThreshold": 2750
+    },
+    "44": {
+      "name": "Villa Quinta Clara (Villa)",
+      "history": [
+        {"date": "2024-12-01", "priceMay24": 1750, "priceMay31": 2000},
+        {"date": "2024-12-15", "priceMay24": 1700, "priceMay31": 1950},
+        {"date": "2025-01-01", "priceMay24": 1680, "priceMay31": 1920},
+        {"date": "2025-01-15", "priceMay24": 1650, "priceMay31": 1900}
+      ],
+      "trend": "down",
+      "percentChange": -5.7,
+      "lowestSeen": 1500,
+      "highestSeen": 2100,
+      "avgPrice": 1700,
+      "dealThreshold": 1550
+    }
+  },
+  "notes": "Price history tracked from major booking sites. Trend calculated over 6-week window. Deal threshold is 10% below average."
+}

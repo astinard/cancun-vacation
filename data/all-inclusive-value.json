@@ -1,0 +1,200 @@
+{
+  "lastUpdated": "2025-01-15",
+  "allInclusiveBreakdown": {
+    "typicalInclusions": {
+      "meals": {
+        "breakfast": {"count": 1, "retailValue": 35},
+        "lunch": {"count": 1, "retailValue": 45},
+        "dinner": {"count": 1, "retailValue": 75},
+        "snacks": {"count": 3, "retailValue": 15}
+      },
+      "drinks": {
+        "alcoholic": {"count": 8, "retailValue": 12},
+        "nonAlcoholic": {"count": 6, "retailValue": 5}
+      },
+      "activities": {
+        "poolAccess": 0,
+        "beachAccess": 0,
+        "nonMotorizedWaterSports": 50,
+        "fitness": 20,
+        "entertainment": 30
+      },
+      "kidsClub": {
+        "perChild": 100,
+        "note": "Per day value for supervised activities"
+      }
+    },
+    "dailyRetailValue": {
+      "adult": 350,
+      "child": 200,
+      "note": "Based on retail pricing for equivalent meals/drinks/activities"
+    }
+  },
+  "resortValueBreakdown": {
+    "1": {
+      "name": "Hyatt Ziva Cancun",
+      "pricePerNight": 380,
+      "adultsPerRoom": 2,
+      "included": {
+        "meals": "All restaurants unlimited",
+        "drinks": "Premium brands included",
+        "activities": "Water sports, fitness, entertainment",
+        "kidsClub": "Ages 3-12 included",
+        "extras": "Turquoize tower access for adults"
+      },
+      "retailValuePerNight": 700,
+      "savingsVsRetail": 320,
+      "valueRating": "Good",
+      "costPerMeal": {
+        "perPerson": 42,
+        "calculation": "($380/2 adults) / 4.5 meals"
+      }
+    },
+    "2": {
+      "name": "Hard Rock Hotel Cancun",
+      "pricePerNight": 320,
+      "adultsPerRoom": 2,
+      "included": {
+        "meals": "9 restaurants unlimited",
+        "drinks": "Premium open bar",
+        "activities": "Water park, fitness",
+        "kidsClub": "Kids club included",
+        "extras": "Rock Star Suite experiences"
+      },
+      "retailValuePerNight": 680,
+      "savingsVsRetail": 360,
+      "valueRating": "Excellent",
+      "costPerMeal": {
+        "perPerson": 36,
+        "calculation": "($320/2 adults) / 4.5 meals"
+      }
+    },
+    "4": {
+      "name": "Grand Fiesta Americana Coral Beach",
+      "pricePerNight": 480,
+      "adultsPerRoom": 2,
+      "included": {
+        "meals": "6 gourmet restaurants",
+        "drinks": "Premium spirits",
+        "activities": "Non-motorized water sports, fitness",
+        "kidsClub": "Coral KidZ Club",
+        "extras": "Butler service in select rooms"
+      },
+      "retailValuePerNight": 850,
+      "savingsVsRetail": 370,
+      "valueRating": "Good",
+      "costPerMeal": {
+        "perPerson": 53,
+        "calculation": "($480/2 adults) / 4.5 meals"
+      }
+    },
+    "11": {
+      "name": "Generations Riviera Maya",
+      "pricePerNight": 420,
+      "adultsPerRoom": 2,
+      "included": {
+        "meals": "Gourmet Inclusive - all restaurants",
+        "drinks": "Top-shelf included",
+        "activities": "All water sports, yoga, fitness",
+        "kidsClub": "Eko Kids Club all ages",
+        "extras": "Airport transfer, beach butler, room service 24/7"
+      },
+      "retailValuePerNight": 900,
+      "savingsVsRetail": 480,
+      "valueRating": "Exceptional",
+      "costPerMeal": {
+        "perPerson": 47,
+        "calculation": "($420/2 adults) / 4.5 meals"
+      }
+    },
+    "16": {
+      "name": "Hotel Xcaret Mexico",
+      "pricePerNight": 480,
+      "adultsPerRoom": 2,
+      "included": {
+        "meals": "10 restaurants unlimited",
+        "drinks": "Premium open bar",
+        "activities": "ALL XCARET PARKS ($1200+ value)",
+        "kidsClub": "Children's area",
+        "extras": "Airport transfer, park access daily"
+      },
+      "retailValuePerNight": 1500,
+      "savingsVsRetail": 1020,
+      "valueRating": "BEST VALUE",
+      "costPerMeal": {
+        "perPerson": 53,
+        "calculation": "($480/2 adults) / 4.5 meals"
+      },
+      "specialNote": "If you'd visit ANY Xcaret park, this is the best value in Cancun region"
+    },
+    "12": {
+      "name": "Grand Velas Riviera Maya",
+      "pricePerNight": 550,
+      "adultsPerRoom": 2,
+      "included": {
+        "meals": "8 gourmet restaurants - chef-driven menus",
+        "drinks": "Ultra-premium spirits & wines",
+        "activities": "All activities, spa access",
+        "kidsClub": "Kids & Teens clubs",
+        "extras": "24/7 room service, suite amenities"
+      },
+      "retailValuePerNight": 1100,
+      "savingsVsRetail": 550,
+      "valueRating": "Premium Value",
+      "costPerMeal": {
+        "perPerson": 61,
+        "calculation": "($550/2 adults) / 4.5 meals"
+      }
+    },
+    "41": {
+      "name": "Hacienda Magica (Villa)",
+      "pricePerNight": 2860,
+      "totalGuests": 14,
+      "included": {
+        "meals": "Private chef prepares all meals",
+        "drinks": "Stock bar yourself (or request)",
+        "activities": "Private pool, tennis, beach",
+        "kidsClub": "N/A - private setting",
+        "extras": "Butler, housekeeping, concierge"
+      },
+      "groceryCostEstimate": 200,
+      "totalDailyWithGroceries": 3060,
+      "perPersonPerNight": 219,
+      "valueRating": "Excellent for Groups",
+      "costPerMeal": {
+        "perPerson": 24,
+        "calculation": "($219/person) / 4.5 meals + chef service"
+      },
+      "specialNote": "Best per-person value if you want privacy + chef service"
+    },
+    "44": {
+      "name": "Villa Quinta Clara (Villa)",
+      "pricePerNight": 1650,
+      "totalGuests": 14,
+      "included": {
+        "meals": "Cook prepares meals (groceries separate)",
+        "drinks": "Stock yourself",
+        "activities": "Pool, SEA TURTLE BEACH",
+        "kidsClub": "N/A",
+        "extras": "Housekeeper, cook"
+      },
+      "groceryCostEstimate": 150,
+      "totalDailyWithGroceries": 1800,
+      "perPersonPerNight": 129,
+      "valueRating": "BEST BUDGET VALUE",
+      "costPerMeal": {
+        "perPerson": 14,
+        "calculation": "($129/person) / 4.5 meals + cook"
+      },
+      "specialNote": "Lowest per-person cost + sea turtles = unbeatable for families"
+    }
+  },
+  "comparisonSummary": {
+    "lowestCostPerMeal": {"resort": "Villa Quinta Clara", "cost": 14},
+    "bestOverallValue": {"resort": "Hotel Xcaret Mexico", "reason": "Parks worth $1200+ included"},
+    "bestForFamilies": {"resort": "Generations Riviera Maya", "reason": "Designed for multigenerational"},
+    "bestBudget": {"resort": "Hard Rock Cancun", "reason": "$36/meal + great accessibility"},
+    "bestLuxury": {"resort": "Grand Velas", "reason": "Genuine gourmet experience"},
+    "bestPrivacy": {"resort": "Villa Quinta Clara", "reason": "Lowest cost + sea turtles + privacy"}
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "lastUpdated": "2025-01-15",
+  "creditCardPortals": {
+    "chase": {
+      "name": "Chase Travel Portal",
+      "multiplier": "1.25x-1.5x",
+      "bonus": "1.25x points with Sapphire Preferred, 1.5x with Sapphire Reserve",
+      "currentPromos": [
+        {"resort": "Hyatt Ziva Cancun", "bonus": "5x points on Hyatt bookings"},
+        {"resort": "Dreams Playa Mujeres", "bonus": "Extra 10% off through portal"}
+      ],
+      "url": "https://ultimaterewardspoints.chase.com",
+      "tip": "Book Hyatt through World of Hyatt directly for best points value"
+    },
+    "amex": {
+      "name": "Amex Travel",
+      "multiplier": "5x on flights",
+      "bonus": "5x MR points on flights booked through Amex Travel with Platinum",
+      "currentPromos": [
+        {"resort": "Fine Hotels + Resorts", "bonus": "Complimentary breakfast, $100 credit, room upgrade"},
+        {"resort": "Hotel Collection", "bonus": "$100 statement credit on 2+ night stays"}
+      ],
+      "url": "https://travel.americanexpress.com",
+      "tip": "Check FHR for luxury properties - includes breakfast and late checkout"
+    },
+    "capitalOne": {
+      "name": "Capital One Travel",
+      "multiplier": "5x-10x",
+      "bonus": "Up to 10x on hotels with Venture X",
+      "currentPromos": [
+        {"type": "general", "bonus": "Price match guarantee + earn miles"}
+      ],
+      "url": "https://travel.capitalone.com",
+      "tip": "Great for price matching - book here if you find a good deal"
+    },
+    "citi": {
+      "name": "Citi ThankYou",
+      "multiplier": "3x",
+      "bonus": "3x on travel with Premier card",
+      "url": "https://www.thankyou.com",
+      "tip": "Good for combining with Costco Travel deals"
+    }
+  },
+  "packageDeals": {
+    "costcoTravel": {
+      "name": "Costco Travel",
+      "url": "https://www.costcotravel.com/Vacation-Packages/Mexico",
+      "avgSavings": "15-25%",
+      "included": ["Flight", "Hotel", "Transfers", "Resort credits"],
+      "tip": "BEST for all-inclusive packages. Often includes extras not available elsewhere.",
+      "recentDeals": [
+        {"resort": "Moon Palace", "savings": "$800 per room", "includes": "$1500 resort credit"},
+        {"resort": "Hard Rock Cancun", "savings": "$600 per room", "includes": "Free room upgrade"}
+      ],
+      "membershipRequired": true,
+      "executiveCashback": "2% back with Executive membership"
+    },
+    "southwestVacations": {
+      "name": "Southwest Vacations",
+      "url": "https://www.southwestvacations.com",
+      "avgSavings": "10-20%",
+      "included": ["Flight", "Hotel", "Sometimes transfers"],
+      "tip": "Great if flying from Midwest. No bag fees, free changes.",
+      "directFlights": {
+        "fromDesMoines": false,
+        "fromOmaha": true,
+        "fromChicago": true,
+        "note": "Direct flights from Omaha (OMA) to Cancun seasonal"
+      }
+    },
+    "appleVacations": {
+      "name": "Apple Vacations",
+      "url": "https://www.applevacations.com",
+      "avgSavings": "10-15%",
+      "included": ["Charter flights", "Hotel", "Transfers"],
+      "tip": "Good for charter flights from smaller airports",
+      "charter": true
+    },
+    "expediaPackages": {
+      "name": "Expedia Bundle",
+      "url": "https://www.expedia.com/vacation-packages",
+      "avgSavings": "Up to $600",
+      "tip": "Bundle flight+hotel for savings. Price match guarantee."
+    }
+  },
+  "bestTimeToBook": {
+    "forMay2025": {
+      "optimalWindow": "January 15 - February 28, 2025",
+      "reason": "Shoulder season rates lock in, before spring break surge",
+      "expectedSavings": "10-15% vs booking in March/April",
+      "deadlines": [
+        {"date": "2025-02-15", "note": "Most resorts increase rates after President's Day"},
+        {"date": "2025-03-01", "note": "Spring break pricing starts"},
+        {"date": "2025-04-15", "note": "Last chance for early booking discounts"}
+      ]
+    },
+    "generalTips": [
+      "Book 3-4 months ahead for best selection + price",
+      "Tuesday/Wednesday often see price drops",
+      "Set price alerts on Google Flights",
+      "Compare package vs separate bookings",
+      "Check resort's direct booking perks (often resort credits)"
+    ],
+    "priceAlertUrls": {
+      "googleFlights": "https://www.google.com/travel/flights?q=flights%20to%20cancun%20may%202025",
+      "kayak": "https://www.kayak.com/flights/DSM-CUN/2025-05-24/2025-05-31"
+    }
+  },
+  "loyaltyPointsValue": {
+    "hyatt": {
+      "program": "World of Hyatt",
+      "valuePerPoint": 0.017,
+      "transferPartners": ["Chase Ultimate Rewards 1:1"],
+      "tip": "Best value for Hyatt Ziva. Transfer Chase points for huge savings."
+    },
+    "marriott": {
+      "program": "Marriott Bonvoy",
+      "valuePerPoint": 0.008,
+      "transferPartners": ["Chase 1:1", "Amex 1:1", "Various airlines"],
+      "tip": "Good for Dreams, Secrets, Now resorts. Off-peak pricing in May."
+    },
+    "hilton": {
+      "program": "Hilton Honors",
+      "valuePerPoint": 0.005,
+      "transferPartners": ["Amex 1:2"],
+      "tip": "Hilton Cancun and Tulum are solid redemptions."
+    }
+  },
+  "flightIntel": {
+    "fromDesMoines": {
+      "bestRoutes": ["DSM-DFW-CUN", "DSM-ORD-CUN", "DSM-DEN-CUN"],
+      "avgPrice": 450,
+      "bestAirlines": ["American (via DFW)", "United (via ORD/DEN)"],
+      "tip": "Book early - limited options from DSM"
+    },
+    "fromOmaha": {
+      "bestRoutes": ["OMA-DFW-CUN", "OMA-DEN-CUN", "OMA-CUN (seasonal direct)"],
+      "avgPrice": 380,
+      "bestAirlines": ["Southwest (seasonal direct!)", "American", "United"],
+      "tip": "Check Southwest for seasonal direct flights"
+    },
+    "fromFlorida": {
+      "bestRoutes": ["Direct from most Florida airports"],
+      "avgPrice": 250,
+      "bestAirlines": ["Southwest", "JetBlue", "Spirit (budget)"],
+      "tip": "Easiest flights - many direct options"
+    },
+    "groupStrategy": {
+      "recommendation": "Book through one airline for easier coordination",
+      "tip": "Consider meeting in Dallas (DFW) - hub with most Cancun flights"
+    }
+  }
+}

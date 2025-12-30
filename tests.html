@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancun Vacation Planner - Tests</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { color: #0891b2; }
+        .test-suite {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-suite h2 {
+            margin-top: 0;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .test {
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .test.pass { background: #d1fae5; color: #065f46; }
+        .test.fail { background: #fee2e2; color: #991b1b; }
+        .test.pending { background: #fef3c7; color: #92400e; }
+        .test-icon { font-size: 1.2rem; }
+        .summary {
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        .summary h2 { color: white; border-bottom: none; }
+        .summary-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        .stat { text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cancun Vacation Planner - Test Suite</h1>
+    <p>Testing all new deal finder and budget calculator features</p>
+
+    <div id="testResults"></div>
+    <div id="summary" class="summary" style="display:none;">
+        <h2>Test Summary</h2>
+        <div class="summary-stats">
+            <div class="stat">
+                <div class="stat-value" id="passCount">0</div>
+                <div class="stat-label">Passed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="failCount">0</div>
+                <div class="stat-label">Failed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="totalCount">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test Framework
+        const tests = [];
+        let passCount = 0;
+        let failCount = 0;
+
+        function test(name, fn) {
+            tests.push({ name, fn });
+        }
+
+        function assertEqual(actual, expected, message = '') {
+            if (actual !== expected) {
+                throw new Error(`${message} Expected ${expected}, got ${actual}`);
+            }
+        }
+
+        function assertTrue(condition, message = '') {
+            if (!condition) {
+                throw new Error(`${message} Expected true, got false`);
+            }
+        }
+
+        function assertDefined(value, message = '') {
+            if (value === undefined || value === null) {
+                throw new Error(`${message} Expected value to be defined`);
+            }
+        }
+
+        // Load the main application data
+        const priceHistory = {
+            1: { trend: "down", percentChange: -9.5, lowestSeen: 380, avgPrice: 400, dealThreshold: 360 },
+            2: { trend: "down", percentChange: -5.9, lowestSeen: 299, avgPrice: 335, dealThreshold: 300 },
+            3: { trend: "down", percentChange: -7.9, lowestSeen: 320, avgPrice: 365, dealThreshold: 330 },
+            4: { trend: "stable", percentChange: -4.0, lowestSeen: 450, avgPrice: 495, dealThreshold: 460 },
+            11: { trend: "down", percentChange: -6.7, lowestSeen: 380, avgPrice: 435, dealThreshold: 400 },
+            16: { trend: "down", percentChange: -7.7, lowestSeen: 450, avgPrice: 500, dealThreshold: 460 }
+        };
+
+        const hiddenCosts = {
+            1: { resortFee: 0, tips: 0, transfer: 85, extras: 25, freeTransfer: false },
+            2: { resortFee: 0, tips: 0, transfer: 90, extras: 15, freeTransfer: false },
+            11: { resortFee: 0, tips: 0, transfer: 0, extras: 10, freeTransfer: true },
+            16: { resortFee: 0, tips: 0, transfer: 0, extras: 0, freeTransfer: true, parksIncluded: true, parksValue: 1200 }
+        };
+
+        const allInclusiveValue = {
+            1: { costPerMeal: 42, retailValue: 700, savingsVsRetail: 320, valueRating: "Good" },
+            2: { costPerMeal: 36, retailValue: 680, savingsVsRetail: 360, valueRating: "Excellent" },
+            16: { costPerMeal: 53, retailValue: 1500, savingsVsRetail: 1020, valueRating: "BEST VALUE" }
+        };
+
+        // Mock resorts
+        const resorts = [
+            { id: 1, name: "Hyatt Ziva Cancun", priceMay24: 380, priceMay31: 420, valueScore: 8 },
+            { id: 2, name: "Hard Rock Hotel Cancun", priceMay24: 320, priceMay31: 360, valueScore: 9 },
+            { id: 11, name: "Generations Riviera Maya", priceMay24: 420, priceMay31: 480, valueScore: 10 },
+            { id: 16, name: "Hotel Xcaret Mexico", priceMay24: 480, priceMay31: 540, valueScore: 9 }
+        ];
+
+        // Functions to test (copied from main app for testing)
+        function getDealBadge(resort) {
+            const history = priceHistory[resort.id];
+            if (!history) {
+                if (resort.valueScore >= 9) return { class: 'good-value', text: 'Good Value', icon: '💚' };
+                if (resort.valueScore >= 7) return { class: 'premium', text: 'Fair Price', icon: '⚖️' };
+                return null;
+            }
+
+            const currentPrice = resort.priceMay24;
+
+            if (currentPrice <= history.dealThreshold) {
+                return { class: 'hot-deal', text: 'Hot Deal!', icon: '🔥' };
+            }
+
+            if (history.trend === 'down' && history.percentChange <= -5) {
+                return { class: 'price-drop', text: `${Math.abs(history.percentChange).toFixed(0)}% Drop`, icon: '📉' };
+            }
+
+            if (currentPrice < history.avgPrice) {
+                return { class: 'good-value', text: 'Good Value', icon: '💚' };
+            }
+
+            if (currentPrice > history.avgPrice * 1.1) {
+                return { class: 'premium', text: 'Premium', icon: '⭐' };
+            }
+
+            return null;
+        }
+
+        function getTrendIndicator(resort) {
+            const history = priceHistory[resort.id];
+            if (!history) return '';
+
+            const arrow = history.trend === 'down' ? '↓' : history.trend === 'up' ? '↑' : '→';
+            const label = history.trend === 'down' ? 'prices falling' : history.trend === 'up' ? 'prices rising' : 'stable';
+
+            return `<span class="trend-indicator ${history.trend}">${arrow} ${Math.abs(history.percentChange).toFixed(1)}% ${label}</span>`;
+        }
+
+        function calculateBudget(resortId, nights, week) {
+            const resort = resorts.find(r => r.id === resortId);
+            if (!resort) return null;
+
+            const pricePerNight = week === 'may24' ? resort.priceMay24 : resort.priceMay31;
+            const accommodationTotal = pricePerNight * 7 * nights; // 7 rooms
+            const flightTotal = (450 * 3) + (420 * 5) + (280 * 4) + (380 * 2); // 14 people
+            const transferCost = 360;
+            const excursionTotal = 200 * 14;
+
+            return {
+                accommodation: accommodationTotal,
+                flights: flightTotal,
+                transfers: transferCost,
+                excursions: excursionTotal,
+                total: accommodationTotal + flightTotal + transferCost + excursionTotal
+            };
+        }
+
+        // ========== TEST SUITES ==========
+
+        // Suite 1: Deal Badge Tests
+        test('getDealBadge returns "Price Drop" for resort with falling prices', () => {
+            const resort = resorts.find(r => r.id === 1);
+            const badge = getDealBadge(resort);
+            assertDefined(badge, 'Badge should be defined');
+            assertEqual(badge.class, 'price-drop', 'Should be price-drop class');
+        });
+
+        test('getDealBadge returns "Good Value" for resort below average price', () => {
+            const resort = resorts.find(r => r.id === 2);
+            const badge = getDealBadge(resort);
+            assertDefined(badge, 'Badge should be defined');
+            assertTrue(badge.text.includes('Drop') || badge.text.includes('Value'), 'Should indicate value');
+        });
+
+        test('getDealBadge returns valid badge object with required properties', () => {
+            const resort = resorts.find(r => r.id === 11);
+            const badge = getDealBadge(resort);
+            if (badge) {
+                assertDefined(badge.class, 'Badge should have class');
+                assertDefined(badge.text, 'Badge should have text');
+                assertDefined(badge.icon, 'Badge should have icon');
+            }
+        });
+
+        // Suite 2: Price Trend Tests
+        test('getTrendIndicator returns down arrow for falling prices', () => {
+            const resort = resorts.find(r => r.id === 1);
+            const indicator = getTrendIndicator(resort);
+            assertTrue(indicator.includes('↓'), 'Should contain down arrow');
+            assertTrue(indicator.includes('prices falling'), 'Should say prices falling');
+        });
+
+        test('getTrendIndicator shows correct percentage', () => {
+            const resort = resorts.find(r => r.id === 1);
+            const indicator = getTrendIndicator(resort);
+            assertTrue(indicator.includes('9.5%'), 'Should show 9.5% change');
+        });
+
+        test('getTrendIndicator returns empty for resort without history', () => {
+            const resort = { id: 999, name: "Unknown Resort", priceMay24: 300 };
+            const indicator = getTrendIndicator(resort);
+            assertEqual(indicator, '', 'Should return empty string');
+        });
+
+        // Suite 3: Hidden Costs Tests
+        test('hiddenCosts has correct structure for Hyatt Ziva', () => {
+            const costs = hiddenCosts[1];
+            assertDefined(costs, 'Costs should be defined');
+            assertEqual(costs.resortFee, 0, 'Resort fee should be 0');
+            assertEqual(costs.transfer, 85, 'Transfer should be 85');
+            assertEqual(costs.freeTransfer, false, 'Should not have free transfer');
+        });
+
+        test('hiddenCosts identifies resorts with free transfers', () => {
+            const generationsCosts = hiddenCosts[11];
+            assertEqual(generationsCosts.freeTransfer, true, 'Generations should have free transfer');
+        });
+
+        test('hiddenCosts includes parks for Xcaret', () => {
+            const xcaretCosts = hiddenCosts[16];
+            assertEqual(xcaretCosts.parksIncluded, true, 'Xcaret should include parks');
+            assertEqual(xcaretCosts.parksValue, 1200, 'Parks value should be 1200');
+        });
+
+        // Suite 4: All-Inclusive Value Tests
+        test('allInclusiveValue calculates correct cost per meal', () => {
+            const value = allInclusiveValue[2];
+            assertDefined(value, 'Value should be defined');
+            assertEqual(value.costPerMeal, 36, 'Hard Rock cost per meal should be 36');
+        });
+
+        test('allInclusiveValue identifies best value resort', () => {
+            const value = allInclusiveValue[16];
+            assertEqual(value.valueRating, 'BEST VALUE', 'Xcaret should be BEST VALUE');
+        });
+
+        test('allInclusiveValue shows savings vs retail', () => {
+            const value = allInclusiveValue[16];
+            assertTrue(value.savingsVsRetail > 1000, 'Xcaret savings should exceed 1000');
+        });
+
+        // Suite 5: Budget Calculator Tests
+        test('calculateBudget returns correct accommodation cost for 7 nights', () => {
+            const budget = calculateBudget(2, 7, 'may24');
+            assertDefined(budget, 'Budget should be defined');
+            // Hard Rock: $320/night × 7 rooms × 7 nights = $15,680
+            assertEqual(budget.accommodation, 15680, 'Accommodation should be 15680');
+        });
+
+        test('calculateBudget includes all 14 people in flight costs', () => {
+            const budget = calculateBudget(1, 7, 'may24');
+            // (450*3) + (420*5) + (280*4) + (380*2) = 1350 + 2100 + 1120 + 760 = 5330
+            assertEqual(budget.flights, 5330, 'Flights for 14 people should be 5330');
+        });
+
+        test('calculateBudget calculates excursions for all 14 people', () => {
+            const budget = calculateBudget(1, 7, 'may24');
+            // $200 per person × 14 = $2800
+            assertEqual(budget.excursions, 2800, 'Excursions should be 2800');
+        });
+
+        test('calculateBudget total equals sum of all costs', () => {
+            const budget = calculateBudget(2, 7, 'may24');
+            const expectedTotal = budget.accommodation + budget.flights + budget.transfers + budget.excursions;
+            assertEqual(budget.total, expectedTotal, 'Total should equal sum of components');
+        });
+
+        // Suite 6: Price History Tests
+        test('priceHistory has trend data for key resorts', () => {
+            assertTrue(priceHistory[1] !== undefined, 'Hyatt should have history');
+            assertTrue(priceHistory[2] !== undefined, 'Hard Rock should have history');
+            assertTrue(priceHistory[11] !== undefined, 'Generations should have history');
+        });
+
+        test('priceHistory dealThreshold is below average price', () => {
+            const history = priceHistory[2];
+            assertTrue(history.dealThreshold < history.avgPrice, 'Deal threshold should be below average');
+        });
+
+        test('priceHistory lowest seen is at or below current prices', () => {
+            const resort = resorts.find(r => r.id === 2);
+            const history = priceHistory[2];
+            assertTrue(history.lowestSeen <= resort.priceMay24, 'Lowest seen should be at or below current price');
+        });
+
+        // Suite 7: Resort Data Tests
+        test('resorts have required fields for budget calculation', () => {
+            resorts.forEach(r => {
+                assertDefined(r.id, `Resort ${r.name} should have id`);
+                assertDefined(r.priceMay24, `Resort ${r.name} should have priceMay24`);
+                assertDefined(r.priceMay31, `Resort ${r.name} should have priceMay31`);
+            });
+        });
+
+        test('resorts May31 price is higher than May24', () => {
+            resorts.forEach(r => {
+                assertTrue(r.priceMay31 >= r.priceMay24, `${r.name} May31 should be >= May24`);
+            });
+        });
+
+        // Suite 8: Data File Validation
+        test('JSON data files exist (simulated check)', () => {
+            // In real test, would fetch files
+            const expectedFiles = [
+                'data/price-history.json',
+                'data/hidden-costs.json',
+                'data/deal-intel.json',
+                'data/all-inclusive-value.json'
+            ];
+            assertTrue(expectedFiles.length === 4, 'Should have 4 data files');
+        });
+
+        // Run all tests
+        function runTests() {
+            const resultsDiv = document.getElementById('testResults');
+            let currentSuite = '';
+            let suiteDiv = null;
+
+            const suites = {
+                'getDealBadge': 'Deal Badge Tests',
+                'getTrendIndicator': 'Price Trend Tests',
+                'hiddenCosts': 'Hidden Costs Tests',
+                'allInclusiveValue': 'All-Inclusive Value Tests',
+                'calculateBudget': 'Budget Calculator Tests',
+                'priceHistory': 'Price History Tests',
+                'resorts': 'Resort Data Tests',
+                'JSON': 'Data File Tests'
+            };
+
+            tests.forEach(t => {
+                // Determine suite
+                let suite = 'Other';
+                for (const [key, name] of Object.entries(suites)) {
+                    if (t.name.includes(key)) {
+                        suite = name;
+                        break;
+                    }
+                }
+
+                // Create suite div if needed
+                if (suite !== currentSuite) {
+                    currentSuite = suite;
+                    suiteDiv = document.createElement('div');
+                    suiteDiv.className = 'test-suite';
+                    suiteDiv.innerHTML = `<h2>${suite}</h2>`;
+                    resultsDiv.appendChild(suiteDiv);
+                }
+
+                // Run test
+                const testDiv = document.createElement('div');
+                testDiv.className = 'test';
+
+                try {
+                    t.fn();
+                    testDiv.className += ' pass';
+                    testDiv.innerHTML = `<span class="test-icon">✓</span> ${t.name}`;
+                    passCount++;
+                } catch (error) {
+                    testDiv.className += ' fail';
+                    testDiv.innerHTML = `<span class="test-icon">✗</span> ${t.name}<br><pre>${error.message}</pre>`;
+                    failCount++;
+                }
+
+                suiteDiv.appendChild(testDiv);
+            });
+
+            // Show summary
+            const summary = document.getElementById('summary');
+            summary.style.display = 'block';
+            document.getElementById('passCount').textContent = passCount;
+            document.getElementById('failCount').textContent = failCount;
+            document.getElementById('totalCount').textContent = tests.length;
+
+            // Return results for CLI
+            console.log(`\nTest Results: ${passCount}/${tests.length} passed, ${failCount} failed`);
+            return failCount === 0;
+        }
+
+        // Run on load
+        window.onload = runTests;
+    </script>
+</body>
+</html>

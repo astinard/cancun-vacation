@@ -1,0 +1,251 @@
+{
+  "lastUpdated": "2025-01-15",
+  "hiddenCosts": {
+    "1": {
+      "name": "Hyatt Ziva Cancun",
+      "resortFee": 0,
+      "resortFeeNote": "All-inclusive, no additional resort fees",
+      "mandatoryTips": 0,
+      "mandatoryTipsNote": "Tips included in all-inclusive",
+      "airportTransfer": {
+        "private": 85,
+        "shared": 25,
+        "note": "Per person one-way. Resort can arrange."
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "Kids club included for ages 3-12",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": 0,
+      "premiumNote": "All restaurants included",
+      "roomServiceFee": 0,
+      "poolCabanaFee": {
+        "amount": 150,
+        "note": "Optional cabana rental per day"
+      },
+      "spaServiceCharge": 18,
+      "spaNote": "18% service charge on spa treatments",
+      "estimatedDailyExtras": 25,
+      "totalHiddenCostsPerNight": 25
+    },
+    "2": {
+      "name": "Hard Rock Hotel Cancun",
+      "resortFee": 0,
+      "resortFeeNote": "All-inclusive package",
+      "mandatoryTips": 0,
+      "mandatoryTipsNote": "Gratuities included",
+      "airportTransfer": {
+        "private": 90,
+        "shared": 28,
+        "note": "Roundtrip private van recommended for wheelchair access"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "Kids club and water park included",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": 0,
+      "premiumNote": "All 9 restaurants included",
+      "roomServiceFee": 0,
+      "poolCabanaFee": {
+        "amount": 0,
+        "note": "First-come cabana seating included"
+      },
+      "spaServiceCharge": 15,
+      "spaNote": "15% service charge on spa",
+      "estimatedDailyExtras": 15,
+      "totalHiddenCostsPerNight": 15
+    },
+    "3": {
+      "name": "Moon Palace Cancun",
+      "resortFee": 0,
+      "resortFeeNote": "All-inclusive",
+      "mandatoryTips": 0,
+      "mandatoryTipsNote": "Included but staff expects additional tips",
+      "airportTransfer": {
+        "private": 0,
+        "shared": 0,
+        "note": "FREE roundtrip airport transfer included!"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "Kids club included",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": {
+        "amount": 35,
+        "note": "Some specialty restaurants have surcharge"
+      },
+      "roomServiceFee": 0,
+      "poolCabanaFee": {
+        "amount": 200,
+        "note": "Bali beds $200/day"
+      },
+      "spaServiceCharge": 20,
+      "spaNote": "20% service charge",
+      "resortCredits": {
+        "amount": 1500,
+        "note": "$1500 resort credit per room (7 nights)"
+      },
+      "estimatedDailyExtras": 40,
+      "totalHiddenCostsPerNight": 40
+    },
+    "4": {
+      "name": "Grand Fiesta Americana Coral Beach",
+      "resortFee": 0,
+      "resortFeeNote": "All-inclusive",
+      "mandatoryTips": 0,
+      "mandatoryTipsNote": "Gratuities included",
+      "airportTransfer": {
+        "private": 95,
+        "shared": 30,
+        "note": "Per person one-way"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "Coral KidZ Club included ages 4-12",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": 0,
+      "premiumNote": "All 6 restaurants included",
+      "roomServiceFee": 0,
+      "poolCabanaFee": {
+        "amount": 175,
+        "note": "Beach cabanas available"
+      },
+      "spaServiceCharge": 16,
+      "spaNote": "16% gratuity on spa services",
+      "estimatedDailyExtras": 20,
+      "totalHiddenCostsPerNight": 20
+    },
+    "11": {
+      "name": "Generations Riviera Maya",
+      "resortFee": 0,
+      "resortFeeNote": "Gourmet Inclusive concept",
+      "mandatoryTips": 0,
+      "mandatoryTipsNote": "All gratuities included",
+      "airportTransfer": {
+        "private": 0,
+        "shared": 0,
+        "note": "FREE luxury roundtrip transfer included!"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "Eko Kids Club included all ages",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": 0,
+      "premiumNote": "All gourmet dining included",
+      "roomServiceFee": 0,
+      "poolCabanaFee": {
+        "amount": 0,
+        "note": "Beach butler service included"
+      },
+      "spaServiceCharge": 15,
+      "spaNote": "15% on spa treatments",
+      "estimatedDailyExtras": 10,
+      "totalHiddenCostsPerNight": 10,
+      "bonusValue": "Includes airport transfer, beach butler, all dining = exceptional value"
+    },
+    "16": {
+      "name": "Hotel Xcaret Mexico",
+      "resortFee": 0,
+      "resortFeeNote": "All-Fun Inclusive",
+      "mandatoryTips": 0,
+      "mandatoryTipsNote": "Gratuities included",
+      "airportTransfer": {
+        "private": 0,
+        "shared": 0,
+        "note": "FREE roundtrip airport transfer included!"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "Kids area included",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": 0,
+      "premiumNote": "All 10 restaurants included",
+      "roomServiceFee": 0,
+      "poolCabanaFee": {
+        "amount": 0,
+        "note": "Included"
+      },
+      "spaServiceCharge": 16,
+      "spaNote": "16% on spa",
+      "parkInclusion": {
+        "value": 1200,
+        "parks": ["Xcaret", "Xel-Ha", "Xplor", "Xenses", "Xenotes", "Xoximilco", "Xavage"],
+        "note": "ALL Xcaret parks included - $1200+ value!"
+      },
+      "estimatedDailyExtras": 0,
+      "totalHiddenCostsPerNight": 0,
+      "bonusValue": "Best hidden value: $1200+ in park tickets INCLUDED. No extra costs!"
+    },
+    "41": {
+      "name": "Hacienda Magica (Villa)",
+      "resortFee": 0,
+      "resortFeeNote": "Villa rental",
+      "mandatoryTips": {
+        "amount": 350,
+        "note": "$350/day suggested for staff (chef, butler, housekeeping)"
+      },
+      "airportTransfer": {
+        "private": 180,
+        "shared": 0,
+        "note": "Private van for group ~$180 each way"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "N/A - private villa",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "premiumRestaurantFee": 0,
+      "premiumNote": "Private chef included",
+      "roomServiceFee": 0,
+      "groceries": {
+        "amount": 200,
+        "note": "$150-200/day for groceries for chef to prepare"
+      },
+      "estimatedDailyExtras": 550,
+      "totalHiddenCostsPerNight": 550,
+      "perPersonCost": 39,
+      "bonusValue": "Private chef, butler, full staff included. Per-person still great value!"
+    },
+    "44": {
+      "name": "Villa Quinta Clara (Villa)",
+      "resortFee": 0,
+      "resortFeeNote": "Villa rental",
+      "mandatoryTips": {
+        "amount": 200,
+        "note": "$200/day suggested for cook and housekeeper"
+      },
+      "airportTransfer": {
+        "private": 200,
+        "shared": 0,
+        "note": "Private van $200 each way (70 min drive)"
+      },
+      "kidsClubFee": 0,
+      "kidsClubNote": "N/A - private villa",
+      "wifiCharge": 0,
+      "parkingCharge": 0,
+      "groceries": {
+        "amount": 150,
+        "note": "$150/day for groceries"
+      },
+      "estimatedDailyExtras": 350,
+      "totalHiddenCostsPerNight": 350,
+      "perPersonCost": 25,
+      "bonusValue": "Sea turtle beach! Cook included. Amazing for kids!"
+    }
+  },
+  "transferOptions": {
+    "cancunAirport": {
+      "privateVan": {
+        "to_hotelZone": {"price": 80, "time": "25 min"},
+        "to_playaDelCarmen": {"price": 120, "time": "50 min"},
+        "to_tulum": {"price": 180, "time": "90 min"},
+        "to_costaMujeres": {"price": 90, "time": "35 min"}
+      },
+      "sharedShuttle": {
+        "to_hotelZone": {"price": 25, "time": "45 min"},
+        "to_playaDelCarmen": {"price": 35, "time": "75 min"},
+        "to_tulum": {"price": 50, "time": "120 min"}
+      },
+      "recommended": "Private van for 14 people: ~$160-200 each way (2 vans)"
+    }
+  }
+}
