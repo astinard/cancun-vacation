@@ -193,6 +193,8 @@
         .chip.points.active { background: #6366f1; border-color: #6366f1; }
         .chip.accessible { border-color: #ec4899; }
         .chip.accessible.active { background: #ec4899; border-color: #ec4899; }
+        .chip.villa { border-color: #8b5cf6; }
+        .chip.villa.active { background: #8b5cf6; border-color: #8b5cf6; }
 
         /* Resort List */
         .resort-list {
@@ -265,6 +267,7 @@
         .tag-accessible { background: #fce7f3; color: #9d174d; }
         .tag-adults { background: #fee2e2; color: #991b1b; }
         .tag-new { background: #cffafe; color: #0e7490; }
+        .tag-villa { background: #ede9fe; color: #5b21b6; font-weight: 700; }
 
         .resort-price {
             display: flex;
@@ -809,8 +812,8 @@
                     <div class="stat-label">Rooms</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value" id="resortCount">45+</div>
-                    <div class="stat-label">Resorts</div>
+                    <div class="stat-value" id="resortCount">45</div>
+                    <div class="stat-label">Options</div>
                 </div>
             </div>
         </div>
@@ -849,6 +852,7 @@
                             <div class="chip accessible" data-filter="feature" data-value="accessible">Accessible</div>
                             <div class="chip points" data-filter="feature" data-value="points">Bookable w/ Points</div>
                             <div class="chip luxury" data-filter="feature" data-value="luxury">Luxury</div>
+                            <div class="chip villa" data-filter="feature" data-value="villa">Private Villas</div>
                         </div>
                     </div>
 
@@ -893,6 +897,10 @@
                     <div class="legend-item">
                         <div class="legend-marker" style="background: #ec4899;"></div>
                         <span>Accessible</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background: #8b5cf6;"></div>
+                        <span>Private Villa</span>
                     </div>
                 </div>
 
@@ -1946,6 +1954,138 @@
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150813-d625506-Reviews-Grand_Sirenis_Riviera_Maya_Resort_Spa-Tulum_Yucatan_Peninsula.html",
                 features: ["Budget friendly", "Cenote on site", "Large property"],
                 notes: "Budget option near Tulum with cenote"
+            },
+
+            // LUXURY VILLA RENTALS - Great for large groups
+            {
+                id: 41,
+                name: "Hacienda Magica (Villa)",
+                area: "riviera",
+                areaName: "Puerto Aventuras",
+                lat: 20.4983,
+                lng: -87.2350,
+                airportDist: "45 min",
+                priceMay24: 2860,
+                priceMay31: 3200,
+                rating: 5.0,
+                reviews: 89,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                isVilla: true,
+                bedrooms: 14,
+                sleeps: 36,
+                points: null,
+                pointsCost: null,
+                website: "https://hauteretreats.com/luxury-rentals/hacienda-magica-14-br/",
+                tripadvisor: "https://www.tripadvisor.com/VacationRentalReview-g153510-d2350771-Hacienda_Magica-Puerto_Aventuras.html",
+                features: ["14 bedrooms", "Beachfront", "Full staff", "Private chef", "Tennis court", "Pool"],
+                notes: "VILLA: Palatial beachfront villa with full staff, chef, and butler. Price is for entire villa/night. Perfect for our group of 14!"
+            },
+            {
+                id: 42,
+                name: "Villa Esmeralda (Villa)",
+                area: "riviera",
+                areaName: "Playa del Carmen",
+                lat: 20.6296,
+                lng: -87.0739,
+                airportDist: "55 min",
+                priceMay24: 1800,
+                priceMay31: 2100,
+                rating: 4.9,
+                reviews: 42,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                isVilla: true,
+                bedrooms: 8,
+                sleeps: 16,
+                points: null,
+                pointsCost: null,
+                website: "https://www.mayaluxe.com/luxury-villas/",
+                tripadvisor: "https://www.tripadvisor.com/VacationRentals-g150812-Reviews-Playa_del_Carmen_Yucatan_Peninsula-Villas.html",
+                features: ["8 bedrooms", "Private pool", "Chef available", "Oceanfront", "Concierge"],
+                notes: "VILLA: Luxury beachfront villa. Chef and concierge available. Price is per night for entire villa."
+            },
+            {
+                id: 43,
+                name: "Hacienda del Mar (Villa)",
+                area: "cancun",
+                areaName: "Puerto Cancun",
+                lat: 21.1456,
+                lng: -86.8123,
+                airportDist: "25 min",
+                priceMay24: 2200,
+                priceMay31: 2500,
+                rating: 4.8,
+                reviews: 56,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                isVilla: true,
+                bedrooms: 7,
+                sleeps: 14,
+                points: null,
+                pointsCost: null,
+                website: "https://www.rentalescapes.com/rentals/luxury-vacation-rentals-mexico/riviera-maya/cancun",
+                tripadvisor: "https://www.tripadvisor.com/VacationRentals-g150807-Reviews-Cancun_Yucatan_Peninsula-Villas.html",
+                features: ["7 bedrooms", "Private beach", "Full staff", "Golf nearby", "Marina access"],
+                notes: "VILLA: Perfect for our 14 people - 7 rooms exactly. Full staff included. Gated community with marina."
+            },
+            {
+                id: 44,
+                name: "Villa Quinta Clara (Villa)",
+                area: "riviera",
+                areaName: "Akumal",
+                lat: 20.3961,
+                lng: -87.3120,
+                airportDist: "70 min",
+                priceMay24: 1650,
+                priceMay31: 1900,
+                rating: 4.9,
+                reviews: 34,
+                family: true,
+                accessible: true,
+                luxury: true,
+                adultsOnly: false,
+                isVilla: true,
+                bedrooms: 8,
+                sleeps: 18,
+                points: null,
+                pointsCost: null,
+                website: "https://isleblue.co/mayan-riviera/villas",
+                tripadvisor: "https://www.tripadvisor.com/VacationRentals-g499445-Reviews-Akumal_Yucatan_Peninsula-Villas.html",
+                features: ["8 bedrooms", "Sea turtle beach", "Snorkeling", "Cook included", "Pool"],
+                notes: "VILLA: Located in Akumal - famous for sea turtles! Cook and housekeeper included. Great for kids."
+            },
+            {
+                id: 45,
+                name: "Casa de los Suenos (Villa)",
+                area: "tulum",
+                areaName: "Tulum Beach",
+                lat: 20.2145,
+                lng: -87.4298,
+                airportDist: "90 min",
+                priceMay24: 2400,
+                priceMay31: 2800,
+                rating: 4.8,
+                reviews: 28,
+                family: true,
+                accessible: false,
+                luxury: true,
+                adultsOnly: false,
+                isVilla: true,
+                bedrooms: 9,
+                sleeps: 20,
+                points: null,
+                pointsCost: null,
+                website: "https://www.mayaluxe.com/luxury-villas/?filter_region=tulum",
+                tripadvisor: "https://www.tripadvisor.com/VacationRentals-g150813-Reviews-Tulum_Yucatan_Peninsula-Villas.html",
+                features: ["9 bedrooms", "Beachfront Tulum", "Cenote nearby", "Chef available", "Bohemian luxury"],
+                notes: "VILLA: Stunning Tulum beachfront. Note: Tulum beach is less accessible (stairs to beach). Great for those wanting authentic Tulum vibe."
             }
         ];
 
@@ -1980,6 +2120,7 @@
         }
 
         function getMarkerColor(resort) {
+            if (resort.isVilla) return '#8b5cf6';
             if (resort.accessible) return '#ec4899';
             if (resort.points) return '#6366f1';
             if (resort.luxury) return '#f59e0b';
@@ -2029,6 +2170,7 @@
                 if (featureFilters.includes('accessible') && !r.accessible) return false;
                 if (featureFilters.includes('points') && !r.points) return false;
                 if (featureFilters.includes('luxury') && !r.luxury) return false;
+                if (featureFilters.includes('villa') && !r.isVilla) return false;
 
                 return true;
             });
@@ -2044,6 +2186,7 @@
                     </div>
                     <div class="resort-location">${r.areaName} • ${r.airportDist} from CUN</div>
                     <div class="resort-tags">
+                        ${r.isVilla ? '<span class="tag tag-villa">VILLA ' + r.bedrooms + 'BR</span>' : ''}
                         ${r.family ? '<span class="tag tag-family">Family</span>' : ''}
                         ${r.adultsOnly ? '<span class="tag tag-adults">Adults Only</span>' : ''}
                         ${r.luxury ? '<span class="tag tag-luxury">Luxury</span>' : ''}
@@ -2066,24 +2209,39 @@
             document.getElementById('panelTitle').textContent = resort.name;
             document.getElementById('panelSubtitle').textContent = `${resort.areaName} • ${resort.airportDist} from airport`;
 
-            const total7May = resort.priceMay24 * 7 * 7; // 7 rooms, 7 nights
-            const total7Jun = resort.priceMay31 * 7 * 7;
+            // Villas: price is for entire villa; Resorts: price per room
+            const isVilla = resort.isVilla;
+            const total7May = isVilla ? resort.priceMay24 * 7 : resort.priceMay24 * 7 * 7;
+            const total7Jun = isVilla ? resort.priceMay31 * 7 : resort.priceMay31 * 7 * 7;
+            const priceLabel = isVilla ? '/night (entire villa)' : '/night per room';
+            const totalLabel = isVilla ? 'Est. Total (7 nights entire villa)' : 'Est. Total (7 rooms × 7 nights)';
 
             document.getElementById('panelBody').innerHTML = `
+                ${isVilla ? `
+                <div class="info-section" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: white; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Private Villa Rental</div>
+                    <div style="display: flex; gap: 20px;">
+                        <div><span style="opacity: 0.8;">Bedrooms:</span> <strong>${resort.bedrooms}</strong></div>
+                        <div><span style="opacity: 0.8;">Sleeps:</span> <strong>${resort.sleeps}</strong></div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.85rem; opacity: 0.9;">Full staff, chef, and concierge typically included</div>
+                </div>
+                ` : ''}
+
                 <div class="info-section">
                     <div class="info-section-title">Price Comparison</div>
                     <div class="price-grid">
                         <div class="price-card highlight">
                             <div class="price-week">May 24-31</div>
-                            <div class="price-amount">$${resort.priceMay24}/night</div>
+                            <div class="price-amount">$${resort.priceMay24.toLocaleString()}${priceLabel}</div>
                         </div>
                         <div class="price-card">
                             <div class="price-week">May 31 - Jun 7</div>
-                            <div class="price-amount">$${resort.priceMay31}/night</div>
+                            <div class="price-amount">$${resort.priceMay31.toLocaleString()}${priceLabel}</div>
                         </div>
                     </div>
                     <div style="margin-top:15px;padding:12px;background:#f0fdf4;border-radius:8px;text-align:center;">
-                        <div style="font-size:0.8rem;color:#666;">Est. Total (7 rooms × 7 nights)</div>
+                        <div style="font-size:0.8rem;color:#666;">${totalLabel}</div>
                         <div style="font-size:1.4rem;font-weight:700;color:#059669;">$${total7May.toLocaleString()} - $${total7Jun.toLocaleString()}</div>
                     </div>
                 </div>
@@ -2223,17 +2381,25 @@
         // Matrix rendering
         function renderMatrix() {
             const tbody = document.getElementById('matrixBody');
-            const familyResorts = resorts.filter(r => r.family).sort((a, b) => a.priceMay24 - b.priceMay24);
+            const familyResorts = resorts.filter(r => r.family).sort((a, b) => {
+                // Sort villas at the end, otherwise by price
+                if (a.isVilla && !b.isVilla) return 1;
+                if (!a.isVilla && b.isVilla) return -1;
+                return a.priceMay24 - b.priceMay24;
+            });
 
             tbody.innerHTML = familyResorts.map(r => {
-                const total7 = r.priceMay24 * 7 * 7;
+                const isVilla = r.isVilla;
+                const total7 = isVilla ? r.priceMay24 * 7 : r.priceMay24 * 7 * 7;
+                const priceNote = isVilla ? ' (villa)' : '';
+                const rowStyle = isVilla ? 'background: #f5f3ff;' : '';
                 return `
-                <tr>
-                    <td><strong>${r.name}</strong></td>
+                <tr style="${rowStyle}">
+                    <td><strong>${r.name}</strong>${isVilla ? '<br><span style="color:#8b5cf6;font-size:0.75rem;">PRIVATE VILLA • ' + r.bedrooms + ' BR</span>' : ''}</td>
                     <td>${r.areaName}</td>
                     <td><span class="airport-badge">${r.airportDist}</span></td>
-                    <td><strong>$${r.priceMay24}</strong>/night</td>
-                    <td>$${r.priceMay31}/night</td>
+                    <td><strong>$${r.priceMay24.toLocaleString()}</strong>/night${priceNote}</td>
+                    <td>$${r.priceMay31.toLocaleString()}/night${priceNote}</td>
                     <td style="color:#059669;font-weight:700;">$${total7.toLocaleString()}</td>
                     <td class="check-yes">✓</td>
                     <td class="${r.accessible ? 'check-yes' : 'check-no'}">${r.accessible ? '✓' : '—'}</td>
