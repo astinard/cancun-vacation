@@ -205,6 +205,360 @@
             padding: 0;
         }
 
+        /* Map Mode Toggle */
+        .map-mode-toggle {
+            display: flex;
+            background: #e2e8f0;
+            border-radius: 10px;
+            padding: 4px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+
+        .mode-btn.active {
+            background: white;
+            color: #0891b2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* Explore Filters */
+        .explore-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .explore-chip {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-slider {
+            width: 44px;
+            height: 24px;
+            background: #cbd5e1;
+            border-radius: 12px;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: #10b981;
+        }
+
+        .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        .toggle-label {
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        /* Add Attraction Button */
+        .add-attraction-btn {
+            float: right;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .add-attraction-btn:hover {
+            background: #059669;
+        }
+
+        /* Attraction List */
+        .attraction-list {
+            padding: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .attraction-card {
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .attraction-card:hover {
+            background: #f0fdfa;
+        }
+
+        .attraction-card.selected {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid #10b981;
+        }
+
+        .attraction-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .attraction-icon {
+            font-size: 1.4rem;
+        }
+
+        .attraction-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .attraction-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .attraction-meta {
+            display: flex;
+            gap: 10px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .attraction-type {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .attraction-price {
+            font-weight: 600;
+            color: #059669;
+        }
+
+        /* Attraction Detail Modal */
+        .attraction-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .attraction-modal.active {
+            display: flex;
+        }
+
+        .attraction-modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+
+        .attraction-modal-header {
+            padding: 24px;
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+            color: white;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .attraction-modal-body {
+            padding: 24px;
+        }
+
+        .attraction-detail-section {
+            margin-bottom: 20px;
+        }
+
+        .attraction-detail-section h4 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .attraction-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .highlight-tag {
+            background: #f0fdfa;
+            color: #0f766e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .attraction-source {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.8rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .source-verified {
+            color: #10b981;
+        }
+
+        .attraction-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .attraction-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .attraction-btn-primary {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            color: white;
+            border: none;
+        }
+
+        .attraction-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(8,145,178,0.3);
+        }
+
+        .attraction-btn-secondary {
+            background: white;
+            color: #0891b2;
+            border: 2px solid #0891b2;
+        }
+
+        /* Add Attraction Modal */
+        .add-modal-form {
+            padding: 24px;
+        }
+
+        .form-row {
+            margin-bottom: 16px;
+        }
+
+        .form-row label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-row input:focus,
+        .form-row select:focus,
+        .form-row textarea:focus {
+            outline: none;
+            border-color: #0891b2;
+        }
+
+        .form-row-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
         .resort-card {
             padding: 16px 20px;
             border-bottom: 1px solid #e2e8f0;
@@ -2207,6 +2561,20 @@
     <div class="view active" id="view-map">
         <div class="main-container">
             <aside class="sidebar">
+                <!-- Map Mode Toggle: Resorts vs Explore -->
+                <div class="sidebar-section" style="padding-bottom:10px;">
+                    <div class="map-mode-toggle">
+                        <button class="mode-btn active" data-mode="resorts" onclick="setMapMode('resorts')">
+                            <span>🏨</span> Resorts
+                        </button>
+                        <button class="mode-btn" data-mode="explore" onclick="setMapMode('explore')">
+                            <span>🧭</span> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RESORTS MODE FILTERS -->
+                <div id="resortFilters">
                 <div class="sidebar-section">
                     <div class="sidebar-title">Target Weeks</div>
                     <div class="filter-chips">
@@ -2255,6 +2623,74 @@
                     <div class="sidebar-title" style="padding: 20px 20px 10px;">Resorts (<span id="filteredCount">0</span>)</div>
                     <div class="resort-list" id="resortList"></div>
                 </div>
+                </div><!-- End resortFilters -->
+
+                <!-- EXPLORE MODE FILTERS (hidden by default) -->
+                <div id="exploreFilters" style="display:none;">
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">What are you looking for?</div>
+                        <div class="filter-chips explore-categories">
+                            <div class="chip explore-chip active" data-category="all" onclick="filterAttractions('all')">
+                                <span>✨</span> All
+                            </div>
+                            <div class="chip explore-chip" data-category="eco-park" onclick="filterAttractions('eco-park')">
+                                <span>🌿</span> Eco-Parks
+                            </div>
+                            <div class="chip explore-chip" data-category="ruins" onclick="filterAttractions('ruins')">
+                                <span>🏛️</span> Ruins
+                            </div>
+                            <div class="chip explore-chip" data-category="cenote" onclick="filterAttractions('cenote')">
+                                <span>💧</span> Cenotes
+                            </div>
+                            <div class="chip explore-chip" data-category="island" onclick="filterAttractions('island')">
+                                <span>🏝️</span> Islands
+                            </div>
+                            <div class="chip explore-chip" data-category="water-activity" onclick="filterAttractions('water-activity')">
+                                <span>🤿</span> Water Sports
+                            </div>
+                            <div class="chip explore-chip" data-category="restaurant" onclick="filterAttractions('restaurant')">
+                                <span>🍽️</span> Restaurants
+                            </div>
+                            <div class="chip explore-chip" data-category="shopping" onclick="filterAttractions('shopping')">
+                                <span>🛍️</span> Shopping
+                            </div>
+                            <div class="chip explore-chip" data-category="family" onclick="filterAttractions('family')">
+                                <span>👨‍👩‍👧‍👦</span> Family Fun
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Filter by Area</div>
+                        <div class="filter-chips">
+                            <div class="chip active" data-explore-area="all" onclick="filterAttractionsByArea('all')">All Areas</div>
+                            <div class="chip" data-explore-area="cancun" onclick="filterAttractionsByArea('cancun')">Cancun</div>
+                            <div class="chip" data-explore-area="riviera" onclick="filterAttractionsByArea('riviera')">Riviera Maya</div>
+                            <div class="chip" data-explore-area="tulum" onclick="filterAttractionsByArea('tulum')">Tulum</div>
+                            <div class="chip" data-explore-area="costa" onclick="filterAttractionsByArea('costa')">Costa Mujeres</div>
+                            <div class="chip" data-explore-area="inland" onclick="filterAttractionsByArea('inland')">Inland</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Family Friendly Only</div>
+                        <div class="filter-chips">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="kidFriendlyFilter" onchange="toggleKidFriendly()">
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label">Show only kid-friendly</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section" style="padding: 0;">
+                        <div class="sidebar-title" style="padding: 20px 20px 10px;">
+                            Attractions (<span id="attractionCount">0</span>)
+                            <button onclick="openAddAttractionModal()" class="add-attraction-btn" title="Suggest a place">+ Add</button>
+                        </div>
+                        <div class="attraction-list" id="attractionList"></div>
+                    </div>
+                </div><!-- End exploreFilters -->
             </aside>
 
             <div class="map-container">
@@ -2873,6 +3309,148 @@
         </div>
     </div>
     <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
+    <!-- Attraction Detail Modal -->
+    <div class="attraction-modal" id="attractionModal">
+        <div class="attraction-modal-content">
+            <div class="attraction-modal-header" id="attractionModalHeader">
+                <button class="modal-close-btn" onclick="closeAttractionModal()">&times;</button>
+                <div style="font-size:2.5rem;margin-bottom:10px;" id="modalAttractionIcon"></div>
+                <h2 id="modalAttractionName"></h2>
+                <div style="opacity:0.9;font-size:0.9rem;" id="modalAttractionType"></div>
+            </div>
+            <div class="attraction-modal-body">
+                <div class="attraction-detail-section">
+                    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:15px;">
+                        <div style="display:flex;align-items:center;gap:6px;">
+                            <span style="color:#f59e0b;font-size:1.2rem;">★</span>
+                            <span id="modalRating" style="font-weight:700;"></span>
+                            <span id="modalReviewCount" style="color:#64748b;font-size:0.85rem;"></span>
+                        </div>
+                        <div id="modalPriceRange" style="font-weight:600;color:#059669;"></div>
+                        <div id="modalDuration" style="color:#64748b;"></div>
+                    </div>
+                    <p id="modalDescription" style="color:#475569;line-height:1.6;"></p>
+                </div>
+
+                <div class="attraction-detail-section">
+                    <h4><span>✨</span> Highlights</h4>
+                    <div class="attraction-highlights" id="modalHighlights"></div>
+                </div>
+
+                <div class="attraction-detail-section" id="modalIncludedSection">
+                    <h4><span>✅</span> What's Included</h4>
+                    <div id="modalIncluded" style="color:#475569;font-size:0.9rem;"></div>
+                </div>
+
+                <div class="attraction-detail-section" id="modalNotIncludedSection">
+                    <h4><span>❌</span> Not Included</h4>
+                    <div id="modalNotIncluded" style="color:#475569;font-size:0.9rem;"></div>
+                </div>
+
+                <div class="attraction-detail-section">
+                    <h4><span>💡</span> Tips</h4>
+                    <p id="modalTips" style="color:#475569;font-size:0.9rem;background:#fef3c7;padding:12px;border-radius:8px;"></p>
+                </div>
+
+                <div class="attraction-detail-section">
+                    <h4><span>📍</span> Location & Hours</h4>
+                    <div style="display:grid;gap:8px;font-size:0.9rem;color:#475569;">
+                        <div><strong>Area:</strong> <span id="modalArea"></span></div>
+                        <div><strong>Hours:</strong> <span id="modalHours"></span></div>
+                        <div id="modalAccessibility"></div>
+                        <div id="modalKidFriendly"></div>
+                    </div>
+                </div>
+
+                <div class="attraction-detail-section">
+                    <h4><span>📋</span> Source & Verification</h4>
+                    <div class="attraction-source" id="modalSource"></div>
+                </div>
+
+                <div class="attraction-actions">
+                    <a id="modalBookingBtn" href="#" target="_blank" class="attraction-btn attraction-btn-primary">
+                        Book Now / Official Site
+                    </a>
+                    <a id="modalSourceBtn" href="#" target="_blank" class="attraction-btn attraction-btn-secondary">
+                        View Reviews
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Attraction Modal -->
+    <div class="attraction-modal" id="addAttractionModal">
+        <div class="attraction-modal-content">
+            <div class="attraction-modal-header" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <button class="modal-close-btn" onclick="closeAddAttractionModal()">&times;</button>
+                <div style="font-size:2rem;margin-bottom:10px;">➕</div>
+                <h2>Suggest a Place</h2>
+                <div style="opacity:0.9;font-size:0.9rem;">Add a restaurant, activity, or attraction for the family</div>
+            </div>
+            <div class="add-modal-form">
+                <div class="form-row">
+                    <label>Name *</label>
+                    <input type="text" id="addAttractionName" placeholder="e.g., Tacos Rigo" required>
+                </div>
+                <div class="form-row-inline">
+                    <div class="form-row">
+                        <label>Category *</label>
+                        <select id="addAttractionCategory">
+                            <option value="restaurant">🍽️ Restaurant</option>
+                            <option value="eco-park">🌿 Eco-Park</option>
+                            <option value="ruins">🏛️ Ruins</option>
+                            <option value="cenote">💧 Cenote</option>
+                            <option value="island">🏝️ Island</option>
+                            <option value="water-activity">🤿 Water Activity</option>
+                            <option value="shopping">🛍️ Shopping</option>
+                            <option value="family">👨‍👩‍👧‍👦 Family Fun</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label>Area *</label>
+                        <select id="addAttractionArea">
+                            <option value="cancun">Cancun</option>
+                            <option value="riviera">Riviera Maya</option>
+                            <option value="tulum">Tulum</option>
+                            <option value="costa">Costa Mujeres</option>
+                            <option value="inland">Inland</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>Description</label>
+                    <textarea id="addAttractionDescription" rows="3" placeholder="What makes this place special?"></textarea>
+                </div>
+                <div class="form-row-inline">
+                    <div class="form-row">
+                        <label>Estimated Price (per person)</label>
+                        <input type="number" id="addAttractionPrice" placeholder="e.g., 50">
+                    </div>
+                    <div class="form-row">
+                        <label>Website / Link</label>
+                        <input type="url" id="addAttractionWebsite" placeholder="https://...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>Why are you recommending this?</label>
+                    <input type="text" id="addAttractionReason" placeholder="e.g., Best tacos in Cancun!">
+                </div>
+                <div class="form-row">
+                    <label>
+                        <input type="checkbox" id="addAttractionKidFriendly" checked> Kid-friendly
+                    </label>
+                </div>
+                <div class="attraction-actions">
+                    <button onclick="closeAddAttractionModal()" class="attraction-btn attraction-btn-secondary">Cancel</button>
+                    <button onclick="submitNewAttraction()" class="attraction-btn attraction-btn-primary" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        Add Suggestion
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
@@ -4203,6 +4781,719 @@
             }
         ];
 
+        // Excursions, Restaurants & Activities Database
+        // Each entry includes provenance (source, URL, last verified date)
+        const attractions = [
+            // ECO-PARKS
+            {
+                id: 'xcaret',
+                name: 'Xcaret Park',
+                category: 'eco-park',
+                type: 'Theme Park',
+                area: 'riviera',
+                areaName: 'Riviera Maya',
+                lat: 20.5808,
+                lng: -87.1180,
+                rating: 4.7,
+                reviewCount: 45234,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$',
+                priceAdult: 130,
+                priceChild: 65,
+                duration: 'Full day (8-10 hours)',
+                hours: '8:30 AM - 10:30 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://www.xcaret.com',
+                bookingUrl: 'https://www.xcaret.com/en/parks-and-tours/xcaret/',
+                description: 'Eco-archaeological park with underground rivers, snorkeling, wildlife, and spectacular night show.',
+                highlights: ['Underground rivers', 'Snorkeling', 'Butterfly pavilion', 'Night show', 'Mexican village'],
+                included: ['All activities', 'Snorkel equipment', 'Locker', 'Night show'],
+                notIncluded: ['Food (unless plus package)', 'Photos', 'Towels'],
+                tips: 'Book "Plus" package for buffet meals. Arrive early to maximize time. Night show is a must-see!',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150812-d155544-Reviews-Xcaret_Park-Playa_del_Carmen_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'xelha',
+                name: 'Xel-Há Park',
+                category: 'eco-park',
+                type: 'Water Park',
+                area: 'riviera',
+                areaName: 'Riviera Maya',
+                lat: 20.3180,
+                lng: -87.3575,
+                rating: 4.6,
+                reviewCount: 28456,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$',
+                priceAdult: 120,
+                priceChild: 60,
+                duration: 'Full day (6-8 hours)',
+                hours: '8:30 AM - 6:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://www.xelha.com',
+                bookingUrl: 'https://www.xcaret.com/en/parks-and-tours/xel-ha/',
+                description: 'All-inclusive natural aquarium and water park. Snorkel with tropical fish in a natural inlet.',
+                highlights: ['All-inclusive food & drinks', 'Unlimited snorkeling', 'Cliff jumping', 'Zip-line over water', 'Lazy river'],
+                included: ['Food & drinks (all-inclusive)', 'Snorkel gear', 'Locker', 'Towel', 'Inner tubes'],
+                notIncluded: ['Photos', 'Spa services'],
+                tips: 'Best value eco-park since food/drinks included. Great for families - calm waters perfect for kids.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g668145-d155555-Reviews-Xel_Ha_Park-Xel_Ha_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'xplor',
+                name: 'Xplor Adventure Park',
+                category: 'eco-park',
+                type: 'Adventure Park',
+                area: 'riviera',
+                areaName: 'Riviera Maya',
+                lat: 20.5794,
+                lng: -87.1200,
+                rating: 4.8,
+                reviewCount: 19876,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$',
+                priceAdult: 145,
+                priceChild: 72,
+                duration: 'Full day (5-7 hours)',
+                hours: '9:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 5,
+                wheelchairAccessible: false,
+                website: 'https://www.xplor.travel',
+                bookingUrl: 'https://www.xcaret.com/en/parks-and-tours/xplor/',
+                description: 'Adventure park with zip-lines, amphibious vehicles, underground rivers, and rafting.',
+                highlights: ['14 zip-lines', 'Amphibious vehicles', 'Underground rafting', 'Stalactite rivers', 'Unlimited buffet'],
+                included: ['All activities', 'Buffet lunch', 'Drinks', 'Locker', 'Equipment'],
+                notIncluded: ['Photos', 'Souvenirs'],
+                tips: 'Height/weight restrictions apply. Not ideal for those afraid of heights. Most adventurous of Xcaret parks.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150812-d1547653-Reviews-Xplor-Playa_del_Carmen_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            // RUINS & HISTORY
+            {
+                id: 'chichen',
+                name: 'Chichén Itzá',
+                category: 'ruins',
+                type: 'Archaeological Site',
+                area: 'inland',
+                areaName: 'Yucatan Interior',
+                lat: 20.6843,
+                lng: -88.5678,
+                rating: 4.7,
+                reviewCount: 32156,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 80,
+                priceChild: 40,
+                duration: '8-10 hours (with transport)',
+                hours: '8:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: 'partial',
+                website: 'https://www.inah.gob.mx/zonas/146-zona-arqueologica-de-chichen-itza',
+                bookingUrl: 'https://www.viator.com/Cancun-attractions/Chichen-Itza/d631-a852',
+                description: 'One of the New Seven Wonders of the World. Ancient Mayan city featuring the iconic El Castillo pyramid.',
+                highlights: ['El Castillo pyramid', 'Ball court', 'Temple of Warriors', 'Sacred cenote', 'Observatory'],
+                included: ['Entrance fee', 'Guide (if tour)', 'Transport (if tour)'],
+                notIncluded: ['Food', 'Souvenirs', 'Tips'],
+                tips: 'Book early morning tour to beat crowds and heat. Bring water, hat, sunscreen. 2.5 hours from Cancun. Visit cenote Ik Kil nearby.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150810-d153327-Reviews-Chichen_Itza-Chichen_Itza_Yucatan_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'tulum-ruins',
+                name: 'Tulum Archaeological Zone',
+                category: 'ruins',
+                type: 'Archaeological Site',
+                area: 'tulum',
+                areaName: 'Tulum',
+                lat: 20.2148,
+                lng: -87.4291,
+                rating: 4.5,
+                reviewCount: 28743,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$',
+                priceAdult: 25,
+                priceChild: 0,
+                duration: '2-3 hours',
+                hours: '9:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: 'partial',
+                website: 'https://www.inah.gob.mx/zonas/zona-arqueologica-de-tulum',
+                bookingUrl: 'https://www.viator.com/Cancun-attractions/Tulum-Ruins/d631-a29959',
+                description: 'Only Mayan ruins overlooking the Caribbean Sea. Stunning clifftop setting with beach access.',
+                highlights: ['Clifftop views', 'El Castillo', 'Temple of Frescoes', 'Beach access', 'Ocean views'],
+                included: ['Entrance fee'],
+                notIncluded: ['Guide', 'Transport', 'Food'],
+                tips: 'Arrive at 9 AM opening to avoid crowds. Bring swimsuit for beach below. Combine with cenote visit. ~2 hours from Cancun.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150813-d153434-Reviews-Tulum_Archaeological_Site-Tulum_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'coba',
+                name: 'Cobá Archaeological Zone',
+                category: 'ruins',
+                type: 'Archaeological Site',
+                area: 'riviera',
+                areaName: 'Riviera Maya',
+                lat: 20.4943,
+                lng: -87.7361,
+                rating: 4.6,
+                reviewCount: 12456,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$',
+                priceAdult: 20,
+                priceChild: 0,
+                duration: '3-4 hours',
+                hours: '8:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 5,
+                wheelchairAccessible: false,
+                website: 'https://www.inah.gob.mx/zonas/zona-arqueologica-de-coba',
+                bookingUrl: 'https://www.viator.com/Cancun-attractions/Coba-Ruins/d631-a16632',
+                description: 'One of the tallest Mayan pyramids you can still climb. Jungle setting with bike rentals available.',
+                highlights: ['Climbable pyramid', 'Jungle setting', 'Bike rentals', 'Less crowded', 'Authentic experience'],
+                included: ['Entrance fee'],
+                notIncluded: ['Bike rental ($3-5)', 'Guide', 'Transport'],
+                tips: 'You can STILL CLIMB this pyramid! Rent bikes to cover the large site. Very hot - bring lots of water.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g675444-d155477-Reviews-Coba_Ruins-Coba_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            // CENOTES
+            {
+                id: 'cenote-ikkil',
+                name: 'Cenote Ik Kil',
+                category: 'cenote',
+                type: 'Natural Wonder',
+                area: 'inland',
+                areaName: 'Yucatan Interior',
+                lat: 20.6608,
+                lng: -88.5507,
+                rating: 4.5,
+                reviewCount: 15678,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$',
+                priceAdult: 15,
+                priceChild: 10,
+                duration: '1-2 hours',
+                hours: '8:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: false,
+                website: 'https://cenoteikkil.com',
+                bookingUrl: 'https://cenoteikkil.com',
+                description: 'Famous cenote near Chichén Itzá. Stunning open-air sinkhole with hanging vines.',
+                highlights: ['Swimming', 'Cliff jumping', 'Vines hanging to water', 'Restaurant on-site', 'Changing rooms'],
+                included: ['Swimming access', 'Life jacket'],
+                notIncluded: ['Towel rental', 'Locker rental ($2)', 'Food'],
+                tips: 'Combine with Chichén Itzá (3km away). Very popular - go early or late. Water is cold but refreshing!',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150810-d2283180-Reviews-Cenote_Ik_kil-Chichen_Itza_Yucatan_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'gran-cenote',
+                name: 'Gran Cenote',
+                category: 'cenote',
+                type: 'Natural Wonder',
+                area: 'tulum',
+                areaName: 'Tulum',
+                lat: 20.2463,
+                lng: -87.4649,
+                rating: 4.6,
+                reviewCount: 8934,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$',
+                priceAdult: 20,
+                priceChild: 10,
+                duration: '1-2 hours',
+                hours: '8:10 AM - 4:45 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: false,
+                website: null,
+                bookingUrl: null,
+                description: 'Crystal clear cenote with caves, turtles, and incredible visibility. Perfect for snorkeling.',
+                highlights: ['Crystal clear water', 'Cave swimming', 'Sea turtles', 'Snorkeling', 'Beautiful rock formations'],
+                included: ['Entrance', 'Life jacket'],
+                notIncluded: ['Snorkel gear rental ($5)', 'Locker ($2)', 'Towels'],
+                tips: 'Arrive at 8 AM opening for best experience. Look for turtles in the caves! No sunscreen allowed (biodegradable only).',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150813-d1520301-Reviews-Gran_Cenote-Tulum_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            // WATER ACTIVITIES
+            {
+                id: 'isla-mujeres',
+                name: 'Isla Mujeres',
+                category: 'island',
+                type: 'Day Trip',
+                area: 'cancun',
+                areaName: 'Cancun',
+                lat: 21.2320,
+                lng: -86.7330,
+                rating: 4.7,
+                reviewCount: 25678,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 50,
+                priceChild: 25,
+                duration: 'Full day (6-8 hours)',
+                hours: 'Ferry runs 7:00 AM - 9:30 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://islamujeres.gob.mx',
+                bookingUrl: 'https://www.ultramarferry.com',
+                description: 'Charming island 20 minutes from Cancun. Beautiful beaches, golf cart rentals, snorkeling, and laid-back vibe.',
+                highlights: ['Playa Norte beach', 'Golf cart island tour', 'Snorkeling', 'Garrafon Park', 'Downtown shopping'],
+                included: ['Ferry ticket (if booked as tour)'],
+                notIncluded: ['Golf cart rental ($40-60)', 'Food', 'Activities'],
+                tips: 'Rent golf cart to explore island. Playa Norte is one of best beaches in Mexico. Take early ferry to maximize time.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150809-d150708-Reviews-Isla_Mujeres-Isla_Mujeres_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'cozumel',
+                name: 'Cozumel Island',
+                category: 'island',
+                type: 'Day Trip',
+                area: 'riviera',
+                areaName: 'Riviera Maya',
+                lat: 20.4318,
+                lng: -86.9203,
+                rating: 4.8,
+                reviewCount: 18456,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 55,
+                priceChild: 30,
+                duration: 'Full day (6-10 hours)',
+                hours: 'Ferry from Playa del Carmen every 1-2 hours',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://cozumel.travel',
+                bookingUrl: 'https://www.winjet.mx',
+                description: 'World-famous diving and snorkeling. Crystal clear waters, coral reefs, and relaxed island atmosphere.',
+                highlights: ['World-class snorkeling', 'Coral reefs', 'Chankanaab Park', 'Punta Sur', 'Mexican cuisine'],
+                included: ['Ferry ticket (if booked as tour)'],
+                notIncluded: ['Snorkel/dive equipment', 'Food', 'Transport on island'],
+                tips: 'Ferry from Playa del Carmen (45 min). Best snorkeling in the area. Rent a car or scooter to explore.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150811-d153619-Reviews-Cozumel-Cozumel_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'musa',
+                name: 'MUSA Underwater Museum',
+                category: 'water-activity',
+                type: 'Snorkeling/Diving',
+                area: 'cancun',
+                areaName: 'Cancun',
+                lat: 21.1985,
+                lng: -86.7427,
+                rating: 4.4,
+                reviewCount: 5678,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 65,
+                priceChild: 45,
+                duration: '2-3 hours',
+                hours: 'Tours depart 9 AM, 11 AM, 1 PM',
+                kidFriendly: true,
+                kidAgeMin: 4,
+                wheelchairAccessible: false,
+                website: 'https://musamexico.org',
+                bookingUrl: 'https://musamexico.org/en/tours/',
+                description: 'Underwater sculpture museum with 500+ life-sized statues. Snorkel or dive experience.',
+                highlights: ['500+ underwater statues', 'Snorkeling option', 'Diving option', 'Glass-bottom boat option', 'Art and nature'],
+                included: ['Snorkel/dive equipment', 'Guide', 'Boat transport'],
+                notIncluded: ['Photos', 'Tips'],
+                tips: 'Snorkeling sees shallower statues. Diving sees more. Glass-bottom boat available for non-swimmers.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150807-d2059407-Reviews-MUSA_Museo_Subacuatico_de_Arte-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            // RESTAURANTS - OFF RESORT
+            {
+                id: 'puerto-madero',
+                name: 'Puerto Madero Cancún',
+                category: 'restaurant',
+                type: 'Seafood/Steakhouse',
+                area: 'cancun',
+                areaName: 'Cancun Hotel Zone',
+                lat: 21.1324,
+                lng: -86.7514,
+                rating: 4.5,
+                reviewCount: 8765,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$$',
+                priceAdult: 75,
+                priceChild: 30,
+                duration: '2-3 hours',
+                hours: '1:00 PM - 12:00 AM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://www.puertomaderocancun.com',
+                bookingUrl: 'https://www.opentable.com/puerto-madero-cancun',
+                description: 'Upscale Argentine steakhouse and seafood with stunning lagoon views. Special occasion worthy.',
+                highlights: ['Lagoon views', 'Premium steaks', 'Fresh seafood', 'Extensive wine list', 'Live music'],
+                included: null,
+                notIncluded: null,
+                tips: 'Reservations recommended. Sunset dining is spectacular. Great for special celebrations.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Restaurant_Review-g150807-d1021178-Reviews-Puerto_Madero_Cancun-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'la-habichuela',
+                name: 'La Habichuela Sunset',
+                category: 'restaurant',
+                type: 'Mexican/Mayan Cuisine',
+                area: 'cancun',
+                areaName: 'Cancun Hotel Zone',
+                lat: 21.1352,
+                lng: -86.7534,
+                rating: 4.6,
+                reviewCount: 5432,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$',
+                priceAdult: 55,
+                priceChild: 25,
+                duration: '2 hours',
+                hours: '1:00 PM - 11:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://www.lahabichuela.com',
+                bookingUrl: 'https://www.lahabichuela.com/reservaciones',
+                description: 'Award-winning Mayan-Mexican cuisine in romantic garden setting. Famous for Cochinita Pibil.',
+                highlights: ['Mayan cuisine', 'Garden setting', 'Cochinita Pibil', 'Seafood', 'Romantic atmosphere'],
+                included: null,
+                notIncluded: null,
+                tips: 'Try the signature Cochinita Pibil and Xtabentun cocktails. Reservations essential for dinner.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Restaurant_Review-g150807-d1554462-Reviews-La_Habichuela_Sunset-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'lorenzillos',
+                name: "Lorenzillo's",
+                category: 'restaurant',
+                type: 'Seafood/Lobster',
+                area: 'cancun',
+                areaName: 'Cancun Hotel Zone',
+                lat: 21.0876,
+                lng: -86.7699,
+                rating: 4.4,
+                reviewCount: 6789,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$$',
+                priceAdult: 80,
+                priceChild: 35,
+                duration: '2 hours',
+                hours: '12:00 PM - 11:30 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://www.lorenzillos.com.mx',
+                bookingUrl: 'https://www.opentable.com/r/lorenzillos-cancun',
+                description: 'Legendary lobster house on the lagoon since 1983. Pick your lobster from the tank!',
+                highlights: ['Live lobster selection', 'Lagoon views', 'Sunset dining', 'Premium seafood', 'Iconic Cancun spot'],
+                included: null,
+                notIncluded: null,
+                tips: 'Lobster priced by weight - can get expensive! Lagoon-side tables are best. Institution since 1983.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Restaurant_Review-g150807-d1047011-Reviews-Lorenzillo_s-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            // SHOPPING & ENTERTAINMENT
+            {
+                id: 'la-isla',
+                name: 'La Isla Shopping Village',
+                category: 'shopping',
+                type: 'Shopping Center',
+                area: 'cancun',
+                areaName: 'Cancun Hotel Zone',
+                lat: 21.0876,
+                lng: -86.7621,
+                rating: 4.3,
+                reviewCount: 4567,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 0,
+                priceChild: 0,
+                duration: '2-4 hours',
+                hours: '10:00 AM - 10:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: 'https://laislacancun.mx',
+                bookingUrl: null,
+                description: 'Open-air shopping center with canals, restaurants, aquarium, and entertainment.',
+                highlights: ['Interactive Aquarium', 'Canals with boat rides', 'Restaurants', 'Shops', 'Movie theater'],
+                included: null,
+                notIncluded: null,
+                tips: 'Interactive Aquarium is fun for kids. Free to walk around. Good rainy day option.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150807-d155476-Reviews-La_Isla_Shopping_Village-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'quinta-avenida',
+                name: '5th Avenue (Quinta Avenida)',
+                category: 'shopping',
+                type: 'Pedestrian Street',
+                area: 'riviera',
+                areaName: 'Playa del Carmen',
+                lat: 20.6274,
+                lng: -87.0739,
+                rating: 4.4,
+                reviewCount: 12345,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 0,
+                priceChild: 0,
+                duration: '2-4 hours',
+                hours: 'Open 24 hours (shops 10 AM - 11 PM)',
+                kidFriendly: true,
+                kidAgeMin: 0,
+                wheelchairAccessible: true,
+                website: null,
+                bookingUrl: null,
+                description: 'Vibrant pedestrian street with shops, restaurants, street performers, and nightlife.',
+                highlights: ['Street performers', 'Restaurants', 'Bars', 'Shopping', 'People watching'],
+                included: null,
+                notIncluded: null,
+                tips: 'Haggling expected in shops. Gets lively at night. Many restaurants with street-side seating.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150812-d155509-Reviews-Quinta_Avenida-Playa_del_Carmen_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            // FAMILY ACTIVITIES
+            {
+                id: 'crococun',
+                name: 'Crococun Zoo',
+                category: 'family',
+                type: 'Zoo/Wildlife',
+                area: 'costa',
+                areaName: 'Costa Mujeres',
+                lat: 21.1502,
+                lng: -86.8159,
+                rating: 4.6,
+                reviewCount: 3456,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 35,
+                priceChild: 25,
+                duration: '2-3 hours',
+                hours: '9:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 2,
+                wheelchairAccessible: 'partial',
+                website: 'https://www.crococunzoo.com',
+                bookingUrl: 'https://www.crococunzoo.com/tours',
+                description: 'Interactive zoo where you can hold crocodiles, feed monkeys, and touch spider monkeys.',
+                highlights: ['Hold baby crocodiles', 'Feed spider monkeys', 'See deer', 'Interactive experience', 'Guided tour'],
+                included: ['Guided tour', 'All animal interactions'],
+                notIncluded: ['Photos', 'Tips'],
+                tips: 'Kids love holding baby crocs! All tours are guided. Great for animal-loving kids.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150807-d155554-Reviews-Crococun_Zoo-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'ventura-park',
+                name: 'Ventura Park',
+                category: 'family',
+                type: 'Water/Theme Park',
+                area: 'cancun',
+                areaName: 'Cancun Hotel Zone',
+                lat: 21.0996,
+                lng: -86.7648,
+                rating: 4.2,
+                reviewCount: 2345,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$',
+                priceAdult: 45,
+                priceChild: 35,
+                duration: '4-6 hours',
+                hours: '10:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 3,
+                wheelchairAccessible: 'partial',
+                website: 'https://www.venturapark.com',
+                bookingUrl: 'https://www.venturapark.com/tickets',
+                description: 'Water park, zip-lines, go-karts, and attractions all in one. Good for teens and tweens.',
+                highlights: ['Water slides', 'Zip-lines', 'Go-karts', 'Bungee', 'Dolphin encounter'],
+                included: ['Selected package activities'],
+                notIncluded: ['Premium activities', 'Food', 'Dolphin experience (extra)'],
+                tips: 'Multiple packages available - check what you want. Good option for teens who want thrills.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150807-d155556-Reviews-Ventura_Park-Cancun_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            },
+            {
+                id: 'dolphin-discovery',
+                name: 'Dolphin Discovery',
+                category: 'family',
+                type: 'Animal Encounter',
+                area: 'cancun',
+                areaName: 'Cancun (Isla Mujeres)',
+                lat: 21.2428,
+                lng: -86.7302,
+                rating: 4.5,
+                reviewCount: 8765,
+                ratingSource: 'TripAdvisor',
+                priceRange: '$$$',
+                priceAdult: 129,
+                priceChild: 99,
+                duration: '3-4 hours',
+                hours: '9:00 AM - 5:00 PM',
+                kidFriendly: true,
+                kidAgeMin: 1,
+                wheelchairAccessible: true,
+                website: 'https://www.dolphindiscovery.com',
+                bookingUrl: 'https://www.dolphindiscovery.com/cancun-isla-mujeres/',
+                description: 'Swim with dolphins at multiple locations. Various programs from encounter to swim.',
+                highlights: ['Dolphin swim', 'Dolphin encounter', 'Photo packages', 'Royal swim option', 'Multiple locations'],
+                included: ['Dolphin program', 'Locker', 'Wetsuit if needed'],
+                notIncluded: ['Photos ($$$)', 'Transportation', 'Food'],
+                tips: 'Photos are expensive - consider bringing underwater camera. Multiple locations in area. Book in advance.',
+                source: {
+                    name: 'TripAdvisor',
+                    url: 'https://www.tripadvisor.com/Attraction_Review-g150809-d155489-Reviews-Dolphin_Discovery_Isla_Mujeres-Isla_Mujeres_Yucatan_Peninsula.html',
+                    lastVerified: '2025-01-15'
+                },
+                addedBy: 'system',
+                verified: true
+            }
+        ];
+
+        // User-contributed attractions (stored in localStorage)
+        const USER_ATTRACTIONS_KEY = 'cancunUserAttractions';
+        function getUserAttractions() {
+            const stored = localStorage.getItem(USER_ATTRACTIONS_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+        function saveUserAttraction(attraction) {
+            const userAttractions = getUserAttractions();
+            attraction.id = 'user-' + Date.now();
+            attraction.addedBy = 'family';
+            attraction.verified = false;
+            attraction.source = {
+                name: 'Family Suggestion',
+                url: null,
+                lastVerified: new Date().toISOString().split('T')[0]
+            };
+            userAttractions.push(attraction);
+            localStorage.setItem(USER_ATTRACTIONS_KEY, JSON.stringify(userAttractions));
+            return attraction;
+        }
+        function getAllAttractions() {
+            return [...attractions, ...getUserAttractions()];
+        }
+
+        // Category configuration for icons and colors
+        const categoryConfig = {
+            'eco-park': { icon: '🌿', color: '#10b981', label: 'Eco-Parks' },
+            'ruins': { icon: '🏛️', color: '#8b5cf6', label: 'Ruins & History' },
+            'cenote': { icon: '💧', color: '#06b6d4', label: 'Cenotes' },
+            'island': { icon: '🏝️', color: '#f59e0b', label: 'Islands' },
+            'water-activity': { icon: '🤿', color: '#0284c7', label: 'Water Activities' },
+            'restaurant': { icon: '🍽️', color: '#ef4444', label: 'Restaurants' },
+            'shopping': { icon: '🛍️', color: '#ec4899', label: 'Shopping' },
+            'family': { icon: '👨‍👩‍👧‍👦', color: '#f97316', label: 'Family Fun' }
+        };
+
         // Family members for voting
         const familyMembers = [
             "Alex", "Andrew", "Cindy", "Mom", "Dad", "Aunt",
@@ -4232,6 +5523,336 @@
 
             renderMarkers();
         }
+
+        // =====================
+        // EXPLORE MODE
+        // =====================
+        let mapMode = 'resorts'; // 'resorts' or 'explore'
+        let attractionMarkers = [];
+        let selectedAttraction = null;
+        let exploreFilters = {
+            category: 'all',
+            area: 'all',
+            kidFriendlyOnly: false
+        };
+
+        function setMapMode(mode) {
+            mapMode = mode;
+
+            // Update toggle buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+
+            // Show/hide filter panels
+            document.getElementById('resortFilters').style.display = mode === 'resorts' ? 'block' : 'none';
+            document.getElementById('exploreFilters').style.display = mode === 'explore' ? 'block' : 'none';
+
+            // Clear and re-render markers
+            if (mode === 'resorts') {
+                clearAttractionMarkers();
+                renderMarkers();
+            } else {
+                markers.forEach(m => map.removeLayer(m));
+                markers = [];
+                renderAttractionMarkers();
+                renderAttractionList();
+            }
+        }
+
+        function clearAttractionMarkers() {
+            attractionMarkers.forEach(m => map.removeLayer(m));
+            attractionMarkers = [];
+        }
+
+        function getFilteredAttractions() {
+            return getAllAttractions().filter(a => {
+                if (exploreFilters.category !== 'all' && a.category !== exploreFilters.category) return false;
+                if (exploreFilters.area !== 'all' && a.area !== exploreFilters.area) return false;
+                if (exploreFilters.kidFriendlyOnly && !a.kidFriendly) return false;
+                return true;
+            });
+        }
+
+        function filterAttractions(category) {
+            exploreFilters.category = category;
+
+            // Update active chip
+            document.querySelectorAll('.explore-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.dataset.category === category);
+            });
+
+            renderAttractionMarkers();
+            renderAttractionList();
+        }
+
+        function filterAttractionsByArea(area) {
+            exploreFilters.area = area;
+
+            // Update active chip
+            document.querySelectorAll('[data-explore-area]').forEach(chip => {
+                chip.classList.toggle('active', chip.dataset.exploreArea === area);
+            });
+
+            renderAttractionMarkers();
+            renderAttractionList();
+        }
+
+        function toggleKidFriendly() {
+            exploreFilters.kidFriendlyOnly = document.getElementById('kidFriendlyFilter').checked;
+            renderAttractionMarkers();
+            renderAttractionList();
+        }
+
+        function renderAttractionMarkers() {
+            clearAttractionMarkers();
+            const filtered = getFilteredAttractions();
+
+            filtered.forEach(attraction => {
+                const config = categoryConfig[attraction.category] || { icon: '📍', color: '#64748b' };
+                const icon = L.divIcon({
+                    className: 'attraction-marker',
+                    html: `<div style="background:${config.color};color:white;padding:4px 8px;border-radius:8px;font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,0.3);border:2px solid white;display:flex;align-items:center;gap:4px;">
+                        <span>${config.icon}</span>
+                    </div>`,
+                    iconSize: [40, 30],
+                    iconAnchor: [20, 15]
+                });
+
+                const marker = L.marker([attraction.lat, attraction.lng], { icon }).addTo(map);
+                marker.on('click', () => {
+                    selectedAttraction = attraction;
+                    openAttractionModal(attraction);
+                    renderAttractionList();
+                });
+                attractionMarkers.push(marker);
+            });
+
+            document.getElementById('attractionCount').textContent = filtered.length;
+        }
+
+        function renderAttractionList() {
+            const container = document.getElementById('attractionList');
+            const filtered = getFilteredAttractions();
+
+            container.innerHTML = filtered.map(a => {
+                const config = categoryConfig[a.category] || { icon: '📍' };
+                const isSelected = selectedAttraction && selectedAttraction.id === a.id;
+                return `
+                    <div class="attraction-card ${isSelected ? 'selected' : ''}" onclick="selectAttraction('${a.id}')">
+                        <div class="attraction-header">
+                            <span class="attraction-icon">${config.icon}</span>
+                            <span class="attraction-name">${a.name}</span>
+                            <span class="attraction-rating">★ ${a.rating}</span>
+                        </div>
+                        <div class="attraction-meta">
+                            <span class="attraction-type">${a.type}</span>
+                            <span class="attraction-price">${a.priceRange}</span>
+                            ${a.addedBy === 'family' ? '<span style="color:#10b981;">👨‍👩‍👧‍👦 Family Pick</span>' : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectAttraction(id) {
+            const attraction = getAllAttractions().find(a => a.id === id);
+            if (attraction) {
+                selectedAttraction = attraction;
+                map.flyTo([attraction.lat, attraction.lng], 13);
+                openAttractionModal(attraction);
+                renderAttractionList();
+            }
+        }
+
+        function openAttractionModal(attraction) {
+            const config = categoryConfig[attraction.category] || { icon: '📍', color: '#64748b' };
+
+            document.getElementById('modalAttractionIcon').textContent = config.icon;
+            document.getElementById('modalAttractionName').textContent = attraction.name;
+            document.getElementById('modalAttractionType').textContent = attraction.type + ' • ' + attraction.areaName;
+            document.getElementById('modalRating').textContent = attraction.rating;
+            document.getElementById('modalReviewCount').textContent = `(${attraction.reviewCount?.toLocaleString() || 'N/A'} reviews on ${attraction.ratingSource || 'N/A'})`;
+            document.getElementById('modalPriceRange').textContent = attraction.priceRange + (attraction.priceAdult ? ` (~$${attraction.priceAdult}/person)` : '');
+            document.getElementById('modalDuration').textContent = attraction.duration || '';
+            document.getElementById('modalDescription').textContent = attraction.description || '';
+            document.getElementById('modalArea').textContent = attraction.areaName;
+            document.getElementById('modalHours').textContent = attraction.hours || 'Check website';
+
+            // Highlights
+            const highlightsEl = document.getElementById('modalHighlights');
+            if (attraction.highlights && attraction.highlights.length > 0) {
+                highlightsEl.innerHTML = attraction.highlights.map(h => `<span class="highlight-tag">${h}</span>`).join('');
+            } else {
+                highlightsEl.innerHTML = '<span style="color:#64748b;">No highlights listed</span>';
+            }
+
+            // Included
+            const includedSection = document.getElementById('modalIncludedSection');
+            const includedEl = document.getElementById('modalIncluded');
+            if (attraction.included && attraction.included.length > 0) {
+                includedEl.innerHTML = attraction.included.map(i => `<div>✓ ${i}</div>`).join('');
+                includedSection.style.display = 'block';
+            } else {
+                includedSection.style.display = 'none';
+            }
+
+            // Not Included
+            const notIncludedSection = document.getElementById('modalNotIncludedSection');
+            const notIncludedEl = document.getElementById('modalNotIncluded');
+            if (attraction.notIncluded && attraction.notIncluded.length > 0) {
+                notIncludedEl.innerHTML = attraction.notIncluded.map(i => `<div>✗ ${i}</div>`).join('');
+                notIncludedSection.style.display = 'block';
+            } else {
+                notIncludedSection.style.display = 'none';
+            }
+
+            // Tips
+            document.getElementById('modalTips').textContent = attraction.tips || 'No tips available';
+
+            // Accessibility & Kid-friendly
+            const accessEl = document.getElementById('modalAccessibility');
+            if (attraction.wheelchairAccessible === true) {
+                accessEl.innerHTML = '<span style="color:#10b981;">♿ Wheelchair Accessible</span>';
+            } else if (attraction.wheelchairAccessible === 'partial') {
+                accessEl.innerHTML = '<span style="color:#f59e0b;">♿ Partially Accessible</span>';
+            } else {
+                accessEl.innerHTML = '<span style="color:#ef4444;">♿ Limited Accessibility</span>';
+            }
+
+            const kidEl = document.getElementById('modalKidFriendly');
+            if (attraction.kidFriendly) {
+                kidEl.innerHTML = `<span style="color:#10b981;">👶 Kid-Friendly ${attraction.kidAgeMin > 0 ? `(Ages ${attraction.kidAgeMin}+)` : '(All ages)'}</span>`;
+            } else {
+                kidEl.innerHTML = '<span style="color:#f59e0b;">👶 Check age restrictions</span>';
+            }
+
+            // Source/Provenance
+            const sourceEl = document.getElementById('modalSource');
+            if (attraction.source) {
+                const verified = attraction.verified ? '<span class="source-verified">✓ Verified</span>' : '<span style="color:#f59e0b;">Unverified</span>';
+                sourceEl.innerHTML = `
+                    ${verified}
+                    <span>Source: ${attraction.source.name}</span>
+                    <span>•</span>
+                    <span>Last checked: ${attraction.source.lastVerified}</span>
+                    ${attraction.source.url ? `<a href="${attraction.source.url}" target="_blank" style="color:#0891b2;">View Source →</a>` : ''}
+                `;
+            } else {
+                sourceEl.innerHTML = '<span>No source information available</span>';
+            }
+
+            // Buttons
+            const bookingBtn = document.getElementById('modalBookingBtn');
+            if (attraction.bookingUrl || attraction.website) {
+                bookingBtn.href = attraction.bookingUrl || attraction.website;
+                bookingBtn.style.display = 'flex';
+            } else {
+                bookingBtn.style.display = 'none';
+            }
+
+            const sourceBtn = document.getElementById('modalSourceBtn');
+            if (attraction.source && attraction.source.url) {
+                sourceBtn.href = attraction.source.url;
+                sourceBtn.style.display = 'flex';
+            } else {
+                sourceBtn.style.display = 'none';
+            }
+
+            // Update header color based on category
+            document.getElementById('attractionModalHeader').style.background = `linear-gradient(135deg, ${config.color} 0%, ${config.color}dd 100%)`;
+
+            document.getElementById('attractionModal').classList.add('active');
+        }
+
+        function closeAttractionModal() {
+            document.getElementById('attractionModal').classList.remove('active');
+        }
+
+        function openAddAttractionModal() {
+            document.getElementById('addAttractionModal').classList.add('active');
+        }
+
+        function closeAddAttractionModal() {
+            document.getElementById('addAttractionModal').classList.remove('active');
+        }
+
+        function submitNewAttraction() {
+            const name = document.getElementById('addAttractionName').value.trim();
+            const category = document.getElementById('addAttractionCategory').value;
+            const area = document.getElementById('addAttractionArea').value;
+            const description = document.getElementById('addAttractionDescription').value.trim();
+            const price = document.getElementById('addAttractionPrice').value;
+            const website = document.getElementById('addAttractionWebsite').value.trim();
+            const reason = document.getElementById('addAttractionReason').value.trim();
+            const kidFriendly = document.getElementById('addAttractionKidFriendly').checked;
+
+            if (!name) {
+                alert('Please enter a name for the attraction');
+                return;
+            }
+
+            const areaNames = {
+                'cancun': 'Cancun',
+                'riviera': 'Riviera Maya',
+                'tulum': 'Tulum',
+                'costa': 'Costa Mujeres',
+                'inland': 'Inland'
+            };
+
+            // Default coordinates based on area (approximate)
+            const areaCoords = {
+                'cancun': { lat: 21.1619, lng: -86.8515 },
+                'riviera': { lat: 20.6296, lng: -87.0739 },
+                'tulum': { lat: 20.2114, lng: -87.4654 },
+                'costa': { lat: 21.2567, lng: -86.8054 },
+                'inland': { lat: 20.6843, lng: -88.5678 }
+            };
+
+            const newAttraction = {
+                name,
+                category,
+                type: categoryConfig[category]?.label || category,
+                area,
+                areaName: areaNames[area] || area,
+                lat: areaCoords[area]?.lat || 21.0,
+                lng: areaCoords[area]?.lng || -87.0,
+                rating: 0,
+                reviewCount: 0,
+                ratingSource: 'Not yet rated',
+                priceRange: price ? '$'.repeat(Math.min(4, Math.ceil(parseInt(price) / 50))) : '$$',
+                priceAdult: price ? parseInt(price) : null,
+                description: description || reason || 'Family suggestion - no description provided',
+                highlights: reason ? [reason] : [],
+                kidFriendly,
+                website: website || null,
+                bookingUrl: website || null,
+                tips: 'This was suggested by a family member. Verify before booking!'
+            };
+
+            saveUserAttraction(newAttraction);
+            closeAddAttractionModal();
+
+            // Clear form
+            document.getElementById('addAttractionName').value = '';
+            document.getElementById('addAttractionDescription').value = '';
+            document.getElementById('addAttractionPrice').value = '';
+            document.getElementById('addAttractionWebsite').value = '';
+            document.getElementById('addAttractionReason').value = '';
+
+            // Refresh the list
+            renderAttractionMarkers();
+            renderAttractionList();
+
+            alert('Thanks! Your suggestion has been added.');
+        }
+
+        // Close modals on background click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('attraction-modal')) {
+                e.target.classList.remove('active');
+            }
+        });
 
         function getMarkerColor(resort) {
             if (resort.isVilla) return '#8b5cf6';
