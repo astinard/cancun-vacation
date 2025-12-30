@@ -1685,8 +1685,8 @@
                 <h3>Our Group</h3>
                 <div class="family-grid">
                     <div class="family-member">
-                        <h4>Mom, Dad & Aunt</h4>
-                        <p>3 people (near 80, mobility needs)</p>
+                        <h4>Tom & Julie (Mom & Dad)</h4>
+                        <p>2 people (near 80, mobility needs)</p>
                         <p>Des Moines, IA</p>
                     </div>
                     <div class="family-member">
@@ -1797,7 +1797,7 @@
             <div class="budget-target-display">
                 <div>
                     <h3>Your Budget Target</h3>
-                    <div style="font-size:0.8rem;opacity:0.9;">Total trip for 14 people, 7 nights</div>
+                    <div style="font-size:0.8rem;opacity:0.9;">Total trip for 13 people, 7 nights</div>
                 </div>
                 <div class="budget-target-range">
                     <div class="target-item">
@@ -1850,10 +1850,10 @@
                 <div class="budget-card">
                     <h3>
                         <span class="budget-card-icon" style="background:#dbeafe;color:#2563eb;">2</span>
-                        Flights (14 people)
+                        Flights (13 people)
                     </h3>
                     <div class="budget-input-group">
-                        <label>Des Moines Group (3 people - Mom, Dad, Aunt)</label>
+                        <label>Des Moines Group (2 people - Tom & Julie)</label>
                         <input type="number" id="flightDSM" value="450" onchange="updateBudgetCalc()">
                     </div>
                     <div class="budget-input-group">
@@ -3245,7 +3245,7 @@
                 valueScore: 9,
                 renovated: "2019",
                 serviceRating: "Excellent",
-                insiderTip: "GREAT VILLA VALUE! 8 bedrooms at $1800/night = ~$129/person/night. Private pool + oceanfront. Chef available. Near Playa del Carmen = restaurants/shopping. Smaller than Hacienda Magica but may need 2+ villas for your 14 people.",
+                insiderTip: "GREAT VILLA VALUE! 8 bedrooms at $1800/night = ~$138/person/night. Private pool + oceanfront. Chef available. Near Playa del Carmen = restaurants/shopping. Could work for your 13 people with room to spare.",
                 crowdLevel: "Private"
             },
             {
@@ -3272,7 +3272,7 @@
                 website: "https://www.rentalescapes.com/rentals/luxury-vacation-rentals-mexico/riviera-maya/cancun",
                 tripadvisor: "https://www.tripadvisor.com/VacationRentals-g150807-Reviews-Cancun_Yucatan_Peninsula-Villas.html",
                 features: ["7 bedrooms", "Private beach", "Full staff", "Golf nearby", "Marina access"],
-                notes: "VILLA: Perfect for our 14 people - 7 rooms exactly. Full staff included. Gated community with marina.",
+                notes: "VILLA: Perfect for our 13 people - 7 rooms for flexibility. Full staff included. Gated community with marina.",
                 // INSIDER INTEL
                 valueScore: 9,
                 renovated: "2021",
@@ -3348,7 +3348,7 @@
 
         // Family members for voting
         const familyMembers = [
-            "Alex", "Andrew", "Cindy", "Mom", "Dad", "Aunt",
+            "Alex", "Andrew", "Cindy", "Tom", "Julie",
             "Dann", "Dann's Husband", "Beckett 1", "Beckett 2"
         ];
 
@@ -4188,8 +4188,8 @@
 
             // Free transfer
             if (costs && costs.freeTransfer) {
-                const transferSaving = 100 * 14; // Approx $100/person for transfers
-                savings.push({ label: 'Free airport transfer (14 people)', amount: transferSaving });
+                const transferSaving = 100 * 13; // Approx $100/person for transfers
+                savings.push({ label: 'Free airport transfer (13 people)', amount: transferSaving });
                 totalSavings += transferSaving;
             }
 
@@ -4237,7 +4237,7 @@
         function estimateTripCost(resort, nights = 7) {
             const isVilla = resort.isVilla;
             const accommodationCost = isVilla ? resort.priceMay24 * nights : resort.priceMay24 * 7 * nights;
-            const flightCost = 5330; // Fixed estimate for 14 people
+            const flightCost = 4930; // Fixed estimate for 13 people
             const transferCost = hiddenCosts[resort.id]?.freeTransfer ? 0 : 360;
             const excursionCost = hiddenCosts[resort.id]?.parksIncluded ? 1400 : 2800; // Reduced if parks included
             const extrasCost = (hiddenCosts[resort.id]?.extras || 20) * nights;
@@ -4408,7 +4408,7 @@
                 if (transferType === 'included') {
                     transferNote.innerHTML = '✓ Transfer included with selected resort (if applicable)';
                 } else if (transferType === 'private') {
-                    transferNote.innerHTML = '2 private vans for 14 people: ~$160-200 each way<br>Recommended for elderly with mobility needs';
+                    transferNote.innerHTML = '2 private vans for 13 people: ~$160-200 each way<br>Recommended for elderly with mobility needs';
                 } else {
                     transferNote.innerHTML = 'Shared shuttle: ~$25-50 per person each way<br>Note: May have multiple stops';
                 }
@@ -4435,18 +4435,18 @@
             } else if (transferType === 'private') {
                 transferCost = 360; // 2 vans × 2 ways × ~$90
             } else {
-                transferCost = 50 * 14; // $50 per person roundtrip
+                transferCost = 50 * 13; // $50 per person roundtrip
             }
 
             // Excursions
-            const excursionTotal = excursionBudget * 14;
+            const excursionTotal = excursionBudget * 13;
 
             // Hidden costs estimate
             const hiddenCostTotal = (costs?.extras || 20) * nights;
 
             // Grand total
             const grandTotal = totalFlights + accommodationTotal + transferCost + excursionTotal + hiddenCostTotal;
-            const perPerson = Math.round(grandTotal / 14);
+            const perPerson = Math.round(grandTotal / 13);
 
             // Deal badge
             const dealBadge = getDealBadge(resort);
@@ -4464,7 +4464,7 @@
                     <h3>Trip Budget Summary: ${resort.name}</h3>
                     <div style="margin-top:20px;">
                         <div class="budget-total-row">
-                            <span class="label">✈️ Flights (14 people)</span>
+                            <span class="label">✈️ Flights (13 people)</span>
                             <span class="amount">$${totalFlights.toLocaleString()}</span>
                         </div>
                         <div class="budget-total-row">
