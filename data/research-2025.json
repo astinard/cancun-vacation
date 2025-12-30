@@ -1,0 +1,119 @@
+{
+  "lastUpdated": "2025-01-15",
+  "researchDate": "December 2024 - January 2025",
+  "flightDeals": {
+    "omaha": {
+      "cheapestRoundtrip": 359,
+      "averagePrice": 415,
+      "cheapestOneWay": 165,
+      "bestDates": "May 5-13, 2025",
+      "airlines": ["American ($359)", "Delta ($359)", "United ($359)", "Southwest ($381)", "Frontier ($436)"],
+      "tip": "Sunday is typically cheapest day to fly from Omaha"
+    },
+    "desMoines": {
+      "cheapestRoundtrip": 398,
+      "averagePrice": 458,
+      "cheapestOneWay": 201,
+      "airlines": ["Delta ($398)", "Aeromexico ($410)", "American ($458)"],
+      "weeklyFlights": 21,
+      "tip": "Book 25 days in advance for best prices. April is cheapest month."
+    },
+    "florida": {
+      "cheapestRoundtrip": 250,
+      "note": "Many direct flight options from Florida airports",
+      "airlines": ["Southwest", "JetBlue", "Spirit (budget)"]
+    },
+    "generalTips": [
+      "Book 2-4 months ahead for international travel",
+      "40 days ahead is sweet spot per Skyscanner",
+      "American Airlines deals starting at $271",
+      "United deals below $250 for some routes"
+    ]
+  },
+  "resortDeals": {
+    "moonPalace": {
+      "currentDeal": "Up to 30% off + $500 resort credit",
+      "includes": ["Kids free", "Airport transfers", "Free room upgrade"],
+      "earlyBird": "40% off with Pay in Full Now + $250 resort credit",
+      "warning": "Reddit users report resort credits are hard to use - 'figure out what they can be used for'",
+      "review": "Mixed - great for families with kids, but some rooms dated"
+    },
+    "hardRockCancun": {
+      "accessibility": {
+        "rating": "Good",
+        "features": ["Ramps to pool, beach, restaurants", "Wheelchair accessible rooms in Deluxe categories", "Elevators throughout"],
+        "equipmentHire": ["Commode shower chairs", "Hoists", "Scooters"],
+        "transfers": "Wheelchair adapted vehicles available"
+      },
+      "warning": "November 2024 reviews note property 'needs upgrade' - renovation planned for 2025",
+      "note": "Contact hotel directly to confirm specific accessibility needs"
+    },
+    "generationsRivieraMaya": {
+      "rating": "AAA Four Diamond",
+      "designed": "Built specifically for multigenerational families",
+      "moreInclusive": {
+        "includes": ["Shared airport transfer", "Day at Maroma Beach with catamaran snorkeling", "Nickelodeon Riviera Maya waterpark access", "Aktun Chen cave tour"]
+      },
+      "positives": ["All-oceanfront suites", "Swim-up suites", "Baby amenities included", "Access to 2 adult-only sister resorts"],
+      "concerns": ["Some reviews say food is 'average'", "Concrete blocks on beach for 'artificial reef'", "One recent review said 'would not come back'"],
+      "currentPrice": "$620/night (Jan 2025 - lower than usual)"
+    },
+    "hotelXcaretMexico": {
+      "allFunInclusive": {
+        "parks": ["Xcaret", "Xel-Ha", "Xplor", "Xplor Fuego", "Xoximilco", "Xenses", "Xenotes"],
+        "advertisedValue": "$2,900",
+        "alsoIncludes": ["Airport transfer", "Ferry to Isla Mujeres", "Ferry to Cozumel", "Xcaret Catamaran tour"]
+      },
+      "concerns": [
+        "Everything requires reservation - time consuming",
+        "$25/night no-show fee for missed park/restaurant reservations",
+        "Can be loud - room location matters",
+        "Some reviews say 'not worth what I paid'"
+      ],
+      "bestFor": "Families who want to visit multiple parks and don't mind managing reservations"
+    }
+  },
+  "costcoTravel": {
+    "benefits": ["Often $300+ savings vs separate booking", "Resort credits", "Room upgrades", "Costco Shop Card after trip"],
+    "packages": {
+      "marriottCancun": "First all-inclusive Marriott - beachfront, water park, lazy river",
+      "garzaBlanca": "$500 instant savings per room currently",
+      "hardRock": "Available with perks"
+    },
+    "requirement": "Costco membership required",
+    "executiveBonus": "2% back with Executive membership"
+  },
+  "bestTimeToBook": {
+    "flights": {
+      "ideal": "25-40 days before departure",
+      "forMay2025": "Book in January-February 2025",
+      "tip": "Check January - it's cheapest month for accommodations"
+    },
+    "hotels": {
+      "strategy": "Book now with free cancellation, check again in a month",
+      "peakWarning": "Last-minute deals rare during peak seasons"
+    }
+  },
+  "akumalInfo": {
+    "meaning": "'Place of the Turtles' in Mayan",
+    "turtleSeason": {
+      "nesting": "May onwards (your trip timing is perfect!)",
+      "hatching": "July - October"
+    },
+    "rules": ["Must swim with certified guides", "No touching or chasing turtles", "Designated zones only"],
+    "tip": "May is start of nesting season - great timing for turtle experience"
+  },
+  "mayTravelTips": [
+    "Days are longest in May",
+    "Temperature around 30°C (86°F)",
+    "Pools 'as warm as a bath' by 2:30pm",
+    "Shoulder season = good prices",
+    "Start of turtle nesting season in Akumal",
+    "Before hurricane season peaks"
+  ],
+  "sources": {
+    "flights": ["Expedia", "Cheapflights", "Southwest", "American Airlines", "Google Flights"],
+    "hotels": ["TripAdvisor", "Booking.com", "Costco Travel"],
+    "deals": ["Moon Palace official", "Hotel Xcaret official", "Apple Vacations"]
+  }
+}
