@@ -2538,6 +2538,7 @@
                 <button class="nav-tab" data-view="budget">Deals & Budget</button>
                 <button class="nav-tab" data-view="voting">Family Voting</button>
                 <button class="nav-tab" data-view="itinerary">Itinerary</button>
+                <button class="nav-tab" data-view="prep">Prep & Pack</button>
             </nav>
 
             <div class="header-stats">
@@ -3291,6 +3292,280 @@
                 <h3 style="margin-bottom:15px;">📊 Trip Summary</h3>
                 <div id="itinerarySummary" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:15px;">
                     <!-- Summary rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prep & Pack View -->
+    <div class="view" id="view-prep">
+        <div class="voting-container" style="max-width:1200px;margin:0 auto;padding:20px;">
+            <div class="voting-header" style="margin-bottom:30px;">
+                <h2>🧳 Trip Preparation & Packing</h2>
+                <p>Everything you need to get ready for Cancun</p>
+            </div>
+
+            <!-- Progress Overview -->
+            <div style="background:linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);border-radius:16px;padding:24px;color:white;margin-bottom:24px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;">
+                    <div>
+                        <h3 style="margin-bottom:8px;">Trip Countdown</h3>
+                        <div id="tripCountdown" style="font-size:2rem;font-weight:700;">Loading...</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:0.9rem;opacity:0.9;">Preparation Progress</div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+                            <div style="width:200px;height:12px;background:rgba(255,255,255,0.2);border-radius:6px;overflow:hidden;">
+                                <div id="prepProgressBar" style="height:100%;background:white;border-radius:6px;transition:width 0.3s;width:0%;"></div>
+                            </div>
+                            <span id="prepProgressText" style="font-weight:600;">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                <!-- Left Column: Trip Prep Checklist -->
+                <div>
+                    <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:24px;">
+                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                            <span style="font-size:1.5rem;">📋</span> Trip Preparation Checklist
+                        </h3>
+                        <div id="prepChecklist">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contacts -->
+                    <div style="background:linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);border-radius:16px;padding:24px;border:2px solid #fca5a5;">
+                        <h3 style="margin-bottom:15px;color:#991b1b;display:flex;align-items:center;gap:10px;">
+                            <span style="font-size:1.5rem;">🆘</span> Emergency Contacts
+                        </h3>
+                        <div style="display:grid;gap:12px;font-size:0.9rem;">
+                            <div style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;">
+                                <span style="font-weight:600;">US Embassy (Merida)</span>
+                                <a href="tel:+529999420500" style="color:#0891b2;">+52 999 942 0500</a>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;">
+                                <span style="font-weight:600;">Tourist Police</span>
+                                <a href="tel:911" style="color:#0891b2;">911</a>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;">
+                                <span style="font-weight:600;">Hospiten Cancun (Hospital)</span>
+                                <a href="tel:+529988817777" style="color:#0891b2;">+52 998 881 7777</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Packing List -->
+                <div>
+                    <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                            <h3 style="display:flex;align-items:center;gap:10px;">
+                                <span style="font-size:1.5rem;">🎒</span> Packing List
+                            </h3>
+                            <div style="display:flex;gap:8px;">
+                                <button onclick="resetPackingList()" style="padding:6px 12px;border:1px solid #e2e8f0;background:white;border-radius:6px;font-size:0.8rem;cursor:pointer;">Reset</button>
+                                <button onclick="printPackingList()" style="padding:6px 12px;border:none;background:#0891b2;color:white;border-radius:6px;font-size:0.8rem;cursor:pointer;">🖨️ Print</button>
+                            </div>
+                        </div>
+
+                        <div id="packingList">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Info Section -->
+            <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px;">
+                <!-- Currency & Tipping -->
+                <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">💵</span> Currency & Tipping
+                    </h3>
+                    <div style="display:grid;gap:12px;font-size:0.9rem;">
+                        <div style="padding:12px;background:#f0fdf4;border-radius:8px;">
+                            <div style="font-weight:600;color:#065f46;">Current Exchange Rate</div>
+                            <div style="font-size:1.3rem;font-weight:700;color:#059669;">1 USD ≈ 17.2 MXN</div>
+                            <div style="font-size:0.75rem;color:#047857;">Most places accept USD</div>
+                        </div>
+                        <div>
+                            <div style="font-weight:600;margin-bottom:8px;">Tipping Guide:</div>
+                            <div style="display:grid;gap:6px;color:#475569;">
+                                <div>• Restaurants: 15-20%</div>
+                                <div>• Bellhops: $1-2 per bag</div>
+                                <div>• Housekeeping: $2-5/day</div>
+                                <div>• Tour guides: $5-10/person</div>
+                                <div>• Bartenders: $1-2/drink</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather -->
+                <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🌤️</span> May Weather in Cancun
+                    </h3>
+                    <div style="display:grid;gap:12px;font-size:0.9rem;">
+                        <div style="display:flex;justify-content:space-around;text-align:center;">
+                            <div>
+                                <div style="font-size:2rem;">🌡️</div>
+                                <div style="font-weight:600;">82-90°F</div>
+                                <div style="font-size:0.8rem;color:#64748b;">High</div>
+                            </div>
+                            <div>
+                                <div style="font-size:2rem;">💧</div>
+                                <div style="font-weight:600;">75-80%</div>
+                                <div style="font-size:0.8rem;color:#64748b;">Humidity</div>
+                            </div>
+                            <div>
+                                <div style="font-size:2rem;">🌧️</div>
+                                <div style="font-weight:600;">8 days</div>
+                                <div style="font-size:0.8rem;color:#64748b;">Rainy</div>
+                            </div>
+                        </div>
+                        <div style="padding:12px;background:#fef3c7;border-radius:8px;color:#92400e;font-size:0.85rem;">
+                            ☀️ May is hot & humid. Brief afternoon showers are common. Pack light, breathable clothing!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spanish Phrases -->
+                <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🗣️</span> Helpful Spanish
+                    </h3>
+                    <div style="display:grid;gap:8px;font-size:0.85rem;">
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>Hello</span><span style="font-weight:600;">Hola</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>Thank you</span><span style="font-weight:600;">Gracias</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>Please</span><span style="font-weight:600;">Por favor</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>How much?</span><span style="font-weight:600;">¿Cuánto cuesta?</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>Where is...?</span><span style="font-weight:600;">¿Dónde está...?</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>The bill, please</span><span style="font-weight:600;">La cuenta, por favor</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
+                            <span>Cheers!</span><span style="font-weight:600;">¡Salud!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Insurance Section -->
+            <div style="margin-top:24px;background:linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);border-radius:16px;padding:24px;border:2px solid #3b82f6;">
+                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;color:#1e40af;">
+                    <span style="font-size:1.5rem;">🛡️</span> Travel Insurance Guide
+                </h3>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:20px;">
+                    <!-- Why You Need It -->
+                    <div style="background:white;border-radius:12px;padding:20px;">
+                        <h4 style="color:#1e40af;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                            <span>❓</span> Why Get Travel Insurance?
+                        </h4>
+                        <ul style="display:grid;gap:8px;font-size:0.9rem;color:#475569;padding-left:20px;">
+                            <li><strong>Medical emergencies abroad</strong> - US health insurance often doesn't cover Mexico</li>
+                            <li><strong>Trip cancellation</strong> - Get refunded if you can't go</li>
+                            <li><strong>Lost/delayed luggage</strong> - Coverage for essentials</li>
+                            <li><strong>Flight delays</strong> - Hotel/meal reimbursement</li>
+                            <li><strong>Emergency evacuation</strong> - Can cost $50,000+ without insurance</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div style="background:white;border-radius:12px;padding:20px;">
+                        <h4 style="color:#1e40af;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                            <span>⭐</span> Top Recommendations
+                        </h4>
+                        <div style="display:grid;gap:10px;font-size:0.9rem;">
+                            <a href="https://www.travelinsurance.com" target="_blank" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f0f9ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #bfdbfe;">
+                                <span style="font-weight:600;">World Nomads</span>
+                                <span style="font-size:0.8rem;color:#64748b;">Good for activities</span>
+                            </a>
+                            <a href="https://www.allianztravel.com" target="_blank" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f0f9ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #bfdbfe;">
+                                <span style="font-weight:600;">Allianz Travel</span>
+                                <span style="font-size:0.8rem;color:#64748b;">Comprehensive plans</span>
+                            </a>
+                            <a href="https://www.squaremouth.com" target="_blank" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f0f9ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #bfdbfe;">
+                                <span style="font-weight:600;">SquareMouth</span>
+                                <span style="font-size:0.8rem;color:#64748b;">Compare policies</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Best Practices -->
+                    <div style="background:white;border-radius:12px;padding:20px;">
+                        <h4 style="color:#1e40af;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+                            <span>✅</span> Best Practices
+                        </h4>
+                        <div style="display:grid;gap:8px;font-size:0.9rem;color:#475569;">
+                            <div style="display:flex;gap:8px;align-items:start;">
+                                <span style="color:#10b981;">✓</span>
+                                <span><strong>Buy within 14 days of booking</strong> to get pre-existing condition coverage</span>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:start;">
+                                <span style="color:#10b981;">✓</span>
+                                <span><strong>Check credit card benefits</strong> - some cards include travel insurance</span>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:start;">
+                                <span style="color:#10b981;">✓</span>
+                                <span><strong>Get "Cancel for Any Reason"</strong> for maximum flexibility (costs more)</span>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:start;">
+                                <span style="color:#10b981;">✓</span>
+                                <span><strong>Keep receipts</strong> for any expenses you may need to claim</span>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:start;">
+                                <span style="color:#f59e0b;">⚠️</span>
+                                <span><strong>Skip airline insurance</strong> - it's usually overpriced and limited</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;padding:12px;background:white;border-radius:8px;font-size:0.85rem;color:#1e40af;">
+                    💡 <strong>Pro tip:</strong> For a family of 14, expect to pay roughly $50-150 per person for comprehensive coverage. That's about $700-2,100 total for peace of mind on a $22K+ trip.
+                </div>
+            </div>
+
+            <!-- Resort Amenities Comparison -->
+            <div style="margin-top:24px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.5rem;">🏨</span> Resort Amenities Comparison
+                </h3>
+                <p style="color:#64748b;margin-bottom:20px;font-size:0.9rem;">Compare what's included at each resort so you know what to pack and what to expect.</p>
+                <div style="overflow-x:auto;">
+                    <table id="amenitiesTable" style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+                        <thead>
+                            <tr style="background:#f8fafc;">
+                                <th style="padding:12px;text-align:left;border-bottom:2px solid #e2e8f0;">Resort</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Kids Club</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Water Park</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Spa</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Beach</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Pool(s)</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Restaurants</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">Wheelchair</th>
+                                <th style="padding:12px;text-align:center;border-bottom:2px solid #e2e8f0;">WiFi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amenitiesBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -7956,6 +8231,400 @@
             }
         }
 
+        // =====================
+        // PREP & PACK
+        // =====================
+        const TRIP_DATE = new Date('2025-05-24');
+        const PREP_CHECKLIST_KEY = 'cancunPrepChecklist';
+        const PACKING_LIST_KEY = 'cancunPackingList';
+
+        // Trip Preparation Checklist with timeline
+        const prepChecklistData = [
+            {
+                timeframe: '3+ Months Before',
+                icon: '📅',
+                items: [
+                    { id: 'passport', text: 'Check all passports are valid (6+ months beyond travel)' },
+                    { id: 'resort', text: 'Research and book resort' },
+                    { id: 'budget', text: 'Set family budget and payment plan' }
+                ]
+            },
+            {
+                timeframe: '2 Months Before',
+                icon: '✈️',
+                items: [
+                    { id: 'flights', text: 'Book flights for all family groups' },
+                    { id: 'insurance', text: 'Consider travel insurance' },
+                    { id: 'confirmations', text: 'Share all confirmation numbers with family' }
+                ]
+            },
+            {
+                timeframe: '1 Month Before',
+                icon: '🎫',
+                items: [
+                    { id: 'excursions', text: 'Book excursions and activities' },
+                    { id: 'transfers', text: 'Arrange airport transfers' },
+                    { id: 'dietary', text: 'Notify resort of dietary restrictions' },
+                    { id: 'seats', text: 'Select airplane seats' }
+                ]
+            },
+            {
+                timeframe: '2 Weeks Before',
+                icon: '📱',
+                items: [
+                    { id: 'checkin', text: 'Online check-in for flights (when available)' },
+                    { id: 'notify', text: 'Notify bank/credit cards of travel' },
+                    { id: 'phone', text: 'Check phone international plan' },
+                    { id: 'prescriptions', text: 'Refill prescriptions' }
+                ]
+            },
+            {
+                timeframe: '1 Week Before',
+                icon: '🧳',
+                items: [
+                    { id: 'packing', text: 'Start packing (use list below!)' },
+                    { id: 'currency', text: 'Get some Mexican pesos or small USD bills' },
+                    { id: 'printouts', text: 'Print/download confirmations offline' },
+                    { id: 'petcare', text: 'Arrange pet/house sitter if needed' }
+                ]
+            },
+            {
+                timeframe: 'Day Before',
+                icon: '✅',
+                items: [
+                    { id: 'charge', text: 'Charge all devices' },
+                    { id: 'documents', text: 'Put passports, IDs, and documents in carry-on' },
+                    { id: 'weather', text: 'Check Cancun weather forecast' },
+                    { id: 'weight', text: 'Weigh luggage (50 lbs limit)' }
+                ]
+            }
+        ];
+
+        // Packing List Data
+        const packingListData = [
+            {
+                category: 'Documents',
+                icon: '📄',
+                items: [
+                    'Passport (valid 6+ months)',
+                    'Driver\'s license / ID',
+                    'Travel insurance documents',
+                    'Hotel confirmation',
+                    'Flight confirmation',
+                    'Credit cards (notify bank!)',
+                    'Some cash (USD + pesos)'
+                ]
+            },
+            {
+                category: 'Beach & Pool',
+                icon: '🏖️',
+                items: [
+                    'Swimsuits (2-3 per person)',
+                    'Cover-ups / sarong',
+                    'Reef-safe sunscreen',
+                    'Sunglasses',
+                    'Sun hat / baseball cap',
+                    'Beach bag',
+                    'Waterproof phone pouch',
+                    'Snorkel gear (optional)'
+                ]
+            },
+            {
+                category: 'Clothing',
+                icon: '👕',
+                items: [
+                    'Light, breathable shirts',
+                    'Shorts',
+                    'Sundresses',
+                    'Light pants for evenings',
+                    'Nice outfit for dinner',
+                    'Light jacket/cardigan (AC is cold!)',
+                    'Comfortable walking shoes',
+                    'Sandals / flip-flops',
+                    'Underwear & socks',
+                    'Sleepwear'
+                ]
+            },
+            {
+                category: 'Toiletries',
+                icon: '🧴',
+                items: [
+                    'Toothbrush & toothpaste',
+                    'Shampoo & conditioner',
+                    'Deodorant',
+                    'Razor',
+                    'Hairbrush / comb',
+                    'Hair ties',
+                    'Makeup (if used)',
+                    'Contact lenses & solution'
+                ]
+            },
+            {
+                category: 'Health & Safety',
+                icon: '💊',
+                items: [
+                    'Prescription medications',
+                    'Pain relievers (Advil/Tylenol)',
+                    'Antihistamines',
+                    'Anti-diarrhea medicine',
+                    'Motion sickness pills',
+                    'First aid kit basics',
+                    'Insect repellent',
+                    'Aloe vera gel',
+                    'Hand sanitizer'
+                ]
+            },
+            {
+                category: 'Electronics',
+                icon: '🔌',
+                items: [
+                    'Phone & charger',
+                    'Camera & charger',
+                    'Power bank',
+                    'Headphones',
+                    'Kindle / tablet',
+                    'Universal adapter (Mexico uses US plugs)'
+                ]
+            },
+            {
+                category: 'Kids Items',
+                icon: '👶',
+                items: [
+                    'Swim diapers',
+                    'Floaties / puddle jumper',
+                    'Kids sunscreen (high SPF)',
+                    'Favorite toys / books',
+                    'Snacks for travel',
+                    'Stroller (if needed)',
+                    'Baby carrier',
+                    'Kids headphones for flights'
+                ]
+            },
+            {
+                category: 'Misc',
+                icon: '🎒',
+                items: [
+                    'Day backpack',
+                    'Reusable water bottle',
+                    'Books / magazines',
+                    'Playing cards / games',
+                    'Laundry bag',
+                    'Ziploc bags (various sizes)',
+                    'Pen for customs forms'
+                ]
+            }
+        ];
+
+        function getSavedPrepChecklist() {
+            const saved = localStorage.getItem(PREP_CHECKLIST_KEY);
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        function savePrepChecklistItem(id, checked) {
+            const saved = getSavedPrepChecklist();
+            saved[id] = checked;
+            localStorage.setItem(PREP_CHECKLIST_KEY, JSON.stringify(saved));
+            updatePrepProgress();
+        }
+
+        function getSavedPackingList() {
+            const saved = localStorage.getItem(PACKING_LIST_KEY);
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        function savePackingItem(category, item, checked) {
+            const saved = getSavedPackingList();
+            const key = `${category}:${item}`;
+            saved[key] = checked;
+            localStorage.setItem(PACKING_LIST_KEY, JSON.stringify(saved));
+            updatePrepProgress();
+        }
+
+        function renderPrepChecklist() {
+            const container = document.getElementById('prepChecklist');
+            if (!container) return;
+
+            const saved = getSavedPrepChecklist();
+
+            container.innerHTML = prepChecklistData.map(section => `
+                <div style="margin-bottom:20px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding:8px 12px;background:#f0fdfa;border-radius:8px;border-left:4px solid #14b8a6;">
+                        <span style="font-size:1.2rem;">${section.icon}</span>
+                        <span style="font-weight:600;color:#0f766e;">${section.timeframe}</span>
+                    </div>
+                    <div style="display:grid;gap:8px;padding-left:10px;">
+                        ${section.items.map(item => `
+                            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px;border-radius:6px;transition:background 0.2s;${saved[item.id] ? 'background:#f0fdf4;' : ''}" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='${saved[item.id] ? '#f0fdf4' : ''}'">
+                                <input type="checkbox" ${saved[item.id] ? 'checked' : ''} onchange="savePrepChecklistItem('${item.id}', this.checked)" style="width:18px;height:18px;accent-color:#10b981;">
+                                <span style="${saved[item.id] ? 'text-decoration:line-through;color:#94a3b8;' : 'color:#475569;'}">${item.text}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPackingList() {
+            const container = document.getElementById('packingList');
+            if (!container) return;
+
+            const saved = getSavedPackingList();
+
+            container.innerHTML = packingListData.map(section => `
+                <div style="margin-bottom:20px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;" onclick="togglePackingSection('${section.category}')">
+                        <span style="font-size:1.2rem;">${section.icon}</span>
+                        <span style="font-weight:600;color:#1e293b;">${section.category}</span>
+                        <span style="font-size:0.75rem;color:#64748b;margin-left:auto;" id="count-${section.category}">
+                            ${section.items.filter(item => saved[`${section.category}:${item}`]).length}/${section.items.length}
+                        </span>
+                        <span id="arrow-${section.category}" style="transition:transform 0.2s;">▼</span>
+                    </div>
+                    <div id="section-${section.category}" style="display:grid;gap:6px;padding-left:10px;">
+                        ${section.items.map(item => {
+                            const key = `${section.category}:${item}`;
+                            return `
+                            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 8px;border-radius:6px;font-size:0.9rem;${saved[key] ? 'background:#f0fdf4;' : ''}">
+                                <input type="checkbox" ${saved[key] ? 'checked' : ''} onchange="savePackingItem('${section.category}', '${item.replace(/'/g, "\\'")}', this.checked)" style="width:16px;height:16px;accent-color:#10b981;">
+                                <span style="${saved[key] ? 'text-decoration:line-through;color:#94a3b8;' : 'color:#475569;'}">${item}</span>
+                            </label>
+                        `;}).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function togglePackingSection(category) {
+            const section = document.getElementById(`section-${category}`);
+            const arrow = document.getElementById(`arrow-${category}`);
+            if (section.style.display === 'none') {
+                section.style.display = 'grid';
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                section.style.display = 'none';
+                arrow.style.transform = 'rotate(-90deg)';
+            }
+        }
+
+        function resetPackingList() {
+            if (confirm('Reset all packing list checkboxes?')) {
+                localStorage.removeItem(PACKING_LIST_KEY);
+                renderPackingList();
+                updatePrepProgress();
+            }
+        }
+
+        function printPackingList() {
+            const saved = getSavedPackingList();
+            let printContent = '🧳 CANCUN PACKING LIST\\n\\n';
+            packingListData.forEach(section => {
+                printContent += `${section.icon} ${section.category}\\n`;
+                section.items.forEach(item => {
+                    const key = `${section.category}:${item}`;
+                    printContent += `  ${saved[key] ? '✓' : '☐'} ${item}\\n`;
+                });
+                printContent += '\\n';
+            });
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`<pre style="font-family:sans-serif;font-size:14px;">${printContent}</pre>`);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function updateTripCountdown() {
+            const now = new Date();
+            const diff = TRIP_DATE - now;
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            const countdown = document.getElementById('tripCountdown');
+            if (countdown) {
+                if (days > 0) {
+                    countdown.textContent = `${days} days to go!`;
+                } else if (days === 0) {
+                    countdown.textContent = "It's TODAY! 🎉";
+                } else {
+                    countdown.textContent = "Trip completed! 🌴";
+                }
+            }
+        }
+
+        function updatePrepProgress() {
+            const prepSaved = getSavedPrepChecklist();
+            const packingSaved = getSavedPackingList();
+
+            // Count prep items
+            let totalPrep = 0;
+            let checkedPrep = 0;
+            prepChecklistData.forEach(section => {
+                section.items.forEach(item => {
+                    totalPrep++;
+                    if (prepSaved[item.id]) checkedPrep++;
+                });
+            });
+
+            // Count packing items
+            let totalPacking = 0;
+            let checkedPacking = 0;
+            packingListData.forEach(section => {
+                section.items.forEach(item => {
+                    totalPacking++;
+                    if (packingSaved[`${section.category}:${item}`]) checkedPacking++;
+                });
+            });
+
+            const total = totalPrep + totalPacking;
+            const checked = checkedPrep + checkedPacking;
+            const percent = Math.round((checked / total) * 100);
+
+            const bar = document.getElementById('prepProgressBar');
+            const text = document.getElementById('prepProgressText');
+            if (bar) bar.style.width = `${percent}%`;
+            if (text) text.textContent = `${percent}%`;
+        }
+
+        function renderAmenitiesTable() {
+            const tbody = document.getElementById('amenitiesBody');
+            if (!tbody) return;
+
+            // Get top family resorts
+            const familyResorts = resorts.filter(r => r.family && !r.isVilla).slice(0, 10);
+
+            // Amenities data (would ideally be in resort data, but adding here for demo)
+            const amenitiesData = {
+                1: { kidsClub: true, waterPark: false, spa: true, beach: true, pools: 3, restaurants: 6, wheelchair: true, wifi: true }, // Hyatt Ziva
+                2: { kidsClub: true, waterPark: false, spa: true, beach: true, pools: 2, restaurants: 5, wheelchair: true, wifi: true }, // Hard Rock
+                7: { kidsClub: true, waterPark: true, spa: true, beach: true, pools: 4, restaurants: 8, wheelchair: true, wifi: true }, // Moon Palace
+                11: { kidsClub: true, waterPark: true, spa: true, beach: true, pools: 5, restaurants: 10, wheelchair: true, wifi: true }, // Grand Palladium
+                16: { kidsClub: true, waterPark: true, spa: true, beach: true, pools: 3, restaurants: 7, wheelchair: true, wifi: true }, // Xcaret Arte
+            };
+
+            tbody.innerHTML = familyResorts.map(r => {
+                const a = amenitiesData[r.id] || {};
+                const check = '✅';
+                const x = '❌';
+                return `
+                    <tr style="border-bottom:1px solid #e2e8f0;">
+                        <td style="padding:12px;font-weight:600;">${r.name}</td>
+                        <td style="padding:12px;text-align:center;">${a.kidsClub ? check : x}</td>
+                        <td style="padding:12px;text-align:center;">${a.waterPark ? check : x}</td>
+                        <td style="padding:12px;text-align:center;">${a.spa ? check : x}</td>
+                        <td style="padding:12px;text-align:center;">${a.beach ? check : x}</td>
+                        <td style="padding:12px;text-align:center;">${a.pools || '?'}</td>
+                        <td style="padding:12px;text-align:center;">${a.restaurants || '?'}</td>
+                        <td style="padding:12px;text-align:center;">${a.wheelchair ? check : x}</td>
+                        <td style="padding:12px;text-align:center;">${a.wifi ? check : x}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function initPrepPage() {
+            updateTripCountdown();
+            renderPrepChecklist();
+            renderPackingList();
+            updatePrepProgress();
+            renderAmenitiesTable();
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             initMap();
@@ -7966,6 +8635,7 @@
             updateVotingResults();
             initBudgetPage();
             initItinerary();
+            initPrepPage();
             loadComparisonFromUrl();
             document.getElementById('resortCount').textContent = resorts.length;
         });
