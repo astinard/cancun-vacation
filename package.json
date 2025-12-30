@@ -1,0 +1,12 @@
+{
+  "name": "cancun-vacation-planner",
+  "version": "1.0.0",
+  "description": "Family vacation planning for Cancun 2025",
+  "scripts": {
+    "start": "npx serve -s . -l $PORT",
+    "dev": "npx serve -s . -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
