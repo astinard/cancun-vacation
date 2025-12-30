@@ -799,6 +799,464 @@
             background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
         }
 
+        /* Voting Progress Bar */
+        .voting-progress {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-container {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        /* Quick Pick */
+        .quick-pick-container {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #f59e0b;
+        }
+
+        .quick-pick-intro {
+            text-align: center;
+        }
+
+        .quick-pick-intro p {
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+
+        .quick-pick-start-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .quick-pick-start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .quick-pick-question {
+            text-align: center;
+        }
+
+        .quick-pick-question h4 {
+            color: #92400e;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .quick-pick-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quick-pick-option {
+            background: white;
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quick-pick-option:hover {
+            border-color: #f59e0b;
+            transform: translateX(5px);
+        }
+
+        .quick-pick-option.selected {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        .quick-pick-result {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .quick-pick-result h4 {
+            color: #065f46;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .quick-pick-resort-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 3px solid #10b981;
+        }
+
+        /* Top Resorts Grid */
+        .top-resorts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .resort-vote-card {
+            background: white;
+            border: 3px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .resort-vote-card:hover {
+            border-color: #0891b2;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .resort-vote-card.selected {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .resort-vote-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #10b981;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .resort-vote-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .resort-vote-detail {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .resort-vote-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0891b2;
+        }
+
+        .resort-vote-voters {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .show-more-btn {
+            width: 100%;
+            padding: 12px;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .show-more-btn:hover {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+        }
+
+        .more-resorts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        /* Result Buttons */
+        .reveal-btn {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #78350f;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .export-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .export-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Winner Celebration */
+        .winner-celebration {
+            text-align: center;
+            padding: 30px;
+            animation: celebrationPulse 0.5s ease;
+        }
+
+        @keyframes celebrationPulse {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .winner-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .winner-resort {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Budget Simple View */
+        .budget-simple-view {
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .budget-simple-total {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .budget-simple-per-person {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .budget-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .budget-toggle-btn {
+            padding: 10px 20px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .budget-toggle-btn.active {
+            background: #0891b2;
+            color: white;
+            border-color: #0891b2;
+        }
+
+        .budget-detailed {
+            transition: all 0.3s ease;
+        }
+
+        .budget-detailed.collapsed {
+            display: none;
+        }
+
+        /* Simple Budget View Card */
+        .simple-budget-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        .simple-budget-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .simple-budget-card h3 {
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .simple-budget-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #0891b2;
+            margin: 10px 0;
+        }
+
+        .simple-budget-subtext {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .simple-budget-breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 15px;
+        }
+
+        .simple-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .simple-item span:first-child {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        .simple-item span:last-child {
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .simple-budget-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: #ecfdf5;
+            border-radius: 8px;
+            color: #059669;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .simple-budget-status.over-budget {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .simple-details-btn {
+            background: none;
+            border: none;
+            color: #0891b2;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 10px;
+            text-decoration: underline;
+        }
+
+        .simple-resort-picks {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .simple-resort-picks h4 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .simple-picks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .simple-pick-card {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border: 2px solid #14b8a6;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .simple-pick-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .simple-pick-name {
+            font-weight: 600;
+            color: #0f766e;
+            margin-bottom: 5px;
+        }
+
+        .simple-pick-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0d9488;
+        }
+
+        .simple-pick-note {
+            font-size: 0.75rem;
+            color: #5eead4;
+            margin-top: 5px;
+        }
+
         /* Results Panel */
         .results-panel {
             background: linear-gradient(135deg, #0e7490 0%, #06b6d4 50%, #0891b2 100%);
@@ -1897,27 +2355,46 @@
         <div class="voting-container">
             <div class="voting-header">
                 <h2>Family Voting</h2>
-                <p>Select your name and rank your preferences!</p>
+                <p>Select your name and pick your favorites!</p>
+
+                <!-- Voting Progress -->
+                <div class="voting-progress" id="votingProgress">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text"><span id="voterCount">0</span> of 14 family members have voted</div>
+                </div>
 
                 <div class="voter-select" id="voterSelect"></div>
             </div>
 
-            <div class="voting-section">
-                <h3>🏆 Rank Your Top Resorts (Ranked Choice)</h3>
-                <div class="ranked-choice-container">
-                    <div class="ranked-choice-instructions">
-                        <strong>How it works:</strong> Click resorts in order of preference (1st choice, 2nd choice, etc.).
-                        Your top choices get more weight. Click again to remove from rankings.
+            <!-- Quick Pick Section -->
+            <div class="voting-section" id="quickPickSection">
+                <h3>🎯 Quick Pick - Let Us Recommend!</h3>
+                <div class="quick-pick-container" id="quickPickContainer">
+                    <div class="quick-pick-intro">
+                        <p>Not sure which resort? Answer 3 quick questions and we'll recommend the best fit!</p>
+                        <button onclick="startQuickPick()" class="quick-pick-start-btn">Start Quick Pick →</button>
                     </div>
-                    <div class="ranked-options" id="rankedResortOptions"></div>
-                    <button onclick="submitRankedVotes()" style="margin-top:15px;padding:12px 24px;background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;width:100%;">
-                        ✓ Save My Rankings
-                    </button>
                 </div>
             </div>
 
             <div class="voting-section">
-                <h3>Preferred Week</h3>
+                <h3>🏆 Pick Your Top Resort</h3>
+                <p style="font-size:0.85rem;color:#64748b;margin-bottom:15px;">Click to select your #1 choice. Your vote is saved automatically!</p>
+                <div class="top-resorts-grid" id="topResortsGrid">
+                    <!-- Top 4 resorts rendered by JS -->
+                </div>
+                <button id="showMoreResortsBtn" onclick="toggleMoreResorts()" class="show-more-btn">
+                    Show all resorts ▼
+                </button>
+                <div class="more-resorts-grid" id="moreResortsGrid" style="display:none;">
+                    <!-- Additional resorts rendered by JS -->
+                </div>
+            </div>
+
+            <div class="voting-section">
+                <h3>📅 Preferred Week</h3>
                 <div class="vote-options" id="weekVoteOptions">
                     <div class="vote-option" data-category="week" data-value="may24">
                         <div class="vote-option-name">May 24-31, 2025</div>
@@ -1952,12 +2429,26 @@
                 </div>
             </div>
 
-            <div class="results-panel">
-                <h3>Current Results</h3>
+            <div class="results-panel" id="resultsPanel">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+                    <h3 style="margin:0;">📊 Current Results</h3>
+                    <div style="display:flex;gap:8px;">
+                        <button onclick="revealWinner()" class="reveal-btn" id="revealBtn" style="display:none;">
+                            🎉 Reveal Winner
+                        </button>
+                        <button onclick="exportResults()" class="export-btn">
+                            📤 Share
+                        </button>
+                    </div>
+                </div>
                 <div id="votingResults"></div>
+                <div id="winnerCelebration" style="display:none;"></div>
             </div>
         </div>
     </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;"></canvas>
 
     <!-- Budget & Deals View -->
     <div class="view" id="view-budget">
@@ -1965,8 +2456,55 @@
             <div class="budget-header">
                 <h2>Trip Budget Calculator & Deal Finder</h2>
                 <p>Calculate your total trip cost and find the best deals for your group of 14</p>
+
+                <!-- Simple/Detailed Toggle -->
+                <div class="budget-toggle">
+                    <button class="budget-toggle-btn active" onclick="setBudgetMode('simple')">Simple View</button>
+                    <button class="budget-toggle-btn" onclick="setBudgetMode('detailed')">Detailed View</button>
+                </div>
             </div>
 
+            <!-- SIMPLE VIEW - Just the essentials -->
+            <div id="budgetSimpleView" class="budget-simple-view">
+                <div class="simple-budget-card">
+                    <div class="simple-budget-icon">🏖️</div>
+                    <h3>Estimated Trip Total</h3>
+                    <div class="simple-budget-amount" id="simpleTotalAmount">$22,500</div>
+                    <div class="simple-budget-subtext">For 14 people, 7 nights all-inclusive</div>
+                    <div class="simple-budget-breakdown">
+                        <div class="simple-item">
+                            <span>Resort</span>
+                            <span id="simpleResortCost">~$15,000</span>
+                        </div>
+                        <div class="simple-item">
+                            <span>Flights</span>
+                            <span id="simpleFlightCost">~$5,500</span>
+                        </div>
+                        <div class="simple-item">
+                            <span>Activities</span>
+                            <span id="simpleActivityCost">~$2,000</span>
+                        </div>
+                    </div>
+                    <div class="simple-budget-status" id="simpleBudgetStatus">
+                        <span class="status-icon">✅</span>
+                        <span>Within your $20K-$25K budget target!</span>
+                    </div>
+                    <button onclick="setBudgetMode('detailed')" class="simple-details-btn">
+                        Want to customize? View detailed breakdown →
+                    </button>
+                </div>
+
+                <!-- Quick Resort Picks in Simple View -->
+                <div class="simple-resort-picks">
+                    <h4>Top 3 Value Picks</h4>
+                    <div class="simple-picks-grid" id="simpleResortPicks">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAILED VIEW - Full calculator -->
+            <div id="budgetDetailedView" style="display:none;">
             <div class="budget-target-display">
                 <div>
                     <h3>Your Budget Target</h3>
@@ -2243,6 +2781,7 @@
                 <div id="quickComparison" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:15px;">
                 </div>
             </div>
+            </div><!-- End budgetDetailedView -->
         </div>
     </div>
 
@@ -4114,7 +4653,19 @@
 
         // Voting System
         const VOTE_KEY = 'cancunVacationVotes2025';
+        const VOTER_NAME_KEY = 'cancunVoterName';
         let currentVoter = null;
+        let showAllResorts = false;
+        let quickPickStep = 0;
+        let quickPickAnswers = {};
+
+        // Top 4 recommended resorts for quick decision
+        const TOP_4_RESORTS = [
+            { id: 2, reason: "Best accessibility + great value" },
+            { id: 11, reason: "Built for multigenerational families" },
+            { id: 16, reason: "Parks included = huge savings" },
+            { id: 44, reason: "Private villa with sea turtles" }
+        ];
 
         function getVotes() {
             return JSON.parse(localStorage.getItem(VOTE_KEY) || '{}');
@@ -4124,42 +4675,284 @@
             localStorage.setItem(VOTE_KEY, JSON.stringify(votes));
         }
 
+        // Remember voter name across sessions
+        function getSavedVoterName() {
+            return localStorage.getItem(VOTER_NAME_KEY);
+        }
+
+        function saveVoterName(name) {
+            localStorage.setItem(VOTER_NAME_KEY, name);
+        }
+
         function renderVoterSelect() {
             const container = document.getElementById('voterSelect');
-            container.innerHTML = familyMembers.map(m =>
-                `<button class="voter-btn ${currentVoter === m ? 'active' : ''}" onclick="selectVoter('${m}')">${m}</button>`
-            ).join('');
+            const savedName = getSavedVoterName();
+
+            // Auto-select saved voter on first render
+            if (!currentVoter && savedName && familyMembers.includes(savedName)) {
+                currentVoter = savedName;
+            }
+
+            container.innerHTML = `
+                <div style="margin-bottom:10px;font-size:0.85rem;opacity:0.8;">Who's voting?</div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+                    ${familyMembers.map(m =>
+                        `<button class="voter-btn ${currentVoter === m ? 'active' : ''}" onclick="selectVoter('${m}')">${m}</button>`
+                    ).join('')}
+                </div>
+            `;
         }
 
         function selectVoter(name) {
             currentVoter = name;
+            saveVoterName(name); // Remember for next time
             renderVoterSelect();
-            renderVotingOptions();
-            renderRankedOptions();
+            renderTopResorts();
+            updateVotingProgress();
             updateVotingResults();
+            showToast(`Welcome, ${name}!`);
         }
 
-        function renderVotingOptions() {
-            const container = document.getElementById('resortVoteOptions');
+        function updateVotingProgress() {
             const votes = getVotes();
-            const topResorts = resorts.filter(r => r.family).slice(0, 10);
+            const voterCount = Object.keys(votes).filter(v => votes[v].resort).length;
+            const progressBar = document.getElementById('progressBar');
+            const voterCountEl = document.getElementById('voterCount');
 
-            container.innerHTML = topResorts.map(r => {
-                const resortVotes = Object.entries(votes).filter(([_, v]) => v.resort === r.name);
-                const isSelected = currentVoter && votes[currentVoter]?.resort === r.name;
+            if (progressBar && voterCountEl) {
+                const percent = (voterCount / 14) * 100;
+                progressBar.style.width = `${percent}%`;
+                voterCountEl.textContent = voterCount;
+            }
 
-                return `
-                <div class="vote-option ${isSelected ? 'selected' : ''}" data-category="resort" data-value="${r.name}" onclick="castVote('resort', '${r.name}')">
-                    <div class="vote-option-name">${r.name}</div>
-                    <div class="vote-option-detail">${r.areaName} • $${r.priceMay24}/night</div>
-                    <div class="vote-count-display">${resortVotes.length} vote${resortVotes.length !== 1 ? 's' : ''}</div>
-                    <div class="vote-avatars">
+            // Show reveal button when all 14 have voted (or simulate for testing)
+            const revealBtn = document.getElementById('revealBtn');
+            if (revealBtn && voterCount >= 1) { // Change to 14 for production
+                revealBtn.style.display = 'inline-block';
+            }
+        }
+
+        function renderTopResorts() {
+            const topContainer = document.getElementById('topResortsGrid');
+            const moreContainer = document.getElementById('moreResortsGrid');
+            const showMoreBtn = document.getElementById('showMoreResortsBtn');
+
+            if (!topContainer) return;
+
+            const votes = getVotes();
+            const familyResorts = resorts.filter(r => r.family && r.valueScore >= 7);
+
+            // Render top 4
+            const top4 = TOP_4_RESORTS.map(t => ({
+                ...resorts.find(r => r.id === t.id),
+                reason: t.reason
+            })).filter(r => r);
+
+            topContainer.innerHTML = top4.map(r => renderResortVoteCard(r, votes)).join('');
+
+            // Render remaining resorts
+            const remainingResorts = familyResorts.filter(r => !TOP_4_RESORTS.find(t => t.id === r.id));
+            moreContainer.innerHTML = remainingResorts.map(r => renderResortVoteCard(r, votes)).join('');
+
+            // Update show more button text
+            if (showMoreBtn) {
+                showMoreBtn.textContent = showAllResorts
+                    ? 'Show less ▲'
+                    : `Show ${remainingResorts.length} more resorts ▼`;
+            }
+        }
+
+        function renderResortVoteCard(resort, votes) {
+            const resortVotes = Object.entries(votes).filter(([_, v]) => v.resort === resort.name);
+            const isSelected = currentVoter && votes[currentVoter]?.resort === resort.name;
+            const budgetFit = getBudgetFit(resort);
+
+            return `
+                <div class="resort-vote-card ${isSelected ? 'selected' : ''}" onclick="voteForResort('${resort.name}')">
+                    <div class="resort-vote-name">${resort.name}</div>
+                    <div class="resort-vote-detail">
+                        ${resort.areaName} • ★${resort.rating}
+                        ${resort.reason ? `<br><em style="color:#059669;">${resort.reason}</em>` : ''}
+                    </div>
+                    <div class="resort-vote-price">
+                        $${resort.priceMay24}/night
+                        <span class="budget-badge ${budgetFit.class}" style="font-size:0.7rem;margin-left:8px;">${budgetFit.label}</span>
+                    </div>
+                    <div class="resort-vote-voters">
                         ${resortVotes.map(([name]) => `<span class="vote-avatar">${name.charAt(0)}</span>`).join('')}
+                        <span style="font-size:0.8rem;color:#64748b;">${resortVotes.length} vote${resortVotes.length !== 1 ? 's' : ''}</span>
                     </div>
                 </div>
-            `}).join('');
+            `;
+        }
 
-            // Update week and length options
+        function voteForResort(resortName) {
+            if (!currentVoter) {
+                showToast('Please select your name first!');
+                return;
+            }
+
+            const votes = getVotes();
+            if (!votes[currentVoter]) votes[currentVoter] = {};
+            votes[currentVoter].resort = resortName;
+            saveVotes(votes);
+
+            renderTopResorts();
+            updateVotingProgress();
+            updateVotingResults();
+            showToast(`Vote saved for ${resortName}!`);
+        }
+
+        function toggleMoreResorts() {
+            showAllResorts = !showAllResorts;
+            const moreContainer = document.getElementById('moreResortsGrid');
+            const btn = document.getElementById('showMoreResortsBtn');
+
+            moreContainer.style.display = showAllResorts ? 'grid' : 'none';
+            btn.textContent = showAllResorts ? 'Show less ▲' : 'Show all resorts ▼';
+        }
+
+        // Quick Pick Wizard
+        const QUICK_PICK_QUESTIONS = [
+            {
+                question: "What's most important for your family?",
+                options: [
+                    { value: 'accessibility', label: '♿ Accessibility (wheelchair, mobility needs)', icon: '♿' },
+                    { value: 'kids', label: '👶 Kid-friendly activities & pools', icon: '👶' },
+                    { value: 'value', label: '💰 Best value for money', icon: '💰' },
+                    { value: 'luxury', label: '✨ Premium experience', icon: '✨' }
+                ]
+            },
+            {
+                question: "Preferred location vibe?",
+                options: [
+                    { value: 'hotel-zone', label: '🏙️ Hotel Zone - walkable, near nightlife', icon: '🏙️' },
+                    { value: 'riviera', label: '🌴 Riviera Maya - quieter, nature', icon: '🌴' },
+                    { value: 'private', label: '🏠 Private villa - just our family', icon: '🏠' },
+                    { value: 'any', label: '🤷 No preference', icon: '🤷' }
+                ]
+            },
+            {
+                question: "Budget priority?",
+                options: [
+                    { value: 'under-budget', label: '📉 Keep it under $20K total', icon: '📉' },
+                    { value: 'sweet-spot', label: '🎯 Sweet spot $20-25K', icon: '🎯' },
+                    { value: 'worth-it', label: '💎 Worth it if it\'s perfect', icon: '💎' }
+                ]
+            }
+        ];
+
+        function startQuickPick() {
+            quickPickStep = 1;
+            quickPickAnswers = {};
+            renderQuickPickQuestion();
+        }
+
+        function renderQuickPickQuestion() {
+            const container = document.getElementById('quickPickContainer');
+            if (quickPickStep > QUICK_PICK_QUESTIONS.length) {
+                renderQuickPickResult();
+                return;
+            }
+
+            const q = QUICK_PICK_QUESTIONS[quickPickStep - 1];
+            container.innerHTML = `
+                <div class="quick-pick-question">
+                    <div style="font-size:0.8rem;color:#92400e;margin-bottom:10px;">Question ${quickPickStep} of ${QUICK_PICK_QUESTIONS.length}</div>
+                    <h4>${q.question}</h4>
+                    <div class="quick-pick-options">
+                        ${q.options.map(opt => `
+                            <div class="quick-pick-option" onclick="answerQuickPick('${q.options[0].value.split('-')[0]}', '${opt.value}')">
+                                <span style="font-size:1.3rem;margin-right:10px;">${opt.icon}</span>
+                                ${opt.label}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function answerQuickPick(category, value) {
+            quickPickAnswers[`q${quickPickStep}`] = value;
+            quickPickStep++;
+            renderQuickPickQuestion();
+        }
+
+        function renderQuickPickResult() {
+            const container = document.getElementById('quickPickContainer');
+
+            // Simple recommendation logic based on answers
+            let recommendedId = 2; // Default: Hard Rock (good all-rounder)
+            let reason = "Great for families with excellent accessibility";
+
+            if (quickPickAnswers.q1 === 'accessibility') {
+                recommendedId = 2; // Hard Rock
+                reason = "Best-in-class wheelchair accessibility and family amenities";
+            } else if (quickPickAnswers.q1 === 'value' || quickPickAnswers.q3 === 'under-budget') {
+                recommendedId = 44; // Villa
+                reason = "Private villa at lowest per-person cost";
+            } else if (quickPickAnswers.q2 === 'private') {
+                recommendedId = 44; // Villa
+                reason = "Private beachfront villa just for your family";
+            } else if (quickPickAnswers.q1 === 'kids') {
+                recommendedId = 16; // Xcaret
+                reason = "Parks included - kids will have endless activities";
+            } else if (quickPickAnswers.q1 === 'luxury' || quickPickAnswers.q3 === 'worth-it') {
+                recommendedId = 11; // Grand Velas
+                reason = "Premium multigenerational resort experience";
+            } else if (quickPickAnswers.q2 === 'riviera') {
+                recommendedId = 16; // Xcaret
+                reason = "Eco-resort in beautiful Riviera Maya";
+            }
+
+            const resort = resorts.find(r => r.id === recommendedId);
+            const budgetFit = getBudgetFit(resort);
+
+            container.innerHTML = `
+                <div class="quick-pick-result">
+                    <h4>🎯 We recommend...</h4>
+                    <div class="quick-pick-resort-card">
+                        <div style="font-size:1.5rem;font-weight:700;color:#1e293b;margin-bottom:8px;">${resort.name}</div>
+                        <div style="color:#059669;font-weight:600;margin-bottom:15px;">${reason}</div>
+                        <div style="display:flex;justify-content:center;gap:15px;flex-wrap:wrap;">
+                            <span style="background:#f1f5f9;padding:6px 12px;border-radius:6px;">$${resort.priceMay24}/night</span>
+                            <span style="background:#f1f5f9;padding:6px 12px;border-radius:6px;">★ ${resort.rating}</span>
+                            <span class="budget-badge ${budgetFit.class}">${budgetFit.label}</span>
+                        </div>
+                    </div>
+                    <button onclick="useQuickPickVote('${resort.name}')" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:white;border:none;padding:12px 30px;border-radius:8px;font-weight:600;cursor:pointer;margin-right:10px;">
+                        ✓ Use This As My Vote
+                    </button>
+                    <button onclick="resetQuickPick()" style="background:#e2e8f0;color:#64748b;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+
+        function useQuickPickVote(resortName) {
+            if (!currentVoter) {
+                showToast('Please select your name first!');
+                return;
+            }
+            voteForResort(resortName);
+            resetQuickPick();
+        }
+
+        function resetQuickPick() {
+            quickPickStep = 0;
+            quickPickAnswers = {};
+            document.getElementById('quickPickContainer').innerHTML = `
+                <div class="quick-pick-intro">
+                    <p>Not sure which resort? Answer 3 quick questions and we'll recommend the best fit!</p>
+                    <button onclick="startQuickPick()" class="quick-pick-start-btn">Start Quick Pick →</button>
+                </div>
+            `;
+        }
+
+        // Legacy function compatibility
+        function renderVotingOptions() {
+            renderTopResorts();
             updateVoteOptionDisplay('week');
             updateVoteOptionDisplay('length');
         }
@@ -4253,6 +5046,143 @@
 
             // Update ranked choice results
             updateRankedResults();
+            updateVotingProgress();
+        }
+
+        // Confetti Celebration
+        function launchConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            canvas.style.display = 'block';
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+
+            const confetti = [];
+            const colors = ['#10b981', '#f59e0b', '#3b82f6', '#ef4444', '#8b5cf6', '#ec4899'];
+
+            // Create confetti pieces
+            for (let i = 0; i < 150; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * 150 + 10,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngle: Math.random() * Math.PI,
+                    tiltSpeed: Math.random() * 0.1 + 0.05
+                });
+            }
+
+            let animationFrame;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                confetti.forEach((c, i) => {
+                    ctx.beginPath();
+                    ctx.lineWidth = c.r / 2;
+                    ctx.strokeStyle = c.color;
+                    ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+                    ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
+                    ctx.stroke();
+
+                    c.y += 3;
+                    c.tiltAngle += c.tiltSpeed;
+                    c.tilt = Math.sin(c.tiltAngle) * 15;
+
+                    if (c.y > canvas.height) {
+                        confetti[i].y = -10;
+                        confetti[i].x = Math.random() * canvas.width;
+                    }
+                });
+
+                animationFrame = requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            // Stop after 4 seconds
+            setTimeout(() => {
+                cancelAnimationFrame(animationFrame);
+                canvas.style.display = 'none';
+            }, 4000);
+        }
+
+        // Reveal Winner with Celebration
+        function revealWinner() {
+            const votes = getVotes();
+            const resortCounts = {};
+
+            Object.values(votes).forEach(v => {
+                if (v.resort) resortCounts[v.resort] = (resortCounts[v.resort] || 0) + 1;
+            });
+
+            const sorted = Object.entries(resortCounts).sort((a, b) => b[1] - a[1]);
+            if (sorted.length === 0) {
+                showToast('No votes yet!');
+                return;
+            }
+
+            const winner = sorted[0];
+            const winnerResort = resorts.find(r => r.name === winner[0]);
+            const celebration = document.getElementById('winnerCelebration');
+
+            celebration.style.display = 'block';
+            celebration.innerHTML = `
+                <div class="winner-celebration">
+                    <div class="winner-title">🎉 WE'RE GOING TO... 🎉</div>
+                    <div class="winner-resort">${winner[0]}</div>
+                    <div style="font-size:1.1rem;opacity:0.9;margin-bottom:20px;">
+                        ${winner[1]} votes • ${winnerResort?.areaName || ''} • $${winnerResort?.priceMay24 || 0}/night
+                    </div>
+                    <div style="font-size:3rem;margin:20px 0;">🌴🌊☀️🏖️</div>
+                </div>
+            `;
+
+            launchConfetti();
+
+            // Scroll to celebration
+            celebration.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Export Results as shareable text
+        function exportResults() {
+            const votes = getVotes();
+            const resortCounts = {};
+            const weekCounts = {};
+
+            Object.values(votes).forEach(v => {
+                if (v.resort) resortCounts[v.resort] = (resortCounts[v.resort] || 0) + 1;
+                if (v.week) weekCounts[v.week] = (weekCounts[v.week] || 0) + 1;
+            });
+
+            const sortedResorts = Object.entries(resortCounts).sort((a, b) => b[1] - a[1]);
+            const totalVoters = Object.keys(votes).length;
+
+            let text = `🌴 CANCUN 2025 FAMILY VOTE RESULTS 🌴\n\n`;
+            text += `📊 ${totalVoters} of 14 family members have voted\n\n`;
+
+            text += `🏆 RESORT RANKINGS:\n`;
+            sortedResorts.forEach(([name, count], i) => {
+                const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '  ';
+                text += `${medal} ${name}: ${count} vote${count !== 1 ? 's' : ''}\n`;
+            });
+
+            text += `\n📅 PREFERRED WEEK:\n`;
+            Object.entries(weekCounts).forEach(([week, count]) => {
+                const label = week === 'may24' ? 'May 24-31' : 'May 31 - Jun 7';
+                text += `• ${label}: ${count} vote${count !== 1 ? 's' : ''}\n`;
+            });
+
+            text += `\n🔗 Vote at: ${window.location.href}`;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Results copied! Share with family 📤');
+            }).catch(() => {
+                // Fallback: show in alert
+                alert(text);
+            });
         }
 
         // ============================================
@@ -4773,6 +5703,103 @@
             }
         }
 
+        // Budget View Mode Toggle
+        let budgetMode = 'simple';
+        const BUDGET_MODE_KEY = 'cancunBudgetMode';
+
+        function setBudgetMode(mode) {
+            budgetMode = mode;
+            localStorage.setItem(BUDGET_MODE_KEY, mode);
+
+            const simpleView = document.getElementById('budgetSimpleView');
+            const detailedView = document.getElementById('budgetDetailedView');
+            const toggleBtns = document.querySelectorAll('.budget-toggle-btn');
+
+            if (mode === 'simple') {
+                simpleView.style.display = 'block';
+                detailedView.style.display = 'none';
+                toggleBtns[0].classList.add('active');
+                toggleBtns[1].classList.remove('active');
+                updateSimpleBudgetView();
+            } else {
+                simpleView.style.display = 'none';
+                detailedView.style.display = 'block';
+                toggleBtns[0].classList.remove('active');
+                toggleBtns[1].classList.add('active');
+            }
+        }
+
+        function updateSimpleBudgetView() {
+            // Calculate estimated totals based on default/average values
+            const avgResortPrice = 400; // Average nightly rate for family resorts
+            const resortCost = avgResortPrice * 7 * 7; // 7 rooms, 7 nights = ~$19,600
+            const flightCost = (450 * 3) + (420 * 5) + (280 * 4) + (380 * 2); // All family flights
+            const activityCost = 200 * 14; // Moderate activities per person
+            const transferCost = 500; // Estimated transfer cost
+            const total = resortCost + flightCost + activityCost + transferCost;
+
+            // Update simple view numbers
+            const totalEl = document.getElementById('simpleTotalAmount');
+            const resortEl = document.getElementById('simpleResortCost');
+            const flightEl = document.getElementById('simpleFlightCost');
+            const activityEl = document.getElementById('simpleActivityCost');
+            const statusEl = document.getElementById('simpleBudgetStatus');
+
+            if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
+            if (resortEl) resortEl.textContent = `~$${resortCost.toLocaleString()}`;
+            if (flightEl) flightEl.textContent = `~$${flightCost.toLocaleString()}`;
+            if (activityEl) activityEl.textContent = `~$${activityCost.toLocaleString()}`;
+
+            // Update status
+            if (statusEl) {
+                if (total <= 25000) {
+                    statusEl.innerHTML = '<span class="status-icon">✅</span><span>Within your $20K-$25K budget target!</span>';
+                    statusEl.classList.remove('over-budget');
+                } else {
+                    statusEl.innerHTML = `<span class="status-icon">⚠️</span><span>$${(total - 25000).toLocaleString()} over budget - check detailed view</span>`;
+                    statusEl.classList.add('over-budget');
+                }
+            }
+
+            // Populate resort picks
+            renderSimpleResortPicks();
+        }
+
+        function renderSimpleResortPicks() {
+            const container = document.getElementById('simpleResortPicks');
+            if (!container) return;
+
+            // Get top 3 value picks
+            const valuePicks = [
+                { id: 2, name: 'Dreams Vista Cancun', note: 'Best accessibility + value' },
+                { id: 11, name: 'Grand Palladium Costa Mujeres', note: 'Family-focused amenities' },
+                { id: 16, name: 'Hotel Xcaret Arte', note: 'Parks included = huge savings' }
+            ];
+
+            container.innerHTML = valuePicks.map(pick => {
+                const resort = resorts.find(r => r.id === pick.id);
+                if (!resort) return '';
+                const total = resort.priceMay24 * 7 * 7;
+                return `
+                    <div class="simple-pick-card" onclick="selectSimpleResort(${pick.id})">
+                        <div class="simple-pick-name">${pick.name}</div>
+                        <div class="simple-pick-price">$${total.toLocaleString()} total</div>
+                        <div class="simple-pick-note">${pick.note}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectSimpleResort(resortId) {
+            // Switch to detailed view and select the resort
+            const select = document.getElementById('budgetResort');
+            if (select) {
+                select.value = resortId;
+                updateBudgetCalc();
+            }
+            setBudgetMode('detailed');
+        }
+
         // Budget Calculator
         function initBudgetPage() {
             const select = document.getElementById('budgetResort');
@@ -4804,6 +5831,10 @@
 
             // Render flight price widget
             renderFlightWidget();
+
+            // Restore saved budget mode (default to simple)
+            const savedMode = localStorage.getItem(BUDGET_MODE_KEY) || 'simple';
+            setBudgetMode(savedMode);
         }
 
         function renderFlightWidget() {
