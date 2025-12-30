@@ -2538,6 +2538,7 @@
                 <button class="nav-tab" data-view="budget">Deals & Budget</button>
                 <button class="nav-tab" data-view="voting">Family Voting</button>
                 <button class="nav-tab" data-view="itinerary">Itinerary</button>
+                <button class="nav-tab" data-view="group">Group</button>
                 <button class="nav-tab" data-view="prep">Prep & Pack</button>
             </nav>
 
@@ -2938,6 +2939,132 @@
                         <!-- Populated by JS -->
                     </div>
                 </div>
+
+                <!-- Price Tracking Dashboard -->
+                <div style="background:white;border-radius:16px;padding:24px;margin-top:20px;">
+                    <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📊</span> Price Tracking & Deals
+                    </h3>
+
+                    <!-- Deal Score Banner -->
+                    <div id="dealScoreBanner" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:white;padding:20px;border-radius:12px;margin-bottom:20px;">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <div style="font-size:3rem;">🔥</div>
+                            <div>
+                                <div style="font-size:1.5rem;font-weight:700;">Great Time to Book!</div>
+                                <div style="opacity:0.9;">May prices are 15% below average for Cancun all-inclusives</div>
+                            </div>
+                            <div style="margin-left:auto;text-align:right;">
+                                <div style="font-size:0.8rem;opacity:0.8;">DEAL SCORE</div>
+                                <div style="font-size:2rem;font-weight:700;">8.5/10</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price History Chart (simplified visual) -->
+                    <div style="margin-bottom:20px;">
+                        <h4 style="margin-bottom:15px;color:#1e293b;">Resort Price Trends (Last 6 Months)</h4>
+                        <div style="background:#f8fafc;border-radius:12px;padding:20px;">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:0.8rem;color:#64748b;">
+                                <span>$300/night</span>
+                                <span>$500/night</span>
+                            </div>
+                            <div style="display:flex;align-items:flex-end;gap:8px;height:100px;">
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                                    <div style="width:100%;background:#e2e8f0;border-radius:4px 4px 0 0;height:70%"></div>
+                                    <span style="font-size:0.7rem;color:#64748b;margin-top:4px;">Jul</span>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                                    <div style="width:100%;background:#e2e8f0;border-radius:4px 4px 0 0;height:65%"></div>
+                                    <span style="font-size:0.7rem;color:#64748b;margin-top:4px;">Aug</span>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                                    <div style="width:100%;background:#e2e8f0;border-radius:4px 4px 0 0;height:55%"></div>
+                                    <span style="font-size:0.7rem;color:#64748b;margin-top:4px;">Sep</span>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                                    <div style="width:100%;background:#e2e8f0;border-radius:4px 4px 0 0;height:50%"></div>
+                                    <span style="font-size:0.7rem;color:#64748b;margin-top:4px;">Oct</span>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                                    <div style="width:100%;background:#e2e8f0;border-radius:4px 4px 0 0;height:45%"></div>
+                                    <span style="font-size:0.7rem;color:#64748b;margin-top:4px;">Nov</span>
+                                </div>
+                                <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                                    <div style="width:100%;background:#10b981;border-radius:4px 4px 0 0;height:40%;box-shadow:0 0 10px rgba(16,185,129,0.5);"></div>
+                                    <span style="font-size:0.7rem;color:#10b981;font-weight:700;margin-top:4px;">May ✓</span>
+                                </div>
+                            </div>
+                            <div style="text-align:center;margin-top:15px;font-size:0.85rem;color:#10b981;font-weight:600;">
+                                ↓ May is the lowest price point of the year for Cancun!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Check Links -->
+                    <div>
+                        <h4 style="margin-bottom:15px;color:#1e293b;">Check Live Prices</h4>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;">
+                            <a href="https://www.costcotravel.com/Vacation-Packages/Mexico/Cancun" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
+                                <span style="font-size:1.5rem;">🏪</span>
+                                <div>
+                                    <div style="font-weight:600;">Costco Travel</div>
+                                    <div style="font-size:0.75rem;color:#10b981;">Often best value</div>
+                                </div>
+                            </a>
+                            <a href="https://www.google.com/travel/flights?q=flights%20to%20cancun%20may%202025" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
+                                <span style="font-size:1.5rem;">✈️</span>
+                                <div>
+                                    <div style="font-weight:600;">Google Flights</div>
+                                    <div style="font-size:0.75rem;color:#64748b;">Track flight prices</div>
+                                </div>
+                            </a>
+                            <a href="https://www.kayak.com/hotels/Cancun,Mexico/2025-05-24/2025-05-31/2adults" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
+                                <span style="font-size:1.5rem;">🔍</span>
+                                <div>
+                                    <div style="font-weight:600;">Kayak</div>
+                                    <div style="font-size:0.75rem;color:#64748b;">Compare hotels</div>
+                                </div>
+                            </a>
+                            <a href="https://www.expedia.com/Cancun-Hotels.d178236.Travel-Guide-Hotels" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
+                                <span style="font-size:1.5rem;">🌐</span>
+                                <div>
+                                    <div style="font-weight:600;">Expedia</div>
+                                    <div style="font-size:0.75rem;color:#64748b;">Bundle deals</div>
+                                </div>
+                            </a>
+                            <a href="https://www.southwest.com" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
+                                <span style="font-size:1.5rem;">❤️</span>
+                                <div>
+                                    <div style="font-weight:600;">Southwest</div>
+                                    <div style="font-size:0.75rem;color:#64748b;">Free bags + changes</div>
+                                </div>
+                            </a>
+                            <a href="https://www.tripadvisor.com/Hotels-g150807-Cancun_Yucatan_Peninsula-Hotels.html" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
+                                <span style="font-size:1.5rem;">🦉</span>
+                                <div>
+                                    <div style="font-weight:600;">TripAdvisor</div>
+                                    <div style="font-size:0.75rem;color:#64748b;">Reviews + prices</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Price Alert Signup -->
+                    <div style="margin-top:20px;background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);border-radius:12px;padding:20px;border:2px solid #f59e0b;">
+                        <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
+                            <span style="font-size:2rem;">🔔</span>
+                            <div style="flex:1;min-width:200px;">
+                                <div style="font-weight:700;color:#92400e;">Set Price Alerts</div>
+                                <div style="font-size:0.85rem;color:#a16207;">Get notified when prices drop</div>
+                            </div>
+                            <div style="display:flex;gap:10px;">
+                                <a href="https://www.google.com/travel/flights" target="_blank" style="padding:10px 20px;background:white;color:#92400e;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">Google Flights Alert</a>
+                                <a href="https://www.kayak.com/alerts" target="_blank" style="padding:10px 20px;background:#92400e;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">Kayak Alert</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- DETAILED VIEW - Full calculator -->
@@ -3292,6 +3419,313 @@
                 <h3 style="margin-bottom:15px;">📊 Trip Summary</h3>
                 <div id="itinerarySummary" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:15px;">
                     <!-- Summary rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group Coordination View -->
+    <div class="view" id="view-group">
+        <div class="voting-container" style="max-width:1400px;margin:0 auto;padding:20px;">
+            <div class="voting-header" style="margin-bottom:30px;">
+                <h2>👨‍👩‍👧‍👦 Group Coordination</h2>
+                <p>Keep everyone organized - flights, rooms, contacts, and expenses</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:15px;margin-bottom:24px;">
+                <div style="background:linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);color:white;padding:20px;border-radius:12px;text-align:center;">
+                    <div style="font-size:2rem;font-weight:700;">14</div>
+                    <div style="font-size:0.85rem;opacity:0.9;">Travelers</div>
+                </div>
+                <div style="background:linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);color:white;padding:20px;border-radius:12px;text-align:center;">
+                    <div style="font-size:2rem;font-weight:700;">4</div>
+                    <div style="font-size:0.85rem;opacity:0.9;">Family Groups</div>
+                </div>
+                <div style="background:linear-gradient(135deg, #10b981 0%, #34d399 100%);color:white;padding:20px;border-radius:12px;text-align:center;">
+                    <div style="font-size:2rem;font-weight:700;">7</div>
+                    <div style="font-size:0.85rem;opacity:0.9;">Rooms Needed</div>
+                </div>
+                <div style="background:linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);color:white;padding:20px;border-radius:12px;text-align:center;">
+                    <div style="font-size:2rem;font-weight:700;">4</div>
+                    <div style="font-size:0.85rem;opacity:0.9;">Departure Cities</div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                <!-- Left Column -->
+                <div>
+                    <!-- Flight Tracker -->
+                    <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:24px;">
+                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                            <span style="font-size:1.5rem;">✈️</span> Flight Tracker
+                            <button onclick="checkAllFlightStatus()" style="margin-left:auto;padding:6px 12px;background:#0891b2;color:white;border:none;border-radius:6px;font-size:0.8rem;cursor:pointer;">Check Status</button>
+                        </h3>
+                        <div id="flightTracker">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <div style="margin-top:15px;padding:12px;background:#f0f9ff;border-radius:8px;font-size:0.85rem;color:#0369a1;">
+                            💡 Click "Check Status" on travel day to see real-time flight info
+                        </div>
+                    </div>
+
+                    <!-- Room Assignments -->
+                    <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                            <span style="font-size:1.5rem;">🛏️</span> Room Assignments
+                        </h3>
+                        <div id="roomAssignments">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <!-- Contact Cards -->
+                    <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:24px;">
+                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                            <span style="font-size:1.5rem;">📱</span> Family Contacts
+                            <button onclick="copyAllContacts()" style="margin-left:auto;padding:6px 12px;background:#10b981;color:white;border:none;border-radius:6px;font-size:0.8rem;cursor:pointer;">Copy All</button>
+                        </h3>
+                        <div id="contactCards" style="display:grid;gap:10px;">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div style="background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);border-radius:16px;padding:24px;border:2px solid #f59e0b;">
+                        <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;color:#92400e;">
+                            <span style="font-size:1.5rem;">🔗</span> Group Chat & Sharing
+                        </h3>
+                        <div style="display:grid;gap:10px;">
+                            <a href="#" onclick="createWhatsAppGroup()" style="display:flex;align-items:center;gap:10px;padding:12px;background:white;border-radius:8px;text-decoration:none;color:#1e293b;">
+                                <span style="font-size:1.5rem;">💬</span>
+                                <div>
+                                    <div style="font-weight:600;">WhatsApp Group</div>
+                                    <div style="font-size:0.8rem;color:#64748b;">Create group chat link</div>
+                                </div>
+                            </a>
+                            <a href="#" onclick="sharePhotoAlbum()" style="display:flex;align-items:center;gap:10px;padding:12px;background:white;border-radius:8px;text-decoration:none;color:#1e293b;">
+                                <span style="font-size:1.5rem;">📸</span>
+                                <div>
+                                    <div style="font-weight:600;">Shared Photo Album</div>
+                                    <div style="font-size:0.8rem;color:#64748b;">Create Google Photos / iCloud album</div>
+                                </div>
+                            </a>
+                            <a href="#" onclick="shareCalendar()" style="display:flex;align-items:center;gap:10px;padding:12px;background:white;border-radius:8px;text-decoration:none;color:#1e293b;">
+                                <span style="font-size:1.5rem;">📅</span>
+                                <div>
+                                    <div style="font-weight:600;">Shared Calendar</div>
+                                    <div style="font-size:0.8rem;color:#64748b;">Add trip to everyone's calendar</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Splitter -->
+            <div style="margin-top:24px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.5rem;">💰</span> Expense Splitter
+                    <span style="margin-left:auto;font-size:0.9rem;color:#64748b;">Track shared costs and settle up</span>
+                </h3>
+
+                <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
+                    <!-- Add Expense Form -->
+                    <div>
+                        <div style="background:#f8fafc;border-radius:12px;padding:20px;margin-bottom:20px;">
+                            <h4 style="margin-bottom:15px;color:#1e293b;">Add Shared Expense</h4>
+                            <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;">
+                                <div>
+                                    <label style="display:block;font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">Description</label>
+                                    <input type="text" id="expenseDesc" placeholder="e.g., Xcaret tickets for everyone" style="width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:8px;">
+                                </div>
+                                <div>
+                                    <label style="display:block;font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">Amount ($)</label>
+                                    <input type="number" id="expenseAmount" placeholder="500" style="width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:8px;">
+                                </div>
+                                <div>
+                                    <label style="display:block;font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">Paid By</label>
+                                    <select id="expensePaidBy" style="width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:8px;">
+                                        <option value="alex">Alex's Family</option>
+                                        <option value="parents">Mom & Dad</option>
+                                        <option value="becketts">Becketts</option>
+                                        <option value="dann">Dann & Husband</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="margin-top:12px;">
+                                <label style="display:block;font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">Split Between</label>
+                                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                        <input type="checkbox" class="expenseSplit" value="alex" checked> Alex (4)
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                        <input type="checkbox" class="expenseSplit" value="parents" checked> Parents (3)
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                        <input type="checkbox" class="expenseSplit" value="becketts" checked> Becketts (5)
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                        <input type="checkbox" class="expenseSplit" value="dann" checked> Dann (2)
+                                    </label>
+                                </div>
+                            </div>
+                            <button onclick="addExpense()" style="margin-top:15px;padding:10px 20px;background:#10b981;color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;">
+                                + Add Expense
+                            </button>
+                        </div>
+
+                        <!-- Expense List -->
+                        <div id="expenseList">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Settlement Summary -->
+                    <div>
+                        <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);border-radius:12px;padding:20px;border:2px solid #10b981;">
+                            <h4 style="margin-bottom:15px;color:#065f46;display:flex;align-items:center;gap:8px;">
+                                <span>⚖️</span> Settlement Summary
+                            </h4>
+                            <div id="settlementSummary" style="display:grid;gap:10px;">
+                                <!-- Rendered by JS -->
+                            </div>
+                            <button onclick="copySettlement()" style="margin-top:15px;width:100%;padding:10px;background:#10b981;color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;">
+                                📋 Copy Settlement Details
+                            </button>
+                        </div>
+
+                        <div style="margin-top:15px;padding:15px;background:#f8fafc;border-radius:12px;">
+                            <h4 style="margin-bottom:10px;color:#1e293b;font-size:0.9rem;">Payment Options</h4>
+                            <div style="display:grid;gap:8px;font-size:0.85rem;">
+                                <a href="https://venmo.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                    💳 Venmo
+                                </a>
+                                <a href="https://paypal.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                    💳 PayPal
+                                </a>
+                                <a href="https://cash.app" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                    💳 Cash App
+                                </a>
+                                <a href="https://www.zelle.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                    💳 Zelle
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Day Section -->
+            <div style="margin-top:24px;background:linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);border-radius:16px;padding:24px;border:2px solid #fca5a5;">
+                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;color:#991b1b;">
+                    <span style="font-size:1.5rem;">🛫</span> Travel Day Toolkit
+                </h3>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:20px;">
+                    <!-- TSA Wait Times -->
+                    <div style="background:white;border-radius:12px;padding:20px;">
+                        <h4 style="color:#991b1b;margin-bottom:12px;">⏱️ TSA Wait Times</h4>
+                        <div style="display:grid;gap:8px;font-size:0.9rem;">
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                                <span>DSM - Des Moines</span>
+                                <span style="color:#0891b2;">Check →</span>
+                            </a>
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                                <span>CID - Cedar Rapids</span>
+                                <span style="color:#0891b2;">Check →</span>
+                            </a>
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                                <span>OMA - Omaha</span>
+                                <span style="color:#0891b2;">Check →</span>
+                            </a>
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                                <span>MCO - Orlando</span>
+                                <span style="color:#0891b2;">Check →</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Cancun Arrival Guide -->
+                    <div style="background:white;border-radius:12px;padding:20px;">
+                        <h4 style="color:#991b1b;margin-bottom:12px;">🛬 Cancun Arrival</h4>
+                        <div style="display:grid;gap:8px;font-size:0.85rem;color:#475569;">
+                            <div><strong>1. Immigration</strong> - Have passport & tourist card ready (given on plane)</div>
+                            <div><strong>2. Baggage</strong> - Claim at Terminal 3 or 4</div>
+                            <div><strong>3. Customs</strong> - Press button: Green = go, Red = inspection</div>
+                            <div><strong>4. Exit</strong> - Ignore timeshare people! Go straight to transfer</div>
+                            <div><strong>5. Transfer</strong> - Look for driver with your name</div>
+                        </div>
+                    </div>
+
+                    <!-- What to Have Ready -->
+                    <div style="background:white;border-radius:12px;padding:20px;">
+                        <h4 style="color:#991b1b;margin-bottom:12px;">📋 Keep Accessible</h4>
+                        <div style="display:grid;gap:6px;font-size:0.85rem;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="color:#10b981;">✓</span> Passport
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="color:#10b981;">✓</span> Boarding pass (phone OK)
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="color:#10b981;">✓</span> Hotel confirmation
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="color:#10b981;">✓</span> Transfer voucher
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="color:#10b981;">✓</span> Pen (for customs form)
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="color:#10b981;">✓</span> Small bills for tips
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Spanish -->
+            <div style="margin-top:24px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.5rem;">🏥</span> Medical Spanish Phrases
+                </h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:15px;font-size:0.9rem;">
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">I need a doctor</div>
+                        <div style="color:#1e293b;">Necesito un médico</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">I'm allergic to...</div>
+                        <div style="color:#1e293b;">Soy alérgico/a a...</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">It hurts here</div>
+                        <div style="color:#1e293b;">Me duele aquí</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">I have a fever</div>
+                        <div style="color:#1e293b;">Tengo fiebre</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">Where is the pharmacy?</div>
+                        <div style="color:#1e293b;">¿Dónde está la farmacia?</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">Call an ambulance</div>
+                        <div style="color:#1e293b;">Llame una ambulancia</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">I have diabetes</div>
+                        <div style="color:#1e293b;">Tengo diabetes</div>
+                    </div>
+                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                        <div style="color:#991b1b;font-weight:600;">Medicine for pain</div>
+                        <div style="color:#1e293b;">Medicina para el dolor</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -8232,6 +8666,351 @@
         }
 
         // =====================
+        // GROUP COORDINATION
+        // =====================
+        const EXPENSES_KEY = 'cancunExpenses';
+
+        // Family groups data
+        const familyGroups = [
+            {
+                id: 'alex',
+                name: "Alex's Family",
+                members: ['Alex', 'Spouse', 'Child 1', 'Child 2'],
+                count: 4,
+                rooms: 2,
+                departureCity: 'DSM',
+                phone: '(515) 555-0101',
+                email: 'alex@email.com',
+                color: '#0891b2'
+            },
+            {
+                id: 'parents',
+                name: 'Mom & Dad + Grandma',
+                members: ['Mom', 'Dad', 'Grandma'],
+                count: 3,
+                rooms: 2,
+                departureCity: 'CID',
+                phone: '(319) 555-0102',
+                email: 'parents@email.com',
+                color: '#8b5cf6'
+            },
+            {
+                id: 'becketts',
+                name: 'The Becketts',
+                members: ['Beckett Sr', 'Spouse', 'Teen 1', 'Teen 2', 'Child'],
+                count: 5,
+                rooms: 2,
+                departureCity: 'OMA',
+                phone: '(402) 555-0103',
+                email: 'becketts@email.com',
+                color: '#10b981'
+            },
+            {
+                id: 'dann',
+                name: 'Dann & Partner',
+                members: ['Dann', 'Partner'],
+                count: 2,
+                rooms: 1,
+                departureCity: 'MCO',
+                phone: '(407) 555-0104',
+                email: 'dann@email.com',
+                color: '#f59e0b'
+            }
+        ];
+
+        // Flight data
+        const flightData = [
+            {
+                group: 'alex',
+                outbound: { flight: 'AA 1234', from: 'DSM', to: 'CUN', depart: 'May 24, 6:00 AM', arrive: '11:30 AM' },
+                return: { flight: 'AA 4321', from: 'CUN', to: 'DSM', depart: 'May 31, 2:00 PM', arrive: '8:30 PM' }
+            },
+            {
+                group: 'parents',
+                outbound: { flight: 'UA 2345', from: 'CID', to: 'CUN', depart: 'May 24, 7:15 AM', arrive: '12:45 PM' },
+                return: { flight: 'UA 5432', from: 'CUN', to: 'CID', depart: 'May 31, 1:00 PM', arrive: '7:45 PM' }
+            },
+            {
+                group: 'becketts',
+                outbound: { flight: 'SW 3456', from: 'OMA', to: 'CUN', depart: 'May 24, 5:30 AM', arrive: '11:00 AM' },
+                return: { flight: 'SW 6543', from: 'CUN', to: 'OMA', depart: 'May 31, 3:30 PM', arrive: '9:15 PM' }
+            },
+            {
+                group: 'dann',
+                outbound: { flight: 'DL 4567', from: 'MCO', to: 'CUN', depart: 'May 24, 8:00 AM', arrive: '10:15 AM' },
+                return: { flight: 'DL 7654', from: 'CUN', to: 'MCO', depart: 'May 31, 4:00 PM', arrive: '8:30 PM' }
+            }
+        ];
+
+        function renderFlightTracker() {
+            const container = document.getElementById('flightTracker');
+            if (!container) return;
+
+            container.innerHTML = flightData.map(f => {
+                const group = familyGroups.find(g => g.id === f.group);
+                return `
+                    <div style="margin-bottom:15px;padding:15px;background:#f8fafc;border-radius:10px;border-left:4px solid ${group.color};">
+                        <div style="font-weight:600;color:${group.color};margin-bottom:10px;">${group.name}</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.85rem;">
+                            <div style="padding:10px;background:white;border-radius:6px;">
+                                <div style="color:#64748b;font-size:0.75rem;">OUTBOUND</div>
+                                <div style="font-weight:600;">${f.outbound.flight}</div>
+                                <div>${f.outbound.from} → ${f.outbound.to}</div>
+                                <div style="color:#10b981;">${f.outbound.depart}</div>
+                            </div>
+                            <div style="padding:10px;background:white;border-radius:6px;">
+                                <div style="color:#64748b;font-size:0.75rem;">RETURN</div>
+                                <div style="font-weight:600;">${f.return.flight}</div>
+                                <div>${f.return.from} → ${f.return.to}</div>
+                                <div style="color:#ef4444;">${f.return.depart}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function checkAllFlightStatus() {
+            alert('On travel day, this will check real-time flight status via FlightAware or similar API. For now, check your airline app or flightaware.com');
+        }
+
+        function renderRoomAssignments() {
+            const container = document.getElementById('roomAssignments');
+            if (!container) return;
+
+            let roomNumber = 1;
+            container.innerHTML = familyGroups.map(g => {
+                const rooms = [];
+                for (let i = 0; i < g.rooms; i++) {
+                    rooms.push(roomNumber++);
+                }
+                return `
+                    <div style="margin-bottom:15px;padding:15px;background:#f8fafc;border-radius:10px;border-left:4px solid ${g.color};">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div>
+                                <div style="font-weight:600;color:${g.color};">${g.name}</div>
+                                <div style="font-size:0.85rem;color:#64748b;">${g.members.join(', ')}</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:0.75rem;color:#64748b;">ROOMS</div>
+                                <div style="font-weight:700;font-size:1.2rem;">${rooms.join(' & ')}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderContactCards() {
+            const container = document.getElementById('contactCards');
+            if (!container) return;
+
+            container.innerHTML = familyGroups.map(g => `
+                <div style="padding:12px;background:#f8fafc;border-radius:8px;display:flex;align-items:center;gap:12px;">
+                    <div style="width:40px;height:40px;background:${g.color};border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">
+                        ${g.name.charAt(0)}
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-weight:600;color:#1e293b;">${g.name}</div>
+                        <div style="font-size:0.8rem;color:#64748b;">${g.count} people</div>
+                    </div>
+                    <div style="text-align:right;font-size:0.85rem;">
+                        <a href="tel:${g.phone}" style="color:#0891b2;text-decoration:none;">${g.phone}</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function copyAllContacts() {
+            const text = familyGroups.map(g => `${g.name}: ${g.phone}`).join('\n');
+            navigator.clipboard.writeText(text);
+            alert('Contacts copied to clipboard!');
+        }
+
+        function createWhatsAppGroup() {
+            alert('To create a WhatsApp group:\n1. Open WhatsApp\n2. Tap New Group\n3. Add family members\n4. Name it "Cancun 2025 🌴"\n5. Share the invite link here!');
+        }
+
+        function sharePhotoAlbum() {
+            alert('Create a shared album:\n\n📱 iPhone: Photos → Albums → New Shared Album → "Cancun 2025"\n\n🤖 Android: Google Photos → Sharing → Shared Album → "Cancun 2025"\n\nShare the link with everyone!');
+        }
+
+        function shareCalendar() {
+            const calendarEvent = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:20250524
+DTEND:20250531
+SUMMARY:Cancun Family Vacation 🌴
+LOCATION:Cancun, Mexico
+DESCRIPTION:Family vacation May 24-31, 2025
+END:VEVENT
+END:VCALENDAR`;
+            const blob = new Blob([calendarEvent], { type: 'text/calendar' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cancun-vacation-2025.ics';
+            a.click();
+        }
+
+        // Expense Splitter
+        function getExpenses() {
+            const saved = localStorage.getItem(EXPENSES_KEY);
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function saveExpenses(expenses) {
+            localStorage.setItem(EXPENSES_KEY, JSON.stringify(expenses));
+        }
+
+        function addExpense() {
+            const desc = document.getElementById('expenseDesc').value.trim();
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+            const paidBy = document.getElementById('expensePaidBy').value;
+            const splitBetween = Array.from(document.querySelectorAll('.expenseSplit:checked')).map(cb => cb.value);
+
+            if (!desc || !amount || splitBetween.length === 0) {
+                alert('Please fill in all fields and select at least one group to split between.');
+                return;
+            }
+
+            const expenses = getExpenses();
+            expenses.push({
+                id: Date.now(),
+                desc,
+                amount,
+                paidBy,
+                splitBetween,
+                date: new Date().toISOString()
+            });
+            saveExpenses(expenses);
+
+            document.getElementById('expenseDesc').value = '';
+            document.getElementById('expenseAmount').value = '';
+
+            renderExpenseList();
+            renderSettlementSummary();
+        }
+
+        function deleteExpense(id) {
+            const expenses = getExpenses().filter(e => e.id !== id);
+            saveExpenses(expenses);
+            renderExpenseList();
+            renderSettlementSummary();
+        }
+
+        function renderExpenseList() {
+            const container = document.getElementById('expenseList');
+            if (!container) return;
+
+            const expenses = getExpenses();
+            if (expenses.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:#64748b;padding:20px;">No expenses yet. Add shared costs above.</div>';
+                return;
+            }
+
+            container.innerHTML = expenses.map(e => {
+                const payer = familyGroups.find(g => g.id === e.paidBy);
+                return `
+                    <div style="padding:12px;background:#f8fafc;border-radius:8px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+                        <div style="flex:1;">
+                            <div style="font-weight:600;">${e.desc}</div>
+                            <div style="font-size:0.8rem;color:#64748b;">Paid by ${payer?.name || e.paidBy}</div>
+                        </div>
+                        <div style="font-weight:700;color:#10b981;">$${e.amount.toFixed(2)}</div>
+                        <button onclick="deleteExpense(${e.id})" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:1.2rem;">×</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderSettlementSummary() {
+            const container = document.getElementById('settlementSummary');
+            if (!container) return;
+
+            const expenses = getExpenses();
+            if (expenses.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:#64748b;">Add expenses to see settlement</div>';
+                return;
+            }
+
+            // Calculate balances
+            const balances = {};
+            familyGroups.forEach(g => { balances[g.id] = 0; });
+
+            expenses.forEach(e => {
+                // Credit the payer
+                balances[e.paidBy] += e.amount;
+
+                // Calculate per-group share based on headcount
+                const splitGroups = e.splitBetween.map(id => familyGroups.find(g => g.id === id)).filter(Boolean);
+                const totalPeople = splitGroups.reduce((sum, g) => sum + g.count, 0);
+
+                splitGroups.forEach(g => {
+                    const share = (e.amount * g.count) / totalPeople;
+                    balances[g.id] -= share;
+                });
+            });
+
+            // Generate settlement instructions
+            const settlements = [];
+            const debtors = Object.entries(balances).filter(([_, bal]) => bal < -0.01).sort((a, b) => a[1] - b[1]);
+            const creditors = Object.entries(balances).filter(([_, bal]) => bal > 0.01).sort((a, b) => b[1] - a[1]);
+
+            debtors.forEach(([debtorId, debt]) => {
+                let remaining = Math.abs(debt);
+                creditors.forEach(([creditorId, credit]) => {
+                    if (remaining > 0.01 && credit > 0.01) {
+                        const payment = Math.min(remaining, credit);
+                        if (payment > 0.01) {
+                            settlements.push({
+                                from: debtorId,
+                                to: creditorId,
+                                amount: payment
+                            });
+                            remaining -= payment;
+                            balances[creditorId] -= payment;
+                        }
+                    }
+                });
+            });
+
+            if (settlements.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:#10b981;font-weight:600;">✓ All settled up!</div>';
+                return;
+            }
+
+            container.innerHTML = settlements.map(s => {
+                const from = familyGroups.find(g => g.id === s.from);
+                const to = familyGroups.find(g => g.id === s.to);
+                return `
+                    <div style="padding:10px;background:white;border-radius:8px;display:flex;align-items:center;gap:8px;font-size:0.9rem;">
+                        <span style="font-weight:600;color:${from?.color || '#64748b'};">${from?.name || s.from}</span>
+                        <span>→</span>
+                        <span style="font-weight:600;color:${to?.color || '#64748b'};">${to?.name || s.to}</span>
+                        <span style="margin-left:auto;font-weight:700;color:#10b981;">$${s.amount.toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function copySettlement() {
+            const container = document.getElementById('settlementSummary');
+            const text = container.innerText;
+            navigator.clipboard.writeText('Cancun Trip Settlement:\n' + text);
+            alert('Settlement details copied!');
+        }
+
+        function initGroupPage() {
+            renderFlightTracker();
+            renderRoomAssignments();
+            renderContactCards();
+            renderExpenseList();
+            renderSettlementSummary();
+        }
+
+        // =====================
         // PREP & PACK
         // =====================
         const TRIP_DATE = new Date('2025-05-24');
@@ -8635,6 +9414,7 @@
             updateVotingResults();
             initBudgetPage();
             initItinerary();
+            initGroupPage();
             initPrepPage();
             loadComparisonFromUrl();
             document.getElementById('resortCount').textContent = resorts.length;
