@@ -647,6 +647,158 @@
             font-weight: 700;
         }
 
+        /* Ranked Choice Voting */
+        .ranked-choice-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ranked-choice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ranked-choice-instructions {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #0891b2;
+        }
+
+        .ranked-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ranked-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ranked-option:hover {
+            border-color: #0891b2;
+            transform: translateX(4px);
+        }
+
+        .ranked-option.ranked {
+            border-color: #10b981;
+            background: linear-gradient(to right, #ecfdf5, #f0fdf4);
+        }
+
+        .rank-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .ranked-option.ranked .rank-number {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .ranked-option-info {
+            flex-grow: 1;
+        }
+
+        .ranked-option-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .ranked-option-detail {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .rank-buttons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .rank-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            background: #e2e8f0;
+            color: #64748b;
+        }
+
+        .rank-btn:hover {
+            background: #0891b2;
+            color: white;
+        }
+
+        .ranked-results {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .ranked-result-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .ranked-result-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .ranked-result-position {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .ranked-result-position.gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .ranked-result-position.silver {
+            background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+        }
+
+        .ranked-result-position.bronze {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+
         /* Results Panel */
         .results-panel {
             background: linear-gradient(135deg, #0e7490 0%, #06b6d4 50%, #0891b2 100%);
@@ -1085,6 +1237,88 @@
             padding: 4px 0;
         }
 
+        .compare-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #e2e8f0;
+        }
+
+        .compare-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .compare-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .compare-amenity {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f1f5f9;
+        }
+
+        .compare-amenity.has {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .compare-amenity.missing {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .comparison-actions {
+            display: flex;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .comparison-actions button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .comparison-actions .share-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .comparison-actions .copy-btn {
+            background: #10b981;
+            color: white;
+        }
+
+        .share-toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+
+        .share-toast.show {
+            opacity: 1;
+        }
+
         /* Savings Summary */
         .savings-panel {
             background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
@@ -1286,6 +1520,199 @@
             color: var(--gray);
             cursor: pointer;
         }
+
+        /* ============================================
+           MOBILE RESPONSIVE STYLES
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .nav-tabs {
+                width: 100%;
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 5px;
+                padding-bottom: 5px;
+            }
+
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+
+            .header-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-width: none;
+                max-height: 40vh;
+            }
+
+            .map-container {
+                height: 50vh;
+            }
+
+            .filter-chips {
+                flex-wrap: wrap;
+            }
+
+            .chip {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+
+            .resort-card {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .resort-card-left {
+                width: 100%;
+            }
+
+            .resort-card-right {
+                width: 100%;
+                text-align: left;
+            }
+
+            .matrix-view {
+                overflow-x: auto;
+            }
+
+            .matrix-table {
+                font-size: 0.75rem;
+                min-width: 800px;
+            }
+
+            .matrix-table th,
+            .matrix-table td {
+                padding: 8px 10px;
+            }
+
+            .budget-section {
+                padding: 15px;
+            }
+
+            .budget-section h3 {
+                font-size: 1rem;
+            }
+
+            .budget-calculator {
+                gap: 15px;
+            }
+
+            .calc-form, .calc-results {
+                padding: 15px;
+            }
+
+            .budget-target-range {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .quick-compare-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .savings-panel, .hidden-costs-panel {
+                padding: 12px;
+            }
+
+            .hidden-costs-breakdown {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .vote-section {
+                padding: 15px;
+            }
+
+            .member-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .deal-links a {
+                display: block;
+                margin-bottom: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.1rem;
+            }
+
+            .nav-tab {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+
+            .stat-value {
+                font-size: 1.2rem;
+            }
+
+            .sidebar {
+                max-height: 35vh;
+            }
+
+            .map-container {
+                height: 45vh;
+            }
+
+            .resort-item {
+                padding: 10px;
+            }
+
+            .resort-name {
+                font-size: 0.85rem;
+            }
+
+            .calc-total {
+                font-size: 1.5rem;
+            }
+
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .budget-target-range .target-value {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .chip, .nav-tab, button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .resort-item {
+                min-height: 60px;
+            }
+
+            .compare-checkbox input {
+                width: 24px;
+                height: 24px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1298,6 +1725,7 @@
                 <button class="nav-tab" data-view="matrix">Full Matrix</button>
                 <button class="nav-tab" data-view="budget">Deals & Budget</button>
                 <button class="nav-tab" data-view="voting">Family Voting</button>
+                <button class="nav-tab" data-view="itinerary">Itinerary</button>
             </nav>
 
             <div class="header-stats">
@@ -1469,14 +1897,23 @@
         <div class="voting-container">
             <div class="voting-header">
                 <h2>Family Voting</h2>
-                <p>Select your name and vote for your top picks!</p>
+                <p>Select your name and rank your preferences!</p>
 
                 <div class="voter-select" id="voterSelect"></div>
             </div>
 
             <div class="voting-section">
-                <h3>Top Resort Choice</h3>
-                <div class="vote-options" id="resortVoteOptions"></div>
+                <h3>🏆 Rank Your Top Resorts (Ranked Choice)</h3>
+                <div class="ranked-choice-container">
+                    <div class="ranked-choice-instructions">
+                        <strong>How it works:</strong> Click resorts in order of preference (1st choice, 2nd choice, etc.).
+                        Your top choices get more weight. Click again to remove from rankings.
+                    </div>
+                    <div class="ranked-options" id="rankedResortOptions"></div>
+                    <button onclick="submitRankedVotes()" style="margin-top:15px;padding:12px 24px;background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;width:100%;">
+                        ✓ Save My Rankings
+                    </button>
+                </div>
             </div>
 
             <div class="voting-section">
@@ -1727,6 +2164,71 @@
                 </div>
             </div>
 
+            <!-- Flight Price Widget -->
+            <div style="background:white;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;color:#1e293b;">
+                    <span style="font-size:1.5rem;">✈️</span> Flight Price Tracker
+                </h3>
+                <p style="font-size:0.85rem;color:#64748b;margin-bottom:20px;">
+                    Estimated prices for May 24-31, 2025 to Cancun (CUN). Click to check current prices.
+                </p>
+                <div id="flightPriceWidget" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:15px;">
+                    <!-- Flight prices will be rendered by JS -->
+                </div>
+                <div style="margin-top:15px;padding:12px;background:#f0f9ff;border-radius:8px;border-left:4px solid #0284c7;">
+                    <div style="font-size:0.8rem;color:#0369a1;font-weight:600;">💡 Pro Tips:</div>
+                    <ul style="font-size:0.75rem;color:#0369a1;margin:6px 0 0 15px;">
+                        <li>Book 6-8 weeks ahead for best prices</li>
+                        <li>Southwest has free checked bags + changes</li>
+                        <li>Midweek flights (Tue-Wed) are usually cheapest</li>
+                        <li>Use Google Flights for price alerts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Price Alert Signup -->
+            <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:2px solid #10b981;">
+                <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;color:#065f46;">
+                    <span style="font-size:1.5rem;">🔔</span> Get Price Drop Alerts
+                </h3>
+                <p style="font-size:0.9rem;color:#047857;margin-bottom:20px;">
+                    Sign up to receive email notifications when prices drop for your favorite resorts.
+                </p>
+                <div class="price-alert-form" id="priceAlertForm">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 120px auto;gap:12px;align-items:end;">
+                        <div>
+                            <label style="display:block;font-size:0.75rem;font-weight:600;color:#065f46;margin-bottom:4px;">Email Address</label>
+                            <input type="email" id="alertEmail" placeholder="your@email.com" style="width:100%;padding:10px 12px;border:2px solid #10b981;border-radius:8px;font-size:0.9rem;">
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.75rem;font-weight:600;color:#065f46;margin-bottom:4px;">Resort to Watch</label>
+                            <select id="alertResort" style="width:100%;padding:10px 12px;border:2px solid #10b981;border-radius:8px;font-size:0.9rem;background:white;">
+                                <option value="">Select Resort...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.75rem;font-weight:600;color:#065f46;margin-bottom:4px;">Price Threshold</label>
+                            <input type="number" id="alertThreshold" placeholder="$350" style="width:100%;padding:10px 12px;border:2px solid #10b981;border-radius:8px;font-size:0.9rem;">
+                        </div>
+                        <button onclick="submitPriceAlert()" style="padding:10px 20px;background:#10b981;color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:0.9rem;white-space:nowrap;">
+                            🔔 Set Alert
+                        </button>
+                    </div>
+                    <div id="alertMessage" style="margin-top:12px;padding:10px;border-radius:8px;display:none;"></div>
+                </div>
+                <div style="margin-top:15px;display:flex;gap:20px;flex-wrap:wrap;">
+                    <div style="font-size:0.75rem;color:#065f46;display:flex;align-items:center;gap:6px;">
+                        <span style="font-size:1rem;">✓</span> Daily price checks
+                    </div>
+                    <div style="font-size:0.75rem;color:#065f46;display:flex;align-items:center;gap:6px;">
+                        <span style="font-size:1rem;">✓</span> Instant notifications
+                    </div>
+                    <div style="font-size:0.75rem;color:#065f46;display:flex;align-items:center;gap:6px;">
+                        <span style="font-size:1rem;">✓</span> Unsubscribe anytime
+                    </div>
+                </div>
+            </div>
+
             <!-- Budget Summary -->
             <div class="budget-summary" id="budgetSummary">
                 <h3>Trip Budget Summary</h3>
@@ -1744,6 +2246,81 @@
         </div>
     </div>
 
+    <!-- Itinerary View -->
+    <div class="view" id="view-itinerary">
+        <div class="voting-container" style="max-width:1000px;margin:0 auto;padding:20px;">
+            <div class="voting-header" style="margin-bottom:30px;">
+                <h2>🗓️ Trip Itinerary Planner</h2>
+                <p>Plan activities for each day of your Cancun vacation</p>
+            </div>
+
+            <!-- Day Selector -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;" id="dayTabs">
+                <!-- Tabs rendered by JS -->
+            </div>
+
+            <!-- Add Activity Form -->
+            <div style="background:linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);border-radius:12px;padding:20px;margin-bottom:20px;border:2px solid #14b8a6;">
+                <h3 style="margin-bottom:15px;color:#0f766e;">➕ Add Activity</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+                    <div>
+                        <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Time</label>
+                        <select id="activityTime" style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;">
+                            <option value="morning">🌅 Morning (7-11am)</option>
+                            <option value="midday">☀️ Midday (11am-2pm)</option>
+                            <option value="afternoon">🌤️ Afternoon (2-5pm)</option>
+                            <option value="evening">🌙 Evening (5-8pm)</option>
+                            <option value="night">🌃 Night (8pm+)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Category</label>
+                        <select id="activityCategory" style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;">
+                            <option value="excursion">🏛️ Excursion/Tour</option>
+                            <option value="beach">🏖️ Beach Day</option>
+                            <option value="pool">🏊 Pool Time</option>
+                            <option value="dining">🍽️ Dining</option>
+                            <option value="shopping">🛍️ Shopping</option>
+                            <option value="spa">💆 Spa/Relaxation</option>
+                            <option value="adventure">🤿 Adventure/Water Sports</option>
+                            <option value="family">👨‍👩‍👧‍👦 Family Activity</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top:15px;">
+                    <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Activity Title</label>
+                    <input type="text" id="activityTitle" placeholder="e.g., Chichen Itza Tour, Snorkeling at Isla Mujeres..." style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;box-sizing:border-box;">
+                </div>
+                <div style="margin-top:15px;">
+                    <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Notes (optional)</label>
+                    <input type="text" id="activityNotes" placeholder="Booking info, tips, who's participating..." style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;box-sizing:border-box;">
+                </div>
+                <div style="display:flex;gap:15px;margin-top:15px;">
+                    <div style="flex:1;">
+                        <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Est. Cost (total)</label>
+                        <input type="number" id="activityCost" placeholder="$0" style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;box-sizing:border-box;">
+                    </div>
+                    <button onclick="addItineraryItem()" style="padding:10px 24px;background:linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;align-self:end;">
+                        Add Activity
+                    </button>
+                </div>
+            </div>
+
+            <!-- Day Schedule -->
+            <div id="daySchedule" style="background:white;border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+                <!-- Schedule rendered by JS -->
+            </div>
+
+            <!-- Trip Summary -->
+            <div style="margin-top:20px;background:linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);border-radius:16px;padding:20px;color:white;">
+                <h3 style="margin-bottom:15px;">📊 Trip Summary</h3>
+                <div id="itinerarySummary" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:15px;">
+                    <!-- Summary rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Side-by-Side Comparison Panel -->
     <div class="comparison-panel" id="comparisonPanel">
         <div class="comparison-header">
@@ -1751,7 +2328,12 @@
             <button onclick="clearComparison()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:8px 16px;border-radius:6px;cursor:pointer;">Clear All</button>
         </div>
         <div class="comparison-grid" id="comparisonGrid"></div>
+        <div class="comparison-actions" id="comparisonActions" style="display:none;">
+            <button class="share-btn" onclick="shareComparison()">📤 Share Link</button>
+            <button class="copy-btn" onclick="copyComparisonText()">📋 Copy Summary</button>
+        </div>
     </div>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
@@ -3553,6 +4135,7 @@
             currentVoter = name;
             renderVoterSelect();
             renderVotingOptions();
+            renderRankedOptions();
             updateVotingResults();
         }
 
@@ -3667,6 +4250,156 @@
                 </div>
                 ` : ''}
             `;
+
+            // Update ranked choice results
+            updateRankedResults();
+        }
+
+        // ============================================
+        // RANKED CHOICE VOTING
+        // ============================================
+
+        let rankedChoices = {}; // Store each voter's rankings
+
+        function getRankedChoices() {
+            const stored = localStorage.getItem('rankedChoices');
+            return stored ? JSON.parse(stored) : {};
+        }
+
+        function saveRankedChoices(choices) {
+            localStorage.setItem('rankedChoices', JSON.stringify(choices));
+        }
+
+        function renderRankedOptions() {
+            const container = document.getElementById('rankedResortOptions');
+            if (!container) return;
+
+            rankedChoices = getRankedChoices();
+            const voterRankings = rankedChoices[currentVoter] || [];
+
+            // Top family-friendly resorts for ranked choice
+            const topResorts = resorts.filter(r => r.family && r.valueScore >= 7).slice(0, 8);
+
+            container.innerHTML = topResorts.map(r => {
+                const rankIndex = voterRankings.indexOf(r.id);
+                const isRanked = rankIndex !== -1;
+                const rankNum = rankIndex + 1;
+                const budgetFit = getBudgetFit(r);
+
+                return `
+                    <div class="ranked-option ${isRanked ? 'ranked' : ''}" onclick="toggleRank(${r.id})" data-resort-id="${r.id}">
+                        <div class="rank-number">${isRanked ? rankNum : '-'}</div>
+                        <div class="ranked-option-info">
+                            <div class="ranked-option-name">${r.name}</div>
+                            <div class="ranked-option-detail">${r.areaName} • $${r.priceMay24}/night • ${budgetFit.label}</div>
+                        </div>
+                        <div style="font-size:0.8rem;color:#64748b;">${r.valueScore}/10</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleRank(resortId) {
+            if (!currentVoter) {
+                alert('Please select your name first!');
+                return;
+            }
+
+            rankedChoices = getRankedChoices();
+            if (!rankedChoices[currentVoter]) rankedChoices[currentVoter] = [];
+
+            const rankings = rankedChoices[currentVoter];
+            const idx = rankings.indexOf(resortId);
+
+            if (idx !== -1) {
+                // Remove from rankings
+                rankings.splice(idx, 1);
+            } else if (rankings.length < 5) {
+                // Add to rankings (max 5)
+                rankings.push(resortId);
+            } else {
+                alert('You can only rank up to 5 resorts. Remove one first!');
+                return;
+            }
+
+            saveRankedChoices(rankedChoices);
+            renderRankedOptions();
+            updateRankedResults();
+        }
+
+        function submitRankedVotes() {
+            if (!currentVoter) {
+                alert('Please select your name first!');
+                return;
+            }
+
+            rankedChoices = getRankedChoices();
+            const rankings = rankedChoices[currentVoter] || [];
+
+            if (rankings.length === 0) {
+                alert('Please rank at least one resort!');
+                return;
+            }
+
+            showToast(`Rankings saved for ${currentVoter}! ${rankings.length} resort(s) ranked.`);
+            updateRankedResults();
+        }
+
+        function updateRankedResults() {
+            rankedChoices = getRankedChoices();
+            const voters = Object.keys(rankedChoices);
+
+            if (voters.length === 0) return;
+
+            // Calculate Borda count scores (1st = 5pts, 2nd = 4pts, etc.)
+            const scores = {};
+
+            voters.forEach(voter => {
+                const rankings = rankedChoices[voter] || [];
+                rankings.forEach((resortId, index) => {
+                    const points = 5 - index; // 5 for 1st, 4 for 2nd, etc.
+                    scores[resortId] = (scores[resortId] || 0) + points;
+                });
+            });
+
+            // Sort by score
+            const sortedResults = Object.entries(scores)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            // Update the results panel if it exists
+            const resultsDiv = document.getElementById('votingResults');
+            if (resultsDiv && sortedResults.length > 0) {
+                const rankedResultsHtml = `
+                    <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);">
+                        <h4 style="margin-bottom:15px;">🏆 Ranked Choice Results</h4>
+                        ${sortedResults.map(([resortId, score], idx) => {
+                            const resort = resorts.find(r => r.id === parseInt(resortId));
+                            const posClass = idx === 0 ? 'gold' : idx === 1 ? 'silver' : idx === 2 ? 'bronze' : '';
+                            return `
+                                <div class="ranked-result-item">
+                                    <div class="ranked-result-position ${posClass}">${idx + 1}</div>
+                                    <div style="flex-grow:1;">
+                                        <div style="font-weight:600;">${resort?.name || 'Unknown'}</div>
+                                        <div style="font-size:0.8rem;opacity:0.8;">${score} points from ${voters.length} voter(s)</div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+
+                // Append or replace ranked results
+                const existingRanked = resultsDiv.querySelector('.ranked-results-section');
+                if (existingRanked) {
+                    existingRanked.innerHTML = rankedResultsHtml;
+                } else {
+                    const rankedSection = document.createElement('div');
+                    rankedSection.className = 'ranked-results-section';
+                    rankedSection.innerHTML = rankedResultsHtml;
+                    resultsDiv.appendChild(rankedSection);
+                }
+            }
         }
 
         // ============================================
@@ -3915,15 +4648,18 @@
             const panel = document.getElementById('comparisonPanel');
             const grid = document.getElementById('comparisonGrid');
             const count = document.getElementById('compareCount');
+            const actions = document.getElementById('comparisonActions');
 
             count.textContent = compareList.length;
 
             if (compareList.length === 0) {
                 panel.classList.remove('active');
+                actions.style.display = 'none';
                 return;
             }
 
             panel.classList.add('active');
+            actions.style.display = compareList.length >= 2 ? 'flex' : 'none';
 
             grid.innerHTML = compareList.map(id => {
                 const r = resorts.find(res => res.id === id);
@@ -3931,19 +4667,110 @@
                 const isVilla = r.isVilla;
                 const total7 = isVilla ? r.priceMay24 * 7 : r.priceMay24 * 7 * 7;
                 const perPerson = Math.round(total7 / 14);
+                const estTrip = estimateTripCost(r);
+                const budgetFit = getBudgetFit(r);
+                const hiddenCosts = getHiddenCostsForResort(r.id);
 
                 return `
                     <div class="comparison-item">
-                        <h4>${r.name}</h4>
-                        <div class="compare-row"><span>Per night:</span><span>$${r.priceMay24}</span></div>
-                        <div class="compare-row"><span>7-night total:</span><span style="color:#059669;font-weight:600;">$${total7.toLocaleString()}</span></div>
-                        <div class="compare-row"><span>Per person:</span><span>$${perPerson}/person</span></div>
-                        <div class="compare-row"><span>Value Score:</span><span>${r.valueScore}/10</span></div>
-                        <div class="compare-row"><span>Rating:</span><span>★ ${r.rating}</span></div>
-                        ${r.points ? `<div class="compare-row"><span>Points:</span><span style="color:#4f46e5;">${r.points.toUpperCase()}</span></div>` : ''}
+                        <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
+                            <h4 style="margin:0;">${r.name}</h4>
+                            <button onclick="toggleCompare(${r.id})" style="background:none;border:none;cursor:pointer;font-size:1rem;">✕</button>
+                        </div>
+                        <span class="budget-badge ${budgetFit.class}" style="font-size:0.7rem;">${budgetFit.label}</span>
+
+                        <div class="compare-section">
+                            <div class="compare-section-title">Pricing</div>
+                            <div class="compare-row"><span>Per night:</span><span>$${r.priceMay24}</span></div>
+                            <div class="compare-row"><span>7-night accom:</span><span style="color:#059669;font-weight:600;">$${total7.toLocaleString()}</span></div>
+                            <div class="compare-row"><span>Est. total trip:</span><span style="font-weight:600;">$${estTrip.toLocaleString()}</span></div>
+                            <div class="compare-row"><span>Per person:</span><span>$${Math.round(estTrip/14).toLocaleString()}</span></div>
+                        </div>
+
+                        <div class="compare-section">
+                            <div class="compare-section-title">Value</div>
+                            <div class="compare-row"><span>Value Score:</span><span>${r.valueScore || 'N/A'}/10</span></div>
+                            <div class="compare-row"><span>Rating:</span><span>★ ${r.rating} (${r.reviews?.toLocaleString() || 0})</span></div>
+                            ${r.points ? `<div class="compare-row"><span>Points:</span><span style="color:#4f46e5;">${r.points.toUpperCase()}</span></div>` : ''}
+                        </div>
+
+                        <div class="compare-section">
+                            <div class="compare-section-title">Features</div>
+                            <div class="compare-amenities">
+                                <span class="compare-amenity ${r.family ? 'has' : 'missing'}">${r.family ? '✓' : '✗'} Family</span>
+                                <span class="compare-amenity ${r.accessible ? 'has' : 'missing'}">${r.accessible ? '✓' : '✗'} Accessible</span>
+                                <span class="compare-amenity ${hiddenCosts.freeTransfer ? 'has' : 'missing'}">${hiddenCosts.freeTransfer ? '✓' : '✗'} Free Transfer</span>
+                                <span class="compare-amenity ${hiddenCosts.parksIncluded ? 'has' : 'missing'}">${hiddenCosts.parksIncluded ? '✓' : '✗'} Parks Inc.</span>
+                            </div>
+                        </div>
                     </div>
                 `;
             }).join('');
+        }
+
+        function getHiddenCostsForResort(resortId) {
+            const costs = {
+                1: { freeTransfer: false, parksIncluded: false },
+                2: { freeTransfer: false, parksIncluded: false },
+                3: { freeTransfer: true, parksIncluded: false, credits: 1500 },
+                11: { freeTransfer: true, parksIncluded: false },
+                12: { freeTransfer: true, parksIncluded: false },
+                16: { freeTransfer: true, parksIncluded: true, parksValue: 1200 },
+                41: { freeTransfer: false, parksIncluded: false },
+                44: { freeTransfer: false, parksIncluded: false }
+            };
+            return costs[resortId] || { freeTransfer: false, parksIncluded: false };
+        }
+
+        function shareComparison() {
+            const ids = compareList.join(',');
+            const url = `${window.location.origin}${window.location.pathname}?compare=${ids}`;
+
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('Link copied to clipboard!');
+            }).catch(() => {
+                showToast('Could not copy link');
+            });
+        }
+
+        function copyComparisonText() {
+            const lines = ['🌴 Cancun Resort Comparison\n'];
+
+            compareList.forEach(id => {
+                const r = resorts.find(res => res.id === id);
+                if (!r) return;
+                const estTrip = estimateTripCost(r);
+                const budgetFit = getBudgetFit(r);
+
+                lines.push(`\n📍 ${r.name}`);
+                lines.push(`   ${budgetFit.label} | Est. Total: $${estTrip.toLocaleString()} | Per Person: $${Math.round(estTrip/14).toLocaleString()}`);
+                lines.push(`   Rating: ★${r.rating} | Value: ${r.valueScore}/10`);
+                if (r.points) lines.push(`   Points: ${r.points.toUpperCase()}`);
+            });
+
+            lines.push(`\n\n📅 Target: May 24-31, 2025`);
+            lines.push(`👥 14 people | 💰 Budget: $20K-$25K`);
+
+            navigator.clipboard.writeText(lines.join('\n')).then(() => {
+                showToast('Summary copied to clipboard!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('shareToast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Check URL for comparison on load
+        function loadComparisonFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const compareIds = params.get('compare');
+            if (compareIds) {
+                compareList = compareIds.split(',').map(Number).filter(id => resorts.find(r => r.id === id));
+                updateComparisonPanel();
+            }
         }
 
         // Budget Calculator
@@ -3965,8 +4792,320 @@
                     return `<option value="${r.id}">${r.name} - $${r.priceMay24}/night${isVilla ? ' (Villa)' : ''}</option>`;
                 }).join('');
 
+            // Populate price alert resort dropdown
+            const alertSelect = document.getElementById('alertResort');
+            if (alertSelect) {
+                alertSelect.innerHTML = '<option value="">Select Resort...</option>' +
+                    familyResorts.map(r => `<option value="${r.id}">${r.name} ($${r.priceMay24}/night)</option>`).join('');
+            }
+
             // Initialize quick comparison with top picks
             renderQuickComparison();
+
+            // Render flight price widget
+            renderFlightWidget();
+        }
+
+        function renderFlightWidget() {
+            const container = document.getElementById('flightPriceWidget');
+            if (!container) return;
+
+            // Flight data from research
+            const flightData = [
+                {
+                    airport: 'OMA',
+                    city: 'Omaha',
+                    price: 359,
+                    people: 2,
+                    trend: 'down',
+                    note: 'Seasonal direct on Southwest',
+                    googleUrl: 'https://www.google.com/travel/flights?q=flights+from+omaha+to+cancun+may+2025'
+                },
+                {
+                    airport: 'DSM',
+                    city: 'Des Moines',
+                    price: 398,
+                    people: 3,
+                    trend: 'stable',
+                    note: 'Usually 1 stop via Dallas',
+                    googleUrl: 'https://www.google.com/travel/flights?q=flights+from+des+moines+to+cancun+may+2025'
+                },
+                {
+                    airport: 'CID',
+                    city: 'Cedar Rapids',
+                    price: 420,
+                    people: 5,
+                    trend: 'up',
+                    note: 'Connect via Chicago/Denver',
+                    googleUrl: 'https://www.google.com/travel/flights?q=flights+from+cedar+rapids+to+cancun+may+2025'
+                },
+                {
+                    airport: 'MCO',
+                    city: 'Orlando',
+                    price: 280,
+                    people: 4,
+                    trend: 'down',
+                    note: 'Best prices - direct options',
+                    googleUrl: 'https://www.google.com/travel/flights?q=flights+from+orlando+to+cancun+may+2025'
+                }
+            ];
+
+            container.innerHTML = flightData.map(f => {
+                const trendIcon = f.trend === 'down' ? '📉' : f.trend === 'up' ? '📈' : '➡️';
+                const trendColor = f.trend === 'down' ? '#10b981' : f.trend === 'up' ? '#ef4444' : '#6b7280';
+                const subtotal = f.price * f.people;
+
+                return `
+                    <a href="${f.googleUrl}" target="_blank" style="text-decoration:none;display:block;padding:16px;background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);border-radius:12px;border:2px solid #e2e8f0;transition:all 0.2s;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                            <div style="font-weight:700;color:#1e293b;">${f.airport}</div>
+                            <span style="font-size:0.75rem;color:${trendColor};">${trendIcon}</span>
+                        </div>
+                        <div style="font-size:0.8rem;color:#64748b;margin-bottom:8px;">${f.city}</div>
+                        <div style="font-size:1.3rem;font-weight:700;color:#0891b2;margin-bottom:4px;">$${f.price}</div>
+                        <div style="font-size:0.75rem;color:#64748b;margin-bottom:8px;">per person, round trip</div>
+                        <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px dashed #e2e8f0;font-size:0.75rem;">
+                            <span style="color:#64748b;">${f.people} people</span>
+                            <span style="color:#059669;font-weight:600;">$${subtotal.toLocaleString()} total</span>
+                        </div>
+                        <div style="font-size:0.7rem;color:#94a3b8;margin-top:8px;">${f.note}</div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // ============================================
+        // ITINERARY BUILDER
+        // ============================================
+
+        let selectedDay = 1;
+        const tripDays = [
+            { day: 1, date: 'Sat, May 24', label: 'Arrival Day' },
+            { day: 2, date: 'Sun, May 25', label: 'Day 2' },
+            { day: 3, date: 'Mon, May 26', label: 'Day 3' },
+            { day: 4, date: 'Tue, May 27', label: 'Day 4' },
+            { day: 5, date: 'Wed, May 28', label: 'Day 5' },
+            { day: 6, date: 'Thu, May 29', label: 'Day 6' },
+            { day: 7, date: 'Fri, May 30', label: 'Day 7' },
+            { day: 8, date: 'Sat, May 31', label: 'Departure' }
+        ];
+
+        const categoryIcons = {
+            excursion: '🏛️',
+            beach: '🏖️',
+            pool: '🏊',
+            dining: '🍽️',
+            shopping: '🛍️',
+            spa: '💆',
+            adventure: '🤿',
+            family: '👨‍👩‍👧‍👦'
+        };
+
+        function getItinerary() {
+            const stored = localStorage.getItem('tripItinerary');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        function saveItinerary(items) {
+            localStorage.setItem('tripItinerary', JSON.stringify(items));
+        }
+
+        function initItinerary() {
+            renderDayTabs();
+            renderDaySchedule();
+            renderItinerarySummary();
+        }
+
+        function renderDayTabs() {
+            const container = document.getElementById('dayTabs');
+            if (!container) return;
+
+            container.innerHTML = tripDays.map(d => `
+                <button onclick="selectDay(${d.day})"
+                    style="padding:10px 16px;border-radius:8px;border:2px solid ${selectedDay === d.day ? '#0891b2' : '#e2e8f0'};
+                    background:${selectedDay === d.day ? 'linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)' : 'white'};
+                    color:${selectedDay === d.day ? 'white' : '#1e293b'};cursor:pointer;font-weight:600;transition:all 0.2s;">
+                    <div style="font-size:0.75rem;opacity:0.8;">${d.date}</div>
+                    <div>${d.label}</div>
+                </button>
+            `).join('');
+        }
+
+        function selectDay(day) {
+            selectedDay = day;
+            renderDayTabs();
+            renderDaySchedule();
+        }
+
+        function addItineraryItem() {
+            const time = document.getElementById('activityTime')?.value;
+            const category = document.getElementById('activityCategory')?.value;
+            const title = document.getElementById('activityTitle')?.value;
+            const notes = document.getElementById('activityNotes')?.value || '';
+            const cost = parseInt(document.getElementById('activityCost')?.value) || 0;
+
+            if (!title) {
+                showToast('Please enter an activity title');
+                return;
+            }
+
+            const items = getItinerary();
+            items.push({
+                id: Date.now(),
+                day: selectedDay,
+                time,
+                category,
+                title,
+                notes,
+                cost
+            });
+
+            saveItinerary(items);
+            renderDaySchedule();
+            renderItinerarySummary();
+
+            // Clear form
+            document.getElementById('activityTitle').value = '';
+            document.getElementById('activityNotes').value = '';
+            document.getElementById('activityCost').value = '';
+
+            showToast('Activity added!');
+        }
+
+        function removeItineraryItem(id) {
+            const items = getItinerary().filter(i => i.id !== id);
+            saveItinerary(items);
+            renderDaySchedule();
+            renderItinerarySummary();
+        }
+
+        function renderDaySchedule() {
+            const container = document.getElementById('daySchedule');
+            if (!container) return;
+
+            const items = getItinerary().filter(i => i.day === selectedDay);
+            const dayInfo = tripDays.find(d => d.day === selectedDay);
+
+            const timeOrder = ['morning', 'midday', 'afternoon', 'evening', 'night'];
+            items.sort((a, b) => timeOrder.indexOf(a.time) - timeOrder.indexOf(b.time));
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:40px;color:#64748b;">
+                        <div style="font-size:3rem;margin-bottom:15px;">📅</div>
+                        <div style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">No activities planned for ${dayInfo?.date}</div>
+                        <div style="font-size:0.9rem;">Add activities using the form above!</div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <h3 style="margin-bottom:20px;color:#1e293b;">${dayInfo?.date} - ${dayInfo?.label}</h3>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                    ${items.map(item => `
+                        <div style="display:flex;gap:15px;padding:15px;background:#f8fafc;border-radius:10px;border-left:4px solid #14b8a6;">
+                            <div style="font-size:1.5rem;">${categoryIcons[item.category] || '📌'}</div>
+                            <div style="flex:1;">
+                                <div style="font-weight:600;color:#1e293b;margin-bottom:4px;">${item.title}</div>
+                                <div style="font-size:0.8rem;color:#64748b;display:flex;gap:15px;">
+                                    <span>${item.time.charAt(0).toUpperCase() + item.time.slice(1)}</span>
+                                    ${item.cost ? `<span style="color:#059669;font-weight:600;">$${item.cost}</span>` : ''}
+                                </div>
+                                ${item.notes ? `<div style="font-size:0.8rem;color:#94a3b8;margin-top:4px;">${item.notes}</div>` : ''}
+                            </div>
+                            <button onclick="removeItineraryItem(${item.id})" style="background:none;border:none;cursor:pointer;font-size:1rem;color:#94a3b8;">✕</button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderItinerarySummary() {
+            const container = document.getElementById('itinerarySummary');
+            if (!container) return;
+
+            const items = getItinerary();
+            const totalCost = items.reduce((sum, i) => sum + (i.cost || 0), 0);
+            const byCategory = items.reduce((acc, i) => {
+                acc[i.category] = (acc[i.category] || 0) + 1;
+                return acc;
+            }, {});
+            const daysPlanned = new Set(items.map(i => i.day)).size;
+
+            container.innerHTML = `
+                <div style="background:rgba(255,255,255,0.1);padding:15px;border-radius:10px;text-align:center;">
+                    <div style="font-size:1.5rem;font-weight:700;">${items.length}</div>
+                    <div style="font-size:0.8rem;opacity:0.8;">Activities</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.1);padding:15px;border-radius:10px;text-align:center;">
+                    <div style="font-size:1.5rem;font-weight:700;">${daysPlanned}</div>
+                    <div style="font-size:0.8rem;opacity:0.8;">Days Planned</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.1);padding:15px;border-radius:10px;text-align:center;">
+                    <div style="font-size:1.5rem;font-weight:700;">$${totalCost.toLocaleString()}</div>
+                    <div style="font-size:0.8rem;opacity:0.8;">Est. Activity Cost</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.1);padding:15px;border-radius:10px;text-align:center;">
+                    <div style="font-size:1.5rem;font-weight:700;">$${Math.round(totalCost / 14)}</div>
+                    <div style="font-size:0.8rem;opacity:0.8;">Per Person</div>
+                </div>
+            `;
+        }
+
+        function submitPriceAlert() {
+            const email = document.getElementById('alertEmail')?.value;
+            const resortId = document.getElementById('alertResort')?.value;
+            const threshold = document.getElementById('alertThreshold')?.value;
+            const messageDiv = document.getElementById('alertMessage');
+
+            // Validation
+            if (!email || !email.includes('@')) {
+                showAlertMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            if (!resortId) {
+                showAlertMessage('Please select a resort to watch', 'error');
+                return;
+            }
+            if (!threshold || threshold < 100) {
+                showAlertMessage('Please enter a price threshold (min $100)', 'error');
+                return;
+            }
+
+            // In production, this would call the API
+            // For now, simulate success and store locally
+            const alerts = JSON.parse(localStorage.getItem('priceAlerts') || '[]');
+            const resort = resorts.find(r => r.id === parseInt(resortId));
+
+            alerts.push({
+                email,
+                resortId: parseInt(resortId),
+                resortName: resort?.name,
+                threshold: parseInt(threshold),
+                createdAt: new Date().toISOString()
+            });
+
+            localStorage.setItem('priceAlerts', JSON.stringify(alerts));
+
+            showAlertMessage(`Alert set for ${resort?.name} at $${threshold}/night. We'll email you when the price drops!`, 'success');
+
+            // Clear form
+            document.getElementById('alertEmail').value = '';
+            document.getElementById('alertResort').value = '';
+            document.getElementById('alertThreshold').value = '';
+        }
+
+        function showAlertMessage(message, type) {
+            const messageDiv = document.getElementById('alertMessage');
+            messageDiv.style.display = 'block';
+            messageDiv.style.background = type === 'success' ? '#d1fae5' : '#fee2e2';
+            messageDiv.style.color = type === 'success' ? '#065f46' : '#dc2626';
+            messageDiv.textContent = message;
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
         }
 
         function renderQuickComparison() {
@@ -4171,8 +5310,11 @@
             renderMatrix();
             renderVoterSelect();
             renderVotingOptions();
+            renderRankedOptions();
             updateVotingResults();
             initBudgetPage();
+            initItinerary();
+            loadComparisonFromUrl();
             document.getElementById('resortCount').textContent = resorts.length;
         });
     </script>
