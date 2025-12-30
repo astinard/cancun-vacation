@@ -79,6 +79,13 @@ const resorts = [
     { id: 44, name: "Villa Quinta Clara (Villa)", priceMay24: 1650, priceMay31: 1900, valueScore: 10, isVilla: true }
 ];
 
+// Budget Target
+const BUDGET_TARGET = {
+    min: 20000,
+    max: 25000,
+    sweet: 22500
+};
+
 // Functions to test
 function getDealBadge(resort) {
     const history = priceHistory[resort.id];
@@ -147,6 +154,31 @@ function getHiddenCosts(resortId) {
 
 function getAllInclusiveValue(resortId) {
     return allInclusiveValue[resortId] || null;
+}
+
+// Estimate total trip cost
+function estimateTripCost(resort, nights = 7) {
+    const isVilla = resort.isVilla;
+    const accommodationCost = isVilla ? resort.priceMay24 * nights : resort.priceMay24 * 7 * nights;
+    const flightCost = 5330;
+    const transferCost = hiddenCosts[resort.id]?.freeTransfer ? 0 : 360;
+    const excursionCost = hiddenCosts[resort.id]?.parksIncluded ? 1400 : 2800;
+    const extrasCost = (hiddenCosts[resort.id]?.extras || 20) * nights;
+
+    return accommodationCost + flightCost + transferCost + excursionCost + extrasCost;
+}
+
+// Check if resort fits budget
+function getBudgetFit(resort, nights = 7) {
+    const total = estimateTripCost(resort, nights);
+
+    if (total <= BUDGET_TARGET.min) {
+        return { status: 'under', label: 'Under Budget!', diff: BUDGET_TARGET.min - total };
+    } else if (total <= BUDGET_TARGET.max) {
+        return { status: 'sweet', label: 'In Budget!', diff: 0 };
+    } else {
+        return { status: 'over', label: 'Over Budget', diff: total - BUDGET_TARGET.max };
+    }
 }
 
 // ========== TEST SUITES ==========
@@ -373,7 +405,57 @@ test('villas are properly flagged', () => {
     });
 });
 
-// Suite 8: Integration Tests
+// Suite 8: Budget Target Tests
+console.log(`\n${colors.yellow}━━━ Budget Target Tests ━━━${colors.reset}`);
+
+test('BUDGET_TARGET has correct range', () => {
+    assertEqual(BUDGET_TARGET.min, 20000, 'Min should be 20000');
+    assertEqual(BUDGET_TARGET.max, 25000, 'Max should be 25000');
+    assertEqual(BUDGET_TARGET.sweet, 22500, 'Sweet spot should be 22500');
+});
+
+test('estimateTripCost returns positive number', () => {
+    const resort = resorts.find(r => r.id === 2);
+    const cost = estimateTripCost(resort);
+    assertTrue(cost > 0, 'Cost should be positive');
+    assertTrue(cost > 10000, 'Cost should be realistic (>$10k for 14 people)');
+});
+
+test('estimateTripCost accounts for free transfers', () => {
+    const withTransfer = resorts.find(r => r.id === 2); // Hard Rock - no free transfer
+    const freeTransfer = resorts.find(r => r.id === 11); // Generations - free transfer
+
+    const costWith = estimateTripCost(withTransfer);
+    const costFree = estimateTripCost(freeTransfer);
+
+    // Free transfer saves $360, but Generations is more expensive per night
+    assertTrue(costWith !== costFree, 'Costs should differ');
+});
+
+test('getBudgetFit identifies resorts in budget sweet spot', () => {
+    const villa = resorts.find(r => r.id === 44); // Villa Quinta Clara
+    const fit = getBudgetFit(villa);
+    assertEqual(fit.status, 'sweet', 'Villa Quinta Clara should be in budget sweet spot');
+    assertEqual(fit.diff, 0, 'Sweet spot has 0 diff');
+});
+
+test('getBudgetFit identifies over-budget resorts', () => {
+    const luxury = resorts.find(r => r.id === 41); // Hacienda Magica
+    const fit = getBudgetFit(luxury);
+    assertEqual(fit.status, 'over', 'Hacienda Magica should be over budget');
+    assertTrue(fit.diff > 0, 'Should show overage amount');
+});
+
+test('getBudgetFit returns valid status for all resorts', () => {
+    resorts.forEach(r => {
+        const fit = getBudgetFit(r);
+        assertTrue(['under', 'sweet', 'over'].includes(fit.status), `${r.name} should have valid status`);
+        assertDefined(fit.label, `${r.name} should have label`);
+        assertDefined(fit.diff, `${r.name} should have diff`);
+    });
+});
+
+// Suite 9: Integration Tests
 console.log(`\n${colors.yellow}━━━ Integration Tests ━━━${colors.reset}`);
 
 test('budget + hidden costs calculation for Xcaret', () => {
