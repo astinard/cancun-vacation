@@ -6,6 +6,7 @@
     <title>Family Vacation Planner 2025 - Cancun & Riviera Maya</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Real-time vote sync powered by ntfy.sh -->
     <style>
         :root {
             --primary: #0891b2;
@@ -3793,16 +3794,117 @@
             `}).join('');
         }
 
-        // Voting System
+        // Voting System with Cloud Sync
         const VOTE_KEY = 'cancunVacationVotes2025';
+        const ROOM_CODE = 'STINARD2025'; // Unique room code for your family
+        const SYNC_INTERVAL = 5000; // Sync every 5 seconds
         let currentVoter = null;
+        let cachedVotes = {};
+        let syncEnabled = true;
+        let lastSyncTime = 0;
+
+        // Cloud sync using ntfy.sh for real-time updates + localStorage
+        // This provides free, instant cross-device sync
+        const SYNC_TOPIC = `cancun-votes-${ROOM_CODE.toLowerCase()}`;
+        let eventSource = null;
+
+        // Initialize real-time sync
+        function initSync() {
+            // Listen for real-time updates via Server-Sent Events
+            try {
+                eventSource = new EventSource(`https://ntfy.sh/${SYNC_TOPIC}/sse`);
+                eventSource.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.message && data.message.startsWith('{')) {
+                            const votes = JSON.parse(data.message);
+                            if (votes._timestamp > lastSyncTime) {
+                                cachedVotes = votes;
+                                lastSyncTime = votes._timestamp || Date.now();
+                                localStorage.setItem(VOTE_KEY, JSON.stringify(votes));
+                                // Update UI
+                                renderVotingOptions();
+                                updateVotingResults();
+                                showSyncNotification('Votes updated!');
+                            }
+                        }
+                    } catch (e) {}
+                };
+                eventSource.onerror = () => {
+                    console.log('Sync connection lost, will retry...');
+                };
+                console.log('Real-time vote sync enabled!');
+            } catch (e) {
+                console.log('Real-time sync not available');
+            }
+        }
+
+        // Show sync notification
+        function showSyncNotification(message) {
+            const existing = document.querySelector('.sync-notification');
+            if (existing) existing.remove();
+
+            const notif = document.createElement('div');
+            notif.className = 'sync-notification';
+            notif.innerHTML = `<span style="margin-right:8px;">🔄</span>${message}`;
+            notif.style.cssText = `
+                position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+                background: #10b981; color: white; padding: 12px 24px; border-radius: 30px;
+                font-weight: 600; font-size: 0.9rem; z-index: 9999; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                animation: slideUp 0.3s ease;
+            `;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 2000);
+        }
 
         function getVotes() {
-            return JSON.parse(localStorage.getItem(VOTE_KEY) || '{}');
+            if (Object.keys(cachedVotes).length > 0) {
+                return { ...cachedVotes };
+            }
+            const stored = JSON.parse(localStorage.getItem(VOTE_KEY) || '{}');
+            cachedVotes = stored;
+            return stored;
         }
 
         function saveVotes(votes) {
+            votes._timestamp = Date.now();
+            lastSyncTime = votes._timestamp;
+
+            // Save locally
             localStorage.setItem(VOTE_KEY, JSON.stringify(votes));
+            cachedVotes = votes;
+
+            // Broadcast to other devices
+            if (syncEnabled) {
+                fetch(`https://ntfy.sh/${SYNC_TOPIC}`, {
+                    method: 'POST',
+                    body: JSON.stringify(votes)
+                }).catch(() => {});
+            }
+        }
+
+        // Function to clear all votes
+        function clearAllVotes() {
+            if (confirm('Are you sure you want to clear ALL votes? This cannot be undone.')) {
+                cachedVotes = { _timestamp: Date.now() };
+                localStorage.setItem(VOTE_KEY, JSON.stringify(cachedVotes));
+                lastSyncTime = cachedVotes._timestamp;
+
+                // Broadcast clear to other devices
+                fetch(`https://ntfy.sh/${SYNC_TOPIC}`, {
+                    method: 'POST',
+                    body: JSON.stringify(cachedVotes)
+                }).catch(() => {});
+
+                renderVotingOptions();
+                updateVotingResults();
+                showSyncNotification('All votes cleared');
+            }
+        }
+
+        // Initialize sync when page loads
+        if (typeof EventSource !== 'undefined') {
+            initSync();
         }
 
         function renderVoterSelect() {
