@@ -8,15 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
+            --primary: #0891b2;
+            --primary-dark: #0e7490;
+            --secondary: #f97316;
+            --accent: #06b6d4;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
             --dark: #1e293b;
-            --light: #f8fafc;
+            --light: #f0fdfa;
             --gray: #64748b;
+            --sand: #fef3c7;
+            --ocean: #0891b2;
+            --coral: #f97316;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,13 +34,13 @@
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 50%, #0891b2 100%);
             color: white;
             padding: 20px 30px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);
         }
 
         .header-content {
@@ -189,10 +193,10 @@
         .chip.family.active { background: #10b981; border-color: #10b981; }
         .chip.luxury { border-color: #f59e0b; }
         .chip.luxury.active { background: #f59e0b; border-color: #f59e0b; }
-        .chip.points { border-color: #6366f1; }
-        .chip.points.active { background: #6366f1; border-color: #6366f1; }
-        .chip.accessible { border-color: #ec4899; }
-        .chip.accessible.active { background: #ec4899; border-color: #ec4899; }
+        .chip.points { border-color: #0891b2; }
+        .chip.points.active { background: #0891b2; border-color: #0891b2; }
+        .chip.accessible { border-color: #f97316; }
+        .chip.accessible.active { background: #f97316; border-color: #f97316; }
         .chip.villa { border-color: #8b5cf6; }
         .chip.villa.active { background: #8b5cf6; border-color: #8b5cf6; }
 
@@ -205,15 +209,17 @@
             padding: 16px 20px;
             border-bottom: 1px solid #e2e8f0;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
         }
 
         .resort-card:hover {
-            background: #f8fafc;
+            background: linear-gradient(to right, #f0fdfa, #fefce8);
+            transform: translateX(4px);
+            box-shadow: -4px 0 12px rgba(8, 145, 178, 0.1);
         }
 
         .resort-card.selected {
-            background: linear-gradient(to right, #ede9fe, #fce7f3);
+            background: linear-gradient(to right, #cffafe, #fef3c7);
             border-left: 4px solid var(--primary);
         }
 
@@ -263,8 +269,8 @@
 
         .tag-family { background: #d1fae5; color: #065f46; }
         .tag-luxury { background: #fef3c7; color: #92400e; }
-        .tag-points { background: #e0e7ff; color: #3730a3; }
-        .tag-accessible { background: #fce7f3; color: #9d174d; }
+        .tag-points { background: #cffafe; color: #0e7490; }
+        .tag-accessible { background: #ffedd5; color: #c2410c; }
         .tag-adults { background: #fee2e2; color: #991b1b; }
         .tag-new { background: #cffafe; color: #0e7490; }
         .tag-villa { background: #ede9fe; color: #5b21b6; font-weight: 700; }
@@ -371,7 +377,7 @@
 
         .info-panel-header {
             padding: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
             color: white;
         }
 
@@ -601,7 +607,7 @@
 
         .vote-option.selected {
             border-color: var(--primary);
-            background: linear-gradient(to right, #ede9fe, #fce7f3);
+            background: linear-gradient(to right, #cffafe, #fef3c7);
         }
 
         .vote-option-name {
@@ -643,7 +649,7 @@
 
         /* Results Panel */
         .results-panel {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, #0e7490 0%, #06b6d4 50%, #0891b2 100%);
             color: white;
             border-radius: 16px;
             padding: 30px;
@@ -794,7 +800,7 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <h1>Family Vacation 2025</h1>
+            <h1><span style="font-size:1.6rem;">🌴</span> Cancun Family Vacation 2025 <span style="font-size:1.6rem;">🌊</span></h1>
 
             <nav class="nav-tabs">
                 <button class="nav-tab active" data-view="map">Map</button>
@@ -887,7 +893,7 @@
                         <span>Luxury</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-marker" style="background: #6366f1;"></div>
+                        <div class="legend-marker" style="background: #0891b2;"></div>
                         <span>Points Eligible</span>
                     </div>
                     <div class="legend-item">
@@ -895,7 +901,7 @@
                         <span>Adults Only</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-marker" style="background: #ec4899;"></div>
+                        <div class="legend-marker" style="background: #f97316;"></div>
                         <span>Accessible</span>
                     </div>
                     <div class="legend-item">
@@ -1166,7 +1172,12 @@
                 website: "https://www.clubmed.us/r/cancun/y",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d154474-Reviews-Club_Med_Cancun_Yucatan-Cancun_Yucatan_Peninsula.html",
                 features: ["Kids clubs 0-17", "Circus school", "Trapeze", "All activities included"],
-                notes: "Excellent for multigenerational - dedicated kids clubs for all ages"
+                notes: "Excellent for multigenerational - dedicated kids clubs for all ages",
+                valueScore: 7,
+                renovated: "2020",
+                serviceRating: "Good",
+                insiderTip: "Unique all-inclusive concept with circus school & trapeze! Kids LOVE it. However, showing age in some areas. All activities truly included (sailing, water sports). French influence means excellent food variety.",
+                crowdLevel: "Medium"
             },
             {
                 id: 6,
@@ -1189,7 +1200,12 @@
                 website: "https://www.melia.com/en/hotels/mexico/cancun/paradisus-cancun",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d155685-Reviews-Paradisus_Cancun-Cancun_Yucatan_Peninsula.html",
                 features: ["Family Concierge", "YHI Spa", "Royal Service option"],
-                notes: "Good value luxury with family concierge service"
+                notes: "Good value luxury with family concierge service",
+                valueScore: 7,
+                renovated: "2019",
+                serviceRating: "Good",
+                insiderTip: "Family Concierge level is worth the upgrade - dedicated check-in, lounge access, kid amenities. Good value compared to luxury competitors. Melia Rewards members get perks. Beach can get seaweed in summer.",
+                crowdLevel: "Medium"
             },
             {
                 id: 7,
@@ -1212,7 +1228,12 @@
                 website: "https://www.hilton.com/en/hotels/cunhihi-hilton-cancun-an-all-inclusive-resort/",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d23462107-Reviews-Hilton_Cancun_an_All_Inclusive_Resort-Cancun_Yucatan_Peninsula.html",
                 features: ["Newer property (2021)", "Hilton Honors", "Multiple pools", "Golf access"],
-                notes: "Newer resort, Hilton points eligible, good for families"
+                notes: "Newer resort, Hilton points eligible, good for families",
+                valueScore: 8,
+                renovated: "2021 (NEW)",
+                serviceRating: "Very Good",
+                insiderTip: "BRAND NEW (2021)! One of the newest all-inclusives in Cancun. Hilton Honors points work here - 80-120k/night is decent value. Closest resort to airport (12 min). Modern rooms, great pools. Still working out kinks but improving fast.",
+                crowdLevel: "Medium"
             },
             {
                 id: 8,
@@ -1235,7 +1256,12 @@
                 website: "https://www.dreamsresorts.com/playa-mujeres",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d8082143-Reviews-Dreams_Playa_Mujeres_Golf_Spa_Resort-Cancun_Yucatan_Peninsula.html",
                 features: ["Quieter area", "Golf course", "Explorer's Club kids", "Core Zone teens"],
-                notes: "Quieter than Hotel Zone, great kids programs, Marriott Bonvoy"
+                notes: "Quieter than Hotel Zone, great kids programs, Marriott Bonvoy",
+                valueScore: 8,
+                renovated: "2018",
+                serviceRating: "Very Good",
+                insiderTip: "GREAT FOR YOUR GROUP! Quieter Costa Mujeres area perfect for elderly. Marriott Bonvoy points work. Explorer's Club for kids 3-12 is excellent. Golf course on-site. Less party atmosphere than Hotel Zone. Reddit recommends over Finest for families.",
+                crowdLevel: "Low"
             },
             {
                 id: 9,
@@ -1287,7 +1313,12 @@
                 website: "https://www.majestic-resorts.com/en/hotel/majestic-elegance-costa-mujeres",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d17448876-Reviews-Majestic_Elegance_Costa_Mujeres-Cancun_Yucatan_Peninsula.html",
                 features: ["Elegance Club upgrade", "Water park", "Family suites"],
-                notes: "Good value in quieter Costa Mujeres area"
+                notes: "Good value in quieter Costa Mujeres area",
+                valueScore: 7,
+                renovated: "2019",
+                serviceRating: "Good",
+                insiderTip: "Elegance Club upgrade worth considering for better beach/pool area. Water park keeps kids busy. Good value vs neighbors. Costa Mujeres area is quieter. Some rooms show wear - request renovated building.",
+                crowdLevel: "Medium"
             },
             // RIVIERA MAYA
             {
@@ -1311,7 +1342,12 @@
                 website: "https://www.genrivieramaya.com/",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d4083498-Reviews-Generations_Riviera_Maya_Family_Resort-Playa_del_Carmen_Yucatan_Peninsula.html",
                 features: ["BUILT for multigenerational", "All oceanfront suites", "Baby to boomers", "Gourmet dining"],
-                notes: "TOP PICK - Specifically designed for multigenerational families. All suites oceanfront."
+                notes: "TOP PICK - Specifically designed for multigenerational families. All suites oceanfront.",
+                valueScore: 10,
+                renovated: "2017",
+                serviceRating: "Outstanding",
+                insiderTip: "IDEAL FOR YOUR GROUP! Literally DESIGNED for multigenerational travel! All suites face ocean. Baby concierge, kids club, teen lounge, adult wellness - everyone covered. Gourmet Inclusive dining. Staff trained specifically for multi-gen groups. Higher price but WORTH IT for your mix of ages.",
+                crowdLevel: "Low"
             },
             {
                 id: 12,
@@ -2157,8 +2193,8 @@
 
         function getMarkerColor(resort) {
             if (resort.isVilla) return '#8b5cf6';
-            if (resort.accessible) return '#ec4899';
-            if (resort.points) return '#6366f1';
+            if (resort.accessible) return '#f97316';
+            if (resort.points) return '#0891b2';
             if (resort.luxury) return '#f59e0b';
             if (resort.adultsOnly) return '#ef4444';
             if (resort.family) return '#10b981';
@@ -2254,7 +2290,7 @@
 
             document.getElementById('panelBody').innerHTML = `
                 ${isVilla ? `
-                <div class="info-section" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: white; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                <div class="info-section" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); color: white; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
                     <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Private Villa Rental</div>
                     <div style="display: flex; gap: 20px;">
                         <div><span style="opacity: 0.8;">Bedrooms:</span> <strong>${resort.bedrooms}</strong></div>
@@ -2265,20 +2301,42 @@
                 ` : ''}
 
                 <div class="info-section">
-                    <div class="info-section-title">Price Comparison</div>
-                    <div class="price-grid">
-                        <div class="price-card highlight">
-                            <div class="price-week">May 24-31</div>
-                            <div class="price-amount">$${resort.priceMay24.toLocaleString()}${priceLabel}</div>
+                    <div class="info-section-title">Price Calculator</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px;">
+                        <div>
+                            <label style="font-size:0.75rem;color:#64748b;display:block;margin-bottom:4px;">Start Date</label>
+                            <select id="priceStartDate" onchange="updatePriceCalc()" style="width:100%;padding:8px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.85rem;font-weight:500;">
+                                <option value="may24" selected>May 24, 2025</option>
+                                <option value="may31">May 31, 2025</option>
+                            </select>
                         </div>
-                        <div class="price-card">
-                            <div class="price-week">May 31 - Jun 7</div>
-                            <div class="price-amount">$${resort.priceMay31.toLocaleString()}${priceLabel}</div>
+                        <div>
+                            <label style="font-size:0.75rem;color:#64748b;display:block;margin-bottom:4px;">Duration</label>
+                            <select id="priceDuration" onchange="updatePriceCalc()" style="width:100%;padding:8px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.85rem;font-weight:500;">
+                                <option value="4">4 nights</option>
+                                <option value="5">5 nights</option>
+                                <option value="6">6 nights</option>
+                                <option value="7" selected>7 nights</option>
+                            </select>
                         </div>
                     </div>
-                    <div style="margin-top:15px;padding:12px;background:#f0fdf4;border-radius:8px;text-align:center;">
-                        <div style="font-size:0.8rem;color:#666;">${totalLabel}</div>
-                        <div style="font-size:1.4rem;font-weight:700;color:#059669;">$${total7May.toLocaleString()} - $${total7Jun.toLocaleString()}</div>
+                    <div id="priceCalcResult" style="background:linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);padding:15px;border-radius:12px;border:2px solid #10b981;">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+                            <div style="text-align:center;">
+                                <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">Per Room/Night</div>
+                                <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${resort.priceMay24.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align:center;">
+                                <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${isVilla ? 'Total (Villa)' : '7 Rooms Total'}</div>
+                                <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${(isVilla ? resort.priceMay24 * 7 : resort.priceMay24 * 7 * 7).toLocaleString()}</div>
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;padding-top:12px;border-top:1px solid #a7f3d0;text-align:center;">
+                            <div style="font-size:0.75rem;color:#166534;" id="priceCalcDates">May 24 - May 31, 2025 (7 nights)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px;font-size:0.75rem;color:#64748b;text-align:center;">
+                        ${isVilla ? 'Prices are for entire villa per night' : 'All-inclusive per room/night • 7 rooms needed for group of 14'}
                     </div>
                 </div>
 
@@ -2351,7 +2409,7 @@
                 </div>
 
                 <div class="info-section">
-                    <div class="info-section-title">Links</div>
+                    <div class="info-section-title">Links & Booking</div>
                     <div class="link-list">
                         <a href="${resort.website}" target="_blank" class="link-item">
                             <span class="link-icon website">🌐</span>
@@ -2360,6 +2418,10 @@
                         <a href="${resort.tripadvisor}" target="_blank" class="link-item">
                             <span class="link-icon reviews">★</span>
                             TripAdvisor Reviews
+                        </a>
+                        <a href="https://www.google.com/maps/search/${encodeURIComponent(resort.name + ' ' + resort.areaName + ' Mexico')}" target="_blank" class="link-item">
+                            <span class="link-icon" style="background:#dcfce7;color:#166534;">📍</span>
+                            Google Maps & Reviews
                         </a>
                         ${resort.points === 'hyatt' ? `
                         <a href="https://world.hyatt.com/content/gp/en/rewards/free-nights-upgrades.html" target="_blank" class="link-item">
@@ -2379,10 +2441,20 @@
                             Hilton Honors
                         </a>
                         ` : ''}
-                        <a href="https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(resort.name + ' ' + resort.areaName)}" target="_blank" class="link-item">
-                            <span class="link-icon booking">💰</span>
-                            Check Prices on Expedia
-                        </a>
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e2e8f0;">
+                        <div style="font-size: 0.7rem; color: #64748b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Compare Prices (May 24-31, 2025)</div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                            <a href="https://www.expedia.com/Hotel-Search?destination=${encodeURIComponent(resort.name + ', Cancun, Mexico')}&startDate=2025-05-24&endDate=2025-05-31&rooms=1&adults=2" target="_blank" style="text-decoration:none;padding:10px 8px;background:#fef3c7;border-radius:8px;text-align:center;transition:all 0.2s;" onmouseover="this.style.background='#fde68a'" onmouseout="this.style.background='#fef3c7'">
+                                <div style="font-size:0.7rem;color:#92400e;font-weight:600;">Expedia</div>
+                            </a>
+                            <a href="https://www.booking.com/searchresults.html?ss=${encodeURIComponent(resort.name + ' Cancun')}&checkin=2025-05-24&checkout=2025-05-31&group_adults=2&no_rooms=1" target="_blank" style="text-decoration:none;padding:10px 8px;background:#dbeafe;border-radius:8px;text-align:center;transition:all 0.2s;" onmouseover="this.style.background='#bfdbfe'" onmouseout="this.style.background='#dbeafe'">
+                                <div style="font-size:0.7rem;color:#1e40af;font-weight:600;">Booking.com</div>
+                            </a>
+                            <a href="https://www.hotels.com/search.do?destination=${encodeURIComponent(resort.name + ' Cancun Mexico')}&startDate=2025-05-24&endDate=2025-05-31&rooms=1&adults=2" target="_blank" style="text-decoration:none;padding:10px 8px;background:#fee2e2;border-radius:8px;text-align:center;transition:all 0.2s;" onmouseover="this.style.background='#fecaca'" onmouseout="this.style.background='#fee2e2'">
+                                <div style="font-size:0.7rem;color:#991b1b;font-weight:600;">Hotels.com</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             `;
@@ -2398,6 +2470,50 @@
             document.getElementById('infoPanel').classList.remove('active');
             selectedResort = null;
             renderResortList(getFilteredResorts());
+        }
+
+        function updatePriceCalc() {
+            if (!selectedResort) return;
+            const startDate = document.getElementById('priceStartDate').value;
+            const nights = parseInt(document.getElementById('priceDuration').value);
+
+            const basePrice = startDate === 'may24' ? selectedResort.priceMay24 : selectedResort.priceMay31;
+            const isVilla = selectedResort.isVilla;
+
+            // Calculate totals
+            const perNight = basePrice;
+            const totalGroup = isVilla ? basePrice * nights : basePrice * 7 * nights; // 7 rooms for group
+
+            // Calculate date range
+            const startDates = {
+                'may24': { start: 'May 24', month: 5, day: 24 },
+                'may31': { start: 'May 31', month: 5, day: 31 }
+            };
+            const sd = startDates[startDate];
+            let endDay = sd.day + nights;
+            let endMonth = 'May';
+            if (endDay > 31) {
+                endDay = endDay - 31;
+                endMonth = 'Jun';
+            }
+            const dateRange = `${sd.start} - ${endMonth} ${endDay}, 2025 (${nights} nights)`;
+
+            // Update the display
+            document.getElementById('priceCalcResult').innerHTML = `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+                    <div style="text-align:center;">
+                        <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">Per Room/Night</div>
+                        <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${perNight.toLocaleString()}</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${isVilla ? 'Total (Villa)' : '7 Rooms Total'}</div>
+                        <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${totalGroup.toLocaleString()}</div>
+                    </div>
+                </div>
+                <div style="margin-top:12px;padding-top:12px;border-top:1px solid #a7f3d0;text-align:center;">
+                    <div style="font-size:0.75rem;color:#166534;">${dateRange}</div>
+                </div>
+            `;
         }
 
         // Filter handling
