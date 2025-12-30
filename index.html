@@ -1050,7 +1050,13 @@
                 website: "https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-cancun/cunif",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d152887-Reviews-Hyatt_Ziva_Cancun-Cancun_Yucatan_Peninsula.html",
                 features: ["Turquoize adults tower", "Kids club", "Swim-up suites", "World of Hyatt"],
-                notes: "Has adults-only Turquoize tower within resort - great for grandparents wanting quiet"
+                notes: "Has adults-only Turquoize tower within resort - great for grandparents wanting quiet",
+                // INSIDER INTEL
+                valueScore: 8,
+                renovated: "2023 (partial)",
+                serviceRating: "Excellent",
+                insiderTip: "CAUTION: Main building renovation ongoing - no main buffet currently. Reddit users report food quality dropped. Turquoize tower is adults-only oasis WITHIN resort - perfect split for your group! Points value ~$425/night = good redemption at 25k points.",
+                crowdLevel: "Medium-High"
             },
             {
                 id: 2,
@@ -1073,7 +1079,13 @@
                 website: "https://www.hardrockhotels.com/cancun",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d1022636-Reviews-Hard_Rock_Hotel_Cancun-Cancun_Yucatan_Peninsula.html",
                 features: ["Best accessibility", "Ramps everywhere", "Rock Star suites", "Water park"],
-                notes: "HIGHLY recommended for mobility - ramps to beach and pool, wheelchair accessible throughout"
+                notes: "HIGHLY recommended for mobility - ramps to beach and pool, wheelchair accessible throughout",
+                // INSIDER INTEL
+                valueScore: 9,
+                renovated: "2019",
+                serviceRating: "Very Good",
+                insiderTip: "TOP PICK FOR YOUR GROUP! Reddit unanimously recommends for wheelchair users - ramps to beach AND pool, golf carts available. Staff very accommodating with mobility needs. Great value at $320/night. Water park keeps kids busy while grandparents relax.",
+                crowdLevel: "Medium"
             },
             {
                 id: 3,
@@ -1096,7 +1108,13 @@
                 website: "https://www.moonpalacecancun.com/",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d155263-Reviews-Moon_Palace_Cancun-Cancun_Yucatan_Peninsula.html",
                 features: ["Massive resort", "FlowRider", "Waterpark", "Golf", "Resort credits"],
-                notes: "Huge property - lots of walking. Great for active families, may be tiring for elderly"
+                notes: "Huge property - lots of walking. Great for active families, may be tiring for elderly",
+                // INSIDER INTEL
+                valueScore: 6,
+                renovated: "2018",
+                serviceRating: "Mixed",
+                insiderTip: "WARNING: Reddit reviews are VERY mixed. 'Not worth the price' is common complaint. High season = overcrowded, buffet lines long. Beach is reportedly 'non-usable'. Great waterpark but NOT recommended for honeymoons or quiet getaways. Consider Grand for better experience.",
+                crowdLevel: "Very High"
             },
             {
                 id: 4,
@@ -1119,7 +1137,13 @@
                 website: "https://www.fiestamericanagrand.com/en/coral-beach-cancun",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d154435-Reviews-Grand_Fiesta_Americana_Coral_Beach_Cancun-Cancun_Yucatan_Peninsula.html",
                 features: ["AAA Five Diamond", "Gem Spa", "Butler service", "Premium location"],
-                notes: "Luxury option with excellent service. Good accessibility."
+                notes: "Luxury option with excellent service. Good accessibility.",
+                // INSIDER INTEL
+                valueScore: 9,
+                renovated: "2022",
+                serviceRating: "Outstanding",
+                insiderTip: "REDDIT FAVORITE! 97 upvotes on review saying 'we loved it'. Staff know guests by name. Spacious layout means less crowded than neighbors. Perfect for families who want quality over activities. Frequent travelers' go-to at $500-600/night. Live music excellent!",
+                crowdLevel: "Low-Medium"
             },
             {
                 id: 5,
@@ -1234,7 +1258,13 @@
                 website: "https://www.theexcellencecollection.com/finest-playa-mujeres",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150807-d8546989-Reviews-Finest_Playa_Mujeres-Cancun_Yucatan_Peninsula.html",
                 features: ["Luxury family", "Suite hotel", "Imagine kids club", "Rooftop pools"],
-                notes: "Premium family resort, all suites, excellent for multigenerational"
+                notes: "Premium family resort, all suites, excellent for multigenerational",
+                // INSIDER INTEL
+                valueScore: 8,
+                renovated: "2016 (Original)",
+                serviceRating: "Top Notch",
+                insiderTip: "Reddit rates 8.5/10. 'Service is absolutely top notch, food outstanding'. Kids club takes ages 3+ without parent! Small resort = you'll see kids regularly. ISSUE: Max 5 people/family suite, max 3 adults (13+) per room - may need creative booking for your 14. Some wear showing in 2024 reviews.",
+                crowdLevel: "Low"
             },
             {
                 id: 10,
@@ -1373,7 +1403,13 @@
                 website: "https://www.iberostar.com/en/hotels/riviera-maya/iberostar-selection-paraiso-maya/",
                 tripadvisor: "https://www.tripadvisor.com/Hotel_Review-g150812-d592583-Reviews-Iberostar_Selection_Paraiso_Maya-Playa_del_Carmen_Yucatan_Peninsula.html",
                 features: ["Part of 5-resort complex", "Marriott Bonvoy", "Water park", "Star Camp kids"],
-                notes: "Good family resort, part of larger Paraiso complex"
+                notes: "Good family resort, part of larger Paraiso complex",
+                // INSIDER INTEL
+                valueScore: 8,
+                renovated: "2020",
+                serviceRating: "Good",
+                insiderTip: "Great for kids 7-9! Part of 5-resort complex so tons to explore. WATCH OUT: Pushy timeshare sales, slow elevators, buffet closed 11am-1pm (only burgers/hot dogs). Good golf course. If traveling with kids & OK with buffet most nights, solid choice.",
+                crowdLevel: "Medium"
             },
             {
                 id: 16,
@@ -2182,7 +2218,7 @@
                 <div class="resort-card ${selectedResort?.id === r.id ? 'selected' : ''}" onclick="showResortInfo(resorts.find(x => x.id === ${r.id}))">
                     <div class="resort-header">
                         <span class="resort-name">${r.name}</span>
-                        <span class="resort-rating">★ ${r.rating}</span>
+                        <span class="resort-rating">${r.valueScore ? '<span style="background:' + (r.valueScore >= 8 ? '#059669' : r.valueScore >= 6 ? '#d97706' : '#dc2626') + ';color:white;padding:2px 6px;border-radius:4px;font-size:0.7rem;margin-right:6px;">' + r.valueScore + '/10</span>' : ''}★ ${r.rating}</span>
                     </div>
                     <div class="resort-location">${r.areaName} • ${r.airportDist} from CUN</div>
                     <div class="resort-tags">
@@ -2275,6 +2311,30 @@
                         <div style="font-weight:600;color:#4f46e5;">${resort.pointsCost}</div>
                         <div style="font-size:0.8rem;color:#666;margin-top:4px;">Points cover full all-inclusive package</div>
                     </div>
+                </div>
+                ` : ''}
+
+                ${resort.insiderTip ? `
+                <div class="info-section" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                    <div class="info-section-title" style="color: #92400e; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.2rem;">🔍</span> Insider Intel
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px;">
+                        <div style="text-align: center; padding: 8px; background: rgba(255,255,255,0.7); border-radius: 8px;">
+                            <div style="font-size: 1.3rem; font-weight: 700; color: ${resort.valueScore >= 8 ? '#059669' : resort.valueScore >= 6 ? '#d97706' : '#dc2626'};">${resort.valueScore}/10</div>
+                            <div style="font-size: 0.7rem; color: #666;">VALUE SCORE</div>
+                        </div>
+                        <div style="text-align: center; padding: 8px; background: rgba(255,255,255,0.7); border-radius: 8px;">
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #1e293b;">${resort.serviceRating || 'N/A'}</div>
+                            <div style="font-size: 0.7rem; color: #666;">SERVICE</div>
+                        </div>
+                        <div style="text-align: center; padding: 8px; background: rgba(255,255,255,0.7); border-radius: 8px;">
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #1e293b;">${resort.crowdLevel || 'N/A'}</div>
+                            <div style="font-size: 0.7rem; color: #666;">CROWDS</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #78350f; margin-bottom: 8px;"><strong>Renovated:</strong> ${resort.renovated || 'Unknown'}</div>
+                    <p style="font-size: 0.85rem; color: #78350f; line-height: 1.5; margin: 0;">${resort.insiderTip}</p>
                 </div>
                 ` : ''}
 
