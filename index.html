@@ -8077,7 +8077,7 @@
                 const total7 = getAccommodationCost(r);
                 const estTrip = estimateTripCost(r);
                 const budgetFit = getBudgetFit(r);
-                const hiddenCosts = getHiddenCostsForResort(r.id);
+                const costs = hiddenCosts[r.id] || {};
 
                 return `
                     <div class="comparison-item">
@@ -8107,27 +8107,13 @@
                             <div class="compare-amenities">
                                 <span class="compare-amenity ${r.family ? 'has' : 'missing'}">${r.family ? '✓' : '✗'} Family</span>
                                 <span class="compare-amenity ${r.accessible ? 'has' : 'missing'}">${r.accessible ? '✓' : '✗'} Accessible</span>
-                                <span class="compare-amenity ${hiddenCosts.freeTransfer ? 'has' : 'missing'}">${hiddenCosts.freeTransfer ? '✓' : '✗'} Free Transfer</span>
-                                <span class="compare-amenity ${hiddenCosts.parksIncluded ? 'has' : 'missing'}">${hiddenCosts.parksIncluded ? '✓' : '✗'} Parks Inc.</span>
+                                <span class="compare-amenity ${costs.freeTransfer ? 'has' : 'missing'}">${costs.freeTransfer ? '✓' : '✗'} Free Transfer</span>
+                                <span class="compare-amenity ${costs.parksIncluded ? 'has' : 'missing'}">${costs.parksIncluded ? '✓' : '✗'} Parks Inc.</span>
                             </div>
                         </div>
                     </div>
                 `;
             }).join('');
-        }
-
-        function getHiddenCostsForResort(resortId) {
-            const costs = {
-                1: { freeTransfer: false, parksIncluded: false },
-                2: { freeTransfer: false, parksIncluded: false },
-                3: { freeTransfer: true, parksIncluded: false, credits: 1500 },
-                11: { freeTransfer: true, parksIncluded: false },
-                12: { freeTransfer: true, parksIncluded: false },
-                16: { freeTransfer: true, parksIncluded: true, parksValue: 1200 },
-                41: { freeTransfer: false, parksIncluded: false },
-                44: { freeTransfer: false, parksIncluded: false }
-            };
-            return costs[resortId] || { freeTransfer: false, parksIncluded: false };
         }
 
         function shareComparison() {
