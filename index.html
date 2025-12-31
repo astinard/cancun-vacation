@@ -626,7 +626,6 @@
         .tag-points { background: #cffafe; color: #0e7490; }
         .tag-accessible { background: #ffedd5; color: #c2410c; }
         .tag-adults { background: #fee2e2; color: #991b1b; }
-        .tag-new { background: #cffafe; color: #0e7490; }
         .tag-villa { background: #ede9fe; color: #5b21b6; font-weight: 700; }
 
         .resort-price {
@@ -2313,26 +2312,6 @@
             opacity: 0.8;
         }
 
-        /* Compare checkbox */
-        .compare-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .compare-checkbox input {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .compare-checkbox label {
-            font-size: 0.75rem;
-            color: var(--gray);
-            cursor: pointer;
-        }
-
         /* ============================================
            MOBILE RESPONSIVE STYLES
            ============================================ */
@@ -2518,11 +2497,6 @@
 
             .resort-item {
                 min-height: 60px;
-            }
-
-            .compare-checkbox input {
-                width: 24px;
-                height: 24px;
             }
         }
 
@@ -6296,30 +6270,11 @@
             PEOPLE: familyMembers.length,
             NIGHTS: 7,
             ROOMS: 7,
-            BUDGET_MIN: 20000,
-            BUDGET_MAX: 25000,
-            BUDGET_SWEET: 22500,
             FLIGHT_ESTIMATE: 5330
         };
 
         // Resort lookup map for O(1) access
         const resortById = Object.fromEntries(resorts.map(r => [r.id, r]));
-
-        // Calculate accommodation total (handles villa vs rooms)
-        const calcAccommodation = (resort, nights = TRIP.NIGHTS) =>
-            resort.isVilla ? resort.priceMay24 * nights : resort.priceMay24 * TRIP.ROOMS * nights;
-
-        // =====================
-        // STORAGE HELPERS
-        // =====================
-        const storage = {
-            get: (key, defaultVal = {}) => {
-                try { return JSON.parse(localStorage.getItem(key)) || defaultVal; }
-                catch { return defaultVal; }
-            },
-            set: (key, value) => localStorage.setItem(key, JSON.stringify(value)),
-            remove: (key) => localStorage.removeItem(key)
-        };
 
         // Initialize map
         let map;
@@ -7097,7 +7052,6 @@
         const VOTE_KEY = 'cancunVacationVotes2025';
         const VOTER_NAME_KEY = 'cancunVoterName';
         const ROOM_CODE = 'STINARD2025';
-        const SYNC_INTERVAL = 5000;
         let currentVoter = null;
         let showAllResorts = false;
         let quickPickStep = 0;
@@ -7761,24 +7715,6 @@
 
             saveRankedChoices(rankedChoices);
             renderRankedOptions();
-            updateRankedResults();
-        }
-
-        function submitRankedVotes() {
-            if (!currentVoter) {
-                alert('Please select your name first!');
-                return;
-            }
-
-            rankedChoices = getRankedChoices();
-            const rankings = rankedChoices[currentVoter] || [];
-
-            if (rankings.length === 0) {
-                alert('Please rank at least one resort!');
-                return;
-            }
-
-            showToast(`Rankings saved for ${currentVoter}! ${rankings.length} resort(s) ranked.`);
             updateRankedResults();
         }
 
