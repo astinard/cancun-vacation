@@ -2525,12 +2525,106 @@
                 height: 24px;
             }
         }
+
+        /* =====================
+           UTILITY CLASSES
+           ===================== */
+        .flex { display: flex; }
+        .flex-col { display: flex; flex-direction: column; }
+        .flex-center { display: flex; align-items: center; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .flex-wrap { flex-wrap: wrap; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .flex-1 { flex: 1; }
+
+        .gap-1 { gap: 4px; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 10px; }
+        .gap-4 { gap: 12px; }
+        .gap-5 { gap: 15px; }
+        .gap-6 { gap: 20px; }
+
+        .mb-2 { margin-bottom: 8px; }
+        .mb-3 { margin-bottom: 10px; }
+        .mb-4 { margin-bottom: 12px; }
+        .mb-5 { margin-bottom: 15px; }
+        .mb-6 { margin-bottom: 20px; }
+        .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 10px; }
+
+        .p-2 { padding: 8px; }
+        .p-3 { padding: 10px; }
+        .p-4 { padding: 12px; }
+        .p-5 { padding: 15px; }
+
+        .rounded { border-radius: 6px; }
+        .rounded-md { border-radius: 8px; }
+        .rounded-lg { border-radius: 10px; }
+        .rounded-xl { border-radius: 12px; }
+        .rounded-full { border-radius: 50%; }
+
+        .text-xs { font-size: 0.75rem; }
+        .text-sm { font-size: 0.85rem; }
+        .text-lg { font-size: 1.1rem; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-center { text-align: center; }
+
+        .text-gray { color: #64748b; }
+        .text-slate { color: #1e293b; }
+        .text-green { color: #059669; }
+        .bg-white { background: white; }
+        .bg-gray-50 { background: #f8fafc; }
+        .bg-gray-100 { background: #f1f5f9; }
+
+        .stat-row { display: flex; justify-content: space-between; padding: 8px; background: #f1f5f9; border-radius: 6px; }
+        .link-card { display: flex; align-items: center; gap: 10px; padding: 12px; background: white; border-radius: 8px; text-decoration: none; color: #1e293b; }
+        .link-card-lg { display: flex; align-items: center; gap: 10px; padding: 15px; background: #f8fafc; border-radius: 10px; text-decoration: none; color: #1e293b; border: 2px solid transparent; transition: border-color 0.2s; }
+        .link-card-lg:hover { border-color: #0891b2; }
+        .section-heading { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .icon-heading { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .flex-between-mb { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .deal-link { display: flex; justify-content: space-between; padding: 10px; background: white; border-radius: 8px; text-decoration: none; }
+        .deal-link-amber { display: flex; justify-content: space-between; padding: 10px; background: white; border-radius: 8px; text-decoration: none; color: #78350f; }
+        .h-100 { height: 100px; }
+        .items-end { align-items: flex-end; }
+        .payment-link { display: flex; align-items: center; gap: 8px; color: #0891b2; text-decoration: none; }
+        .tsa-link { display: flex; justify-content: space-between; padding: 8px; background: #fef2f2; border-radius: 6px; text-decoration: none; color: #1e293b; }
+        .checkbox-label { display: flex; align-items: center; gap: 4px; padding: 6px 10px; background: white; border-radius: 6px; cursor: pointer; border: 1px solid #e2e8f0; }
+        .icon-text { display: flex; align-items: center; gap: 8px; }
+        .icon-text-bold { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+        .insurance-link { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f0f9ff; border-radius: 8px; text-decoration: none; color: #1e40af; border: 1px solid #bfdbfe; }
+        .flex-around { display: flex; justify-content: space-around; text-align: center; }
+        .flex-between-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .checklist-row { display: flex; gap: 8px; align-items: start; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .flex-between-mb-2 { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .flex-between-start { display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px; }
+        .flex-center-wrap { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .flex-center-wrap-mb { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .justify-center { justify-content: center; }
+        .flex-center-gap-6 { display: flex; align-items: center; gap: 6px; }
+        .gap-20 { gap: 20px; }
+        .roadmap-card { display: flex; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #14b8a6; }
+        .mb-0 { margin-bottom: 0; margin: 0; }
+        .mt-4 { margin-top: 15px; }
+        .mt-5 { margin-top: 20px; }
+        .alert-box { padding: 12px; border-radius: 8px; }
+        .alert-box-red { padding: 12px; background: #fef2f2; border-radius: 8px; }
+        .alert-box-green { padding: 12px; background: #f0fdf4; border-radius: 8px; }
+        .alert-box-yellow { padding: 12px; background: #fef3c7; border-radius: 8px; }
+        .alert-box-blue { padding: 12px; background: #f0f9ff; border-radius: 8px; }
+        .btn-primary { padding: 10px 20px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+        .btn-outline-white { padding: 10px 20px; background: white; color: #92400e; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .btn-amber { padding: 10px 20px; background: #92400e; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="header-content">
-            <h1><span style="font-size:1.6rem;">🌴</span> Cancun Family Vacation 2025 <span style="font-size:1.6rem;">🌊</span></h1>
+            <h1><span class="text-lg">🌴</span> Cancun Family Vacation 2025 <span class="text-lg">🌊</span></h1>
 
             <nav class="nav-tabs">
                 <button class="nav-tab active" data-view="map">Map</button>
@@ -2819,7 +2913,7 @@
 
             <div class="voting-section">
                 <h3>🏆 Pick Your Top Resort</h3>
-                <p style="font-size:0.85rem;color:#64748b;margin-bottom:15px;">Click to select your #1 choice. Your vote is saved automatically!</p>
+                <p class="text-sm text-gray mb-5">Click to select your #1 choice. Your vote is saved automatically!</p>
                 <div class="top-resorts-grid" id="topResortsGrid">
                     <!-- Top 4 resorts rendered by JS -->
                 </div>
@@ -2868,9 +2962,9 @@
             </div>
 
             <div class="results-panel" id="resultsPanel">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
-                    <h3 style="margin:0;">📊 Current Results</h3>
-                    <div style="display:flex;gap:8px;">
+                <div class="flex-between-mb">
+                    <h3 class="mb-0">📊 Current Results</h3>
+                    <div class="flex gap-2">
                         <button onclick="revealWinner()" class="reveal-btn" id="revealBtn" style="display:none;">
                             🎉 Reveal Winner
                         </button>
@@ -2942,13 +3036,13 @@
 
                 <!-- Price Tracking Dashboard -->
                 <div style="background:white;border-radius:16px;padding:24px;margin-top:20px;">
-                    <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                        <span style="font-size:1.5rem;">📊</span> Price Tracking & Deals
+                    <h3 class="section-heading">
+                        <span class="text-lg">📊</span> Price Tracking & Deals
                     </h3>
 
                     <!-- Deal Score Banner -->
                     <div id="dealScoreBanner" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%);color:white;padding:20px;border-radius:12px;margin-bottom:20px;">
-                        <div style="display:flex;align-items:center;gap:15px;">
+                        <div class="flex-center gap-5">
                             <div style="font-size:3rem;">🔥</div>
                             <div>
                                 <div style="font-size:1.5rem;font-weight:700;">Great Time to Book!</div>
@@ -2962,14 +3056,14 @@
                     </div>
 
                     <!-- Price History Chart (simplified visual) -->
-                    <div style="margin-bottom:20px;">
-                        <h4 style="margin-bottom:15px;color:#1e293b;">Resort Price Trends (Last 6 Months)</h4>
+                    <div class="mb-6">
+                        <h4 class="mb-5 text-slate">Resort Price Trends (Last 6 Months)</h4>
                         <div style="background:#f8fafc;border-radius:12px;padding:20px;">
                             <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:0.8rem;color:#64748b;">
                                 <span>$300/night</span>
                                 <span>$500/night</span>
                             </div>
-                            <div style="display:flex;align-items:flex-end;gap:8px;height:100px;">
+                            <div class="flex items-end gap-2 h-100">
                                 <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
                                     <div style="width:100%;background:#e2e8f0;border-radius:4px 4px 0 0;height:70%"></div>
                                     <span style="font-size:0.7rem;color:#64748b;margin-top:4px;">Jul</span>
@@ -3003,48 +3097,48 @@
 
                     <!-- Quick Check Links -->
                     <div>
-                        <h4 style="margin-bottom:15px;color:#1e293b;">Check Live Prices</h4>
+                        <h4 class="mb-5 text-slate">Check Live Prices</h4>
                         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;">
-                            <a href="https://www.costcotravel.com/Vacation-Packages/Mexico/Cancun" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
-                                <span style="font-size:1.5rem;">🏪</span>
+                            <a href="https://www.costcotravel.com/Vacation-Packages/Mexico/Cancun" target="_blank" class="link-card-lg">
+                                <span class="text-lg">🏪</span>
                                 <div>
-                                    <div style="font-weight:600;">Costco Travel</div>
+                                    <div class="font-semibold">Costco Travel</div>
                                     <div style="font-size:0.75rem;color:#10b981;">Often best value</div>
                                 </div>
                             </a>
-                            <a href="https://www.google.com/travel/flights?q=flights%20to%20cancun%20may%202025" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
-                                <span style="font-size:1.5rem;">✈️</span>
+                            <a href="https://www.google.com/travel/flights?q=flights%20to%20cancun%20may%202025" target="_blank" class="link-card-lg">
+                                <span class="text-lg">✈️</span>
                                 <div>
-                                    <div style="font-weight:600;">Google Flights</div>
-                                    <div style="font-size:0.75rem;color:#64748b;">Track flight prices</div>
+                                    <div class="font-semibold">Google Flights</div>
+                                    <div class="text-xs text-gray">Track flight prices</div>
                                 </div>
                             </a>
-                            <a href="https://www.kayak.com/hotels/Cancun,Mexico/2025-05-24/2025-05-31/2adults" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
-                                <span style="font-size:1.5rem;">🔍</span>
+                            <a href="https://www.kayak.com/hotels/Cancun,Mexico/2025-05-24/2025-05-31/2adults" target="_blank" class="link-card-lg">
+                                <span class="text-lg">🔍</span>
                                 <div>
-                                    <div style="font-weight:600;">Kayak</div>
-                                    <div style="font-size:0.75rem;color:#64748b;">Compare hotels</div>
+                                    <div class="font-semibold">Kayak</div>
+                                    <div class="text-xs text-gray">Compare hotels</div>
                                 </div>
                             </a>
-                            <a href="https://www.expedia.com/Cancun-Hotels.d178236.Travel-Guide-Hotels" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
-                                <span style="font-size:1.5rem;">🌐</span>
+                            <a href="https://www.expedia.com/Cancun-Hotels.d178236.Travel-Guide-Hotels" target="_blank" class="link-card-lg">
+                                <span class="text-lg">🌐</span>
                                 <div>
-                                    <div style="font-weight:600;">Expedia</div>
-                                    <div style="font-size:0.75rem;color:#64748b;">Bundle deals</div>
+                                    <div class="font-semibold">Expedia</div>
+                                    <div class="text-xs text-gray">Bundle deals</div>
                                 </div>
                             </a>
-                            <a href="https://www.southwest.com" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
-                                <span style="font-size:1.5rem;">❤️</span>
+                            <a href="https://www.southwest.com" target="_blank" class="link-card-lg">
+                                <span class="text-lg">❤️</span>
                                 <div>
-                                    <div style="font-weight:600;">Southwest</div>
-                                    <div style="font-size:0.75rem;color:#64748b;">Free bags + changes</div>
+                                    <div class="font-semibold">Southwest</div>
+                                    <div class="text-xs text-gray">Free bags + changes</div>
                                 </div>
                             </a>
-                            <a href="https://www.tripadvisor.com/Hotels-g150807-Cancun_Yucatan_Peninsula-Hotels.html" target="_blank" style="display:flex;align-items:center;gap:10px;padding:15px;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;border:2px solid transparent;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#0891b2'" onmouseout="this.style.borderColor='transparent'">
-                                <span style="font-size:1.5rem;">🦉</span>
+                            <a href="https://www.tripadvisor.com/Hotels-g150807-Cancun_Yucatan_Peninsula-Hotels.html" target="_blank" class="link-card-lg">
+                                <span class="text-lg">🦉</span>
                                 <div>
-                                    <div style="font-weight:600;">TripAdvisor</div>
-                                    <div style="font-size:0.75rem;color:#64748b;">Reviews + prices</div>
+                                    <div class="font-semibold">TripAdvisor</div>
+                                    <div class="text-xs text-gray">Reviews + prices</div>
                                 </div>
                             </a>
                         </div>
@@ -3052,15 +3146,15 @@
 
                     <!-- Price Alert Signup -->
                     <div style="margin-top:20px;background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);border-radius:12px;padding:20px;border:2px solid #f59e0b;">
-                        <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
+                        <div class="flex-center-wrap">
                             <span style="font-size:2rem;">🔔</span>
                             <div style="flex:1;min-width:200px;">
                                 <div style="font-weight:700;color:#92400e;">Set Price Alerts</div>
                                 <div style="font-size:0.85rem;color:#a16207;">Get notified when prices drop</div>
                             </div>
-                            <div style="display:flex;gap:10px;">
-                                <a href="https://www.google.com/travel/flights" target="_blank" style="padding:10px 20px;background:white;color:#92400e;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">Google Flights Alert</a>
-                                <a href="https://www.kayak.com/alerts" target="_blank" style="padding:10px 20px;background:#92400e;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">Kayak Alert</a>
+                            <div class="flex gap-3">
+                                <a href="https://www.google.com/travel/flights" target="_blank" class="btn-outline-white">Google Flights Alert</a>
+                                <a href="https://www.kayak.com/alerts" target="_blank" class="btn-amber">Kayak Alert</a>
                             </div>
                         </div>
                     </div>
@@ -3195,8 +3289,8 @@
 
             <!-- Deal Finder Section -->
             <div style="background:white;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                    <span style="font-size:1.5rem;">🔍</span> Deal Finder & Booking Tips
+                <h3 class="section-heading">
+                    <span class="text-lg">🔍</span> Deal Finder & Booking Tips
                 </h3>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px;">
                     <!-- Best Time to Book -->
@@ -3249,16 +3343,16 @@
                             <span>📦</span> Package Deals (Flight + Hotel)
                         </div>
                         <div style="display:grid;gap:8px;">
-                            <a href="https://www.costcotravel.com/Vacation-Packages/Mexico" target="_blank" style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;text-decoration:none;color:#78350f;">
-                                <span style="font-weight:600;">Costco Travel</span>
+                            <a href="https://www.costcotravel.com/Vacation-Packages/Mexico" target="_blank" class="deal-link-amber">
+                                <span class="font-semibold">Costco Travel</span>
                                 <span style="color:#059669;font-weight:600;">Best Value!</span>
                             </a>
-                            <a href="https://www.southwestvacations.com" target="_blank" style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;text-decoration:none;color:#78350f;">
-                                <span style="font-weight:600;">Southwest Vacations</span>
+                            <a href="https://www.southwestvacations.com" target="_blank" class="deal-link-amber">
+                                <span class="font-semibold">Southwest Vacations</span>
                                 <span style="color:#64748b;">Free bags/changes</span>
                             </a>
-                            <a href="https://www.applevacations.com" target="_blank" style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;text-decoration:none;color:#78350f;">
-                                <span style="font-weight:600;">Apple Vacations</span>
+                            <a href="https://www.applevacations.com" target="_blank" class="deal-link-amber">
+                                <span class="font-semibold">Apple Vacations</span>
                                 <span style="color:#64748b;">Charter flights</span>
                             </a>
                         </div>
@@ -3269,7 +3363,7 @@
             <!-- Flight Price Widget -->
             <div style="background:white;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
                 <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;color:#1e293b;">
-                    <span style="font-size:1.5rem;">✈️</span> Flight Price Tracker
+                    <span class="text-lg">✈️</span> Flight Price Tracker
                 </h3>
                 <p style="font-size:0.85rem;color:#64748b;margin-bottom:20px;">
                     Estimated prices for May 24-31, 2025 to Cancun (CUN). Click to check current prices.
@@ -3291,7 +3385,7 @@
             <!-- Price Alert Signup -->
             <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:2px solid #10b981;">
                 <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;color:#065f46;">
-                    <span style="font-size:1.5rem;">🔔</span> Get Price Drop Alerts
+                    <span class="text-lg">🔔</span> Get Price Drop Alerts
                 </h3>
                 <p style="font-size:0.9rem;color:#047857;margin-bottom:20px;">
                     Sign up to receive email notifications when prices drop for your favorite resorts.
@@ -3339,8 +3433,8 @@
 
             <!-- Comparison Panel -->
             <div style="margin-top:20px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                    <span style="font-size:1.5rem;">⚖️</span> Quick Comparison: Top Picks for Your Group
+                <h3 class="section-heading">
+                    <span class="text-lg">⚖️</span> Quick Comparison: Top Picks for Your Group
                 </h3>
                 <div id="quickComparison" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:15px;">
                 </div>
@@ -3358,7 +3452,7 @@
             </div>
 
             <!-- Day Selector -->
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;" id="dayTabs">
+            <div class="flex gap-2 flex-wrap mb-6" id="dayTabs">
                 <!-- Tabs rendered by JS -->
             </div>
 
@@ -3398,7 +3492,7 @@
                     <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Notes (optional)</label>
                     <input type="text" id="activityNotes" placeholder="Booking info, tips, who's participating..." style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;box-sizing:border-box;">
                 </div>
-                <div style="display:flex;gap:15px;margin-top:15px;">
+                <div class="flex gap-5 mt-3">
                     <div style="flex:1;">
                         <label style="display:block;font-size:0.8rem;font-weight:600;color:#0f766e;margin-bottom:4px;">Est. Cost (total)</label>
                         <input type="number" id="activityCost" placeholder="$0" style="width:100%;padding:10px;border:2px solid #14b8a6;border-radius:8px;box-sizing:border-box;">
@@ -3457,8 +3551,8 @@
                 <div>
                     <!-- Flight Tracker -->
                     <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:24px;">
-                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">✈️</span> Flight Tracker
+                        <h3 class="section-heading">
+                            <span class="text-lg">✈️</span> Flight Tracker
                             <button onclick="checkAllFlightStatus()" style="margin-left:auto;padding:6px 12px;background:#0891b2;color:white;border:none;border-radius:6px;font-size:0.8rem;cursor:pointer;">Check Status</button>
                         </h3>
                         <div id="flightTracker">
@@ -3471,8 +3565,8 @@
 
                     <!-- Room Assignments -->
                     <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">🛏️</span> Room Assignments
+                        <h3 class="section-heading">
+                            <span class="text-lg">🛏️</span> Room Assignments
                         </h3>
                         <div id="roomAssignments">
                             <!-- Rendered by JS -->
@@ -3484,8 +3578,8 @@
                 <div>
                     <!-- Contact Cards -->
                     <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:24px;">
-                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">📱</span> Family Contacts
+                        <h3 class="section-heading">
+                            <span class="text-lg">📱</span> Family Contacts
                             <button onclick="copyAllContacts()" style="margin-left:auto;padding:6px 12px;background:#10b981;color:white;border:none;border-radius:6px;font-size:0.8rem;cursor:pointer;">Copy All</button>
                         </h3>
                         <div id="contactCards" style="display:grid;gap:10px;">
@@ -3496,27 +3590,27 @@
                     <!-- Quick Links -->
                     <div style="background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);border-radius:16px;padding:24px;border:2px solid #f59e0b;">
                         <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;color:#92400e;">
-                            <span style="font-size:1.5rem;">🔗</span> Group Chat & Sharing
+                            <span class="text-lg">🔗</span> Group Chat & Sharing
                         </h3>
                         <div style="display:grid;gap:10px;">
-                            <a href="#" onclick="createWhatsAppGroup()" style="display:flex;align-items:center;gap:10px;padding:12px;background:white;border-radius:8px;text-decoration:none;color:#1e293b;">
-                                <span style="font-size:1.5rem;">💬</span>
+                            <a href="#" onclick="createWhatsAppGroup()" class="link-card">
+                                <span class="text-lg">💬</span>
                                 <div>
-                                    <div style="font-weight:600;">WhatsApp Group</div>
+                                    <div class="font-semibold">WhatsApp Group</div>
                                     <div style="font-size:0.8rem;color:#64748b;">Create group chat link</div>
                                 </div>
                             </a>
-                            <a href="#" onclick="sharePhotoAlbum()" style="display:flex;align-items:center;gap:10px;padding:12px;background:white;border-radius:8px;text-decoration:none;color:#1e293b;">
-                                <span style="font-size:1.5rem;">📸</span>
+                            <a href="#" onclick="sharePhotoAlbum()" class="link-card">
+                                <span class="text-lg">📸</span>
                                 <div>
-                                    <div style="font-weight:600;">Shared Photo Album</div>
+                                    <div class="font-semibold">Shared Photo Album</div>
                                     <div style="font-size:0.8rem;color:#64748b;">Create Google Photos / iCloud album</div>
                                 </div>
                             </a>
-                            <a href="#" onclick="shareCalendar()" style="display:flex;align-items:center;gap:10px;padding:12px;background:white;border-radius:8px;text-decoration:none;color:#1e293b;">
-                                <span style="font-size:1.5rem;">📅</span>
+                            <a href="#" onclick="shareCalendar()" class="link-card">
+                                <span class="text-lg">📅</span>
                                 <div>
-                                    <div style="font-weight:600;">Shared Calendar</div>
+                                    <div class="font-semibold">Shared Calendar</div>
                                     <div style="font-size:0.8rem;color:#64748b;">Add trip to everyone's calendar</div>
                                 </div>
                             </a>
@@ -3527,8 +3621,8 @@
 
             <!-- Expense Splitter -->
             <div style="margin-top:24px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                    <span style="font-size:1.5rem;">💰</span> Expense Splitter
+                <h3 class="section-heading">
+                    <span class="text-lg">💰</span> Expense Splitter
                     <span style="margin-left:auto;font-size:0.9rem;color:#64748b;">Track shared costs and settle up</span>
                 </h3>
 
@@ -3536,7 +3630,7 @@
                     <!-- Add Expense Form -->
                     <div>
                         <div style="background:#f8fafc;border-radius:12px;padding:20px;margin-bottom:20px;">
-                            <h4 style="margin-bottom:15px;color:#1e293b;">Add Shared Expense</h4>
+                            <h4 class="mb-5 text-slate">Add Shared Expense</h4>
                             <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;">
                                 <div>
                                     <label style="display:block;font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">Description</label>
@@ -3558,17 +3652,17 @@
                             </div>
                             <div style="margin-top:12px;">
                                 <label style="display:block;font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">Split Between</label>
-                                <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="checkbox-label">
                                         <input type="checkbox" class="expenseSplit" value="alex" checked> Alex (4)
                                     </label>
-                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                    <label class="checkbox-label">
                                         <input type="checkbox" class="expenseSplit" value="parents" checked> Parents (3)
                                     </label>
-                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                    <label class="checkbox-label">
                                         <input type="checkbox" class="expenseSplit" value="becketts" checked> Becketts (5)
                                     </label>
-                                    <label style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:white;border-radius:6px;cursor:pointer;border:1px solid #e2e8f0;">
+                                    <label class="checkbox-label">
                                         <input type="checkbox" class="expenseSplit" value="dann" checked> Dann (2)
                                     </label>
                                 </div>
@@ -3601,16 +3695,16 @@
                         <div style="margin-top:15px;padding:15px;background:#f8fafc;border-radius:12px;">
                             <h4 style="margin-bottom:10px;color:#1e293b;font-size:0.9rem;">Payment Options</h4>
                             <div style="display:grid;gap:8px;font-size:0.85rem;">
-                                <a href="https://venmo.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                <a href="https://venmo.com" target="_blank" class="payment-link">
                                     💳 Venmo
                                 </a>
-                                <a href="https://paypal.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                <a href="https://paypal.com" target="_blank" class="payment-link">
                                     💳 PayPal
                                 </a>
-                                <a href="https://cash.app" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                <a href="https://cash.app" target="_blank" class="payment-link">
                                     💳 Cash App
                                 </a>
-                                <a href="https://www.zelle.com" target="_blank" style="display:flex;align-items:center;gap:8px;color:#0891b2;text-decoration:none;">
+                                <a href="https://www.zelle.com" target="_blank" class="payment-link">
                                     💳 Zelle
                                 </a>
                             </div>
@@ -3622,7 +3716,7 @@
             <!-- Travel Day Section -->
             <div style="margin-top:24px;background:linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);border-radius:16px;padding:24px;border:2px solid #fca5a5;">
                 <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;color:#991b1b;">
-                    <span style="font-size:1.5rem;">🛫</span> Travel Day Toolkit
+                    <span class="text-lg">🛫</span> Travel Day Toolkit
                 </h3>
 
                 <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:20px;">
@@ -3630,19 +3724,19 @@
                     <div style="background:white;border-radius:12px;padding:20px;">
                         <h4 style="color:#991b1b;margin-bottom:12px;">⏱️ TSA Wait Times</h4>
                         <div style="display:grid;gap:8px;font-size:0.9rem;">
-                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" class="tsa-link">
                                 <span>DSM - Des Moines</span>
                                 <span style="color:#0891b2;">Check →</span>
                             </a>
-                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" class="tsa-link">
                                 <span>CID - Cedar Rapids</span>
                                 <span style="color:#0891b2;">Check →</span>
                             </a>
-                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" class="tsa-link">
                                 <span>OMA - Omaha</span>
                                 <span style="color:#0891b2;">Check →</span>
                             </a>
-                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" style="display:flex;justify-content:space-between;padding:8px;background:#fef2f2;border-radius:6px;text-decoration:none;color:#1e293b;">
+                            <a href="https://www.tsa.gov/travel/passenger-support" target="_blank" class="tsa-link">
                                 <span>MCO - Orlando</span>
                                 <span style="color:#0891b2;">Check →</span>
                             </a>
@@ -3665,22 +3759,22 @@
                     <div style="background:white;border-radius:12px;padding:20px;">
                         <h4 style="color:#991b1b;margin-bottom:12px;">📋 Keep Accessible</h4>
                         <div style="display:grid;gap:6px;font-size:0.85rem;">
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="icon-text">
                                 <span style="color:#10b981;">✓</span> Passport
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="icon-text">
                                 <span style="color:#10b981;">✓</span> Boarding pass (phone OK)
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="icon-text">
                                 <span style="color:#10b981;">✓</span> Hotel confirmation
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="icon-text">
                                 <span style="color:#10b981;">✓</span> Transfer voucher
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="icon-text">
                                 <span style="color:#10b981;">✓</span> Pen (for customs form)
                             </div>
-                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="icon-text">
                                 <span style="color:#10b981;">✓</span> Small bills for tips
                             </div>
                         </div>
@@ -3690,39 +3784,39 @@
 
             <!-- Medical Spanish -->
             <div style="margin-top:24px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                    <span style="font-size:1.5rem;">🏥</span> Medical Spanish Phrases
+                <h3 class="section-heading">
+                    <span class="text-lg">🏥</span> Medical Spanish Phrases
                 </h3>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:15px;font-size:0.9rem;">
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">I need a doctor</div>
                         <div style="color:#1e293b;">Necesito un médico</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">I'm allergic to...</div>
                         <div style="color:#1e293b;">Soy alérgico/a a...</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">It hurts here</div>
                         <div style="color:#1e293b;">Me duele aquí</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">I have a fever</div>
                         <div style="color:#1e293b;">Tengo fiebre</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">Where is the pharmacy?</div>
                         <div style="color:#1e293b;">¿Dónde está la farmacia?</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">Call an ambulance</div>
                         <div style="color:#1e293b;">Llame una ambulancia</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">I have diabetes</div>
                         <div style="color:#1e293b;">Tengo diabetes</div>
                     </div>
-                    <div style="padding:12px;background:#fef2f2;border-radius:8px;">
+                    <div class="alert-box-red">
                         <div style="color:#991b1b;font-weight:600;">Medicine for pain</div>
                         <div style="color:#1e293b;">Medicina para el dolor</div>
                     </div>
@@ -3741,18 +3835,18 @@
 
             <!-- Progress Overview -->
             <div style="background:linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);border-radius:16px;padding:24px;color:white;margin-bottom:24px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;">
+                <div class="flex-between-wrap">
                     <div>
                         <h3 style="margin-bottom:8px;">Trip Countdown</h3>
                         <div id="tripCountdown" style="font-size:2rem;font-weight:700;">Loading...</div>
                     </div>
                     <div style="text-align:right;">
                         <div style="font-size:0.9rem;opacity:0.9;">Preparation Progress</div>
-                        <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+                        <div class="flex-center gap-3 mt-2">
                             <div style="width:200px;height:12px;background:rgba(255,255,255,0.2);border-radius:6px;overflow:hidden;">
                                 <div id="prepProgressBar" style="height:100%;background:white;border-radius:6px;transition:width 0.3s;width:0%;"></div>
                             </div>
-                            <span id="prepProgressText" style="font-weight:600;">0%</span>
+                            <span id="prepProgressText" class="font-semibold">0%</span>
                         </div>
                     </div>
                 </div>
@@ -3762,8 +3856,8 @@
                 <!-- Left Column: Trip Prep Checklist -->
                 <div>
                     <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:24px;">
-                        <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">📋</span> Trip Preparation Checklist
+                        <h3 class="section-heading">
+                            <span class="text-lg">📋</span> Trip Preparation Checklist
                         </h3>
                         <div id="prepChecklist">
                             <!-- Rendered by JS -->
@@ -3773,19 +3867,19 @@
                     <!-- Emergency Contacts -->
                     <div style="background:linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);border-radius:16px;padding:24px;border:2px solid #fca5a5;">
                         <h3 style="margin-bottom:15px;color:#991b1b;display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">🆘</span> Emergency Contacts
+                            <span class="text-lg">🆘</span> Emergency Contacts
                         </h3>
                         <div style="display:grid;gap:12px;font-size:0.9rem;">
-                            <div style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;">
-                                <span style="font-weight:600;">US Embassy (Merida)</span>
+                            <div class="deal-link">
+                                <span class="font-semibold">US Embassy (Merida)</span>
                                 <a href="tel:+529999420500" style="color:#0891b2;">+52 999 942 0500</a>
                             </div>
-                            <div style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;">
-                                <span style="font-weight:600;">Tourist Police</span>
+                            <div class="deal-link">
+                                <span class="font-semibold">Tourist Police</span>
                                 <a href="tel:911" style="color:#0891b2;">911</a>
                             </div>
-                            <div style="display:flex;justify-content:space-between;padding:10px;background:white;border-radius:8px;">
-                                <span style="font-weight:600;">Hospiten Cancun (Hospital)</span>
+                            <div class="deal-link">
+                                <span class="font-semibold">Hospiten Cancun (Hospital)</span>
                                 <a href="tel:+529988817777" style="color:#0891b2;">+52 998 881 7777</a>
                             </div>
                         </div>
@@ -3795,11 +3889,11 @@
                 <!-- Right Column: Packing List -->
                 <div>
                     <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-                            <h3 style="display:flex;align-items:center;gap:10px;">
-                                <span style="font-size:1.5rem;">🎒</span> Packing List
+                        <div class="section-header">
+                            <h3 class="flex-center gap-3">
+                                <span class="text-lg">🎒</span> Packing List
                             </h3>
-                            <div style="display:flex;gap:8px;">
+                            <div class="flex gap-2">
                                 <button onclick="resetPackingList()" style="padding:6px 12px;border:1px solid #e2e8f0;background:white;border-radius:6px;font-size:0.8rem;cursor:pointer;">Reset</button>
                                 <button onclick="printPackingList()" style="padding:6px 12px;border:none;background:#0891b2;color:white;border-radius:6px;font-size:0.8rem;cursor:pointer;">🖨️ Print</button>
                             </div>
@@ -3816,8 +3910,8 @@
             <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px;">
                 <!-- Currency & Tipping -->
                 <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                    <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                        <span style="font-size:1.5rem;">💵</span> Currency & Tipping
+                    <h3 class="icon-heading">
+                        <span class="text-lg">💵</span> Currency & Tipping
                     </h3>
                     <div style="display:grid;gap:12px;font-size:0.9rem;">
                         <div style="padding:12px;background:#f0fdf4;border-radius:8px;">
@@ -3840,24 +3934,24 @@
 
                 <!-- Weather -->
                 <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                    <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                        <span style="font-size:1.5rem;">🌤️</span> May Weather in Cancun
+                    <h3 class="icon-heading">
+                        <span class="text-lg">🌤️</span> May Weather in Cancun
                     </h3>
                     <div style="display:grid;gap:12px;font-size:0.9rem;">
-                        <div style="display:flex;justify-content:space-around;text-align:center;">
+                        <div class="flex-around">
                             <div>
                                 <div style="font-size:2rem;">🌡️</div>
-                                <div style="font-weight:600;">82-90°F</div>
+                                <div class="font-semibold">82-90°F</div>
                                 <div style="font-size:0.8rem;color:#64748b;">High</div>
                             </div>
                             <div>
                                 <div style="font-size:2rem;">💧</div>
-                                <div style="font-weight:600;">75-80%</div>
+                                <div class="font-semibold">75-80%</div>
                                 <div style="font-size:0.8rem;color:#64748b;">Humidity</div>
                             </div>
                             <div>
                                 <div style="font-size:2rem;">🌧️</div>
-                                <div style="font-weight:600;">8 days</div>
+                                <div class="font-semibold">8 days</div>
                                 <div style="font-size:0.8rem;color:#64748b;">Rainy</div>
                             </div>
                         </div>
@@ -3869,31 +3963,17 @@
 
                 <!-- Spanish Phrases -->
                 <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                    <h3 style="margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                        <span style="font-size:1.5rem;">🗣️</span> Helpful Spanish
+                    <h3 class="icon-heading">
+                        <span class="text-lg">🗣️</span> Helpful Spanish
                     </h3>
-                    <div style="display:grid;gap:8px;font-size:0.85rem;">
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>Hello</span><span style="font-weight:600;">Hola</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>Thank you</span><span style="font-weight:600;">Gracias</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>Please</span><span style="font-weight:600;">Por favor</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>How much?</span><span style="font-weight:600;">¿Cuánto cuesta?</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>Where is...?</span><span style="font-weight:600;">¿Dónde está...?</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>The bill, please</span><span style="font-weight:600;">La cuenta, por favor</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;padding:8px;background:#f1f5f9;border-radius:6px;">
-                            <span>Cheers!</span><span style="font-weight:600;">¡Salud!</span>
-                        </div>
+                    <div style="display:grid;gap:8px;" class="text-sm">
+                        <div class="stat-row"><span>Hello</span><span class="font-semibold">Hola</span></div>
+                        <div class="stat-row"><span>Thank you</span><span class="font-semibold">Gracias</span></div>
+                        <div class="stat-row"><span>Please</span><span class="font-semibold">Por favor</span></div>
+                        <div class="stat-row"><span>How much?</span><span class="font-semibold">¿Cuánto cuesta?</span></div>
+                        <div class="stat-row"><span>Where is...?</span><span class="font-semibold">¿Dónde está...?</span></div>
+                        <div class="stat-row"><span>The bill, please</span><span class="font-semibold">La cuenta, por favor</span></div>
+                        <div class="stat-row"><span>Cheers!</span><span class="font-semibold">¡Salud!</span></div>
                     </div>
                 </div>
             </div>
@@ -3901,7 +3981,7 @@
             <!-- Travel Insurance Section -->
             <div style="margin-top:24px;background:linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);border-radius:16px;padding:24px;border:2px solid #3b82f6;">
                 <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;color:#1e40af;">
-                    <span style="font-size:1.5rem;">🛡️</span> Travel Insurance Guide
+                    <span class="text-lg">🛡️</span> Travel Insurance Guide
                 </h3>
 
                 <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:20px;">
@@ -3925,16 +4005,16 @@
                             <span>⭐</span> Top Recommendations
                         </h4>
                         <div style="display:grid;gap:10px;font-size:0.9rem;">
-                            <a href="https://www.travelinsurance.com" target="_blank" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f0f9ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #bfdbfe;">
-                                <span style="font-weight:600;">World Nomads</span>
+                            <a href="https://www.travelinsurance.com" target="_blank" class="insurance-link">
+                                <span class="font-semibold">World Nomads</span>
                                 <span style="font-size:0.8rem;color:#64748b;">Good for activities</span>
                             </a>
-                            <a href="https://www.allianztravel.com" target="_blank" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f0f9ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #bfdbfe;">
-                                <span style="font-weight:600;">Allianz Travel</span>
+                            <a href="https://www.allianztravel.com" target="_blank" class="insurance-link">
+                                <span class="font-semibold">Allianz Travel</span>
                                 <span style="font-size:0.8rem;color:#64748b;">Comprehensive plans</span>
                             </a>
-                            <a href="https://www.squaremouth.com" target="_blank" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f0f9ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #bfdbfe;">
-                                <span style="font-weight:600;">SquareMouth</span>
+                            <a href="https://www.squaremouth.com" target="_blank" class="insurance-link">
+                                <span class="font-semibold">SquareMouth</span>
                                 <span style="font-size:0.8rem;color:#64748b;">Compare policies</span>
                             </a>
                         </div>
@@ -3946,23 +4026,23 @@
                             <span>✅</span> Best Practices
                         </h4>
                         <div style="display:grid;gap:8px;font-size:0.9rem;color:#475569;">
-                            <div style="display:flex;gap:8px;align-items:start;">
+                            <div class="checklist-row">
                                 <span style="color:#10b981;">✓</span>
                                 <span><strong>Buy within 14 days of booking</strong> to get pre-existing condition coverage</span>
                             </div>
-                            <div style="display:flex;gap:8px;align-items:start;">
+                            <div class="checklist-row">
                                 <span style="color:#10b981;">✓</span>
                                 <span><strong>Check credit card benefits</strong> - some cards include travel insurance</span>
                             </div>
-                            <div style="display:flex;gap:8px;align-items:start;">
+                            <div class="checklist-row">
                                 <span style="color:#10b981;">✓</span>
                                 <span><strong>Get "Cancel for Any Reason"</strong> for maximum flexibility (costs more)</span>
                             </div>
-                            <div style="display:flex;gap:8px;align-items:start;">
+                            <div class="checklist-row">
                                 <span style="color:#10b981;">✓</span>
                                 <span><strong>Keep receipts</strong> for any expenses you may need to claim</span>
                             </div>
-                            <div style="display:flex;gap:8px;align-items:start;">
+                            <div class="checklist-row">
                                 <span style="color:#f59e0b;">⚠️</span>
                                 <span><strong>Skip airline insurance</strong> - it's usually overpriced and limited</span>
                             </div>
@@ -3977,8 +4057,8 @@
 
             <!-- Resort Amenities Comparison -->
             <div style="margin-top:24px;background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-                <h3 style="margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                    <span style="font-size:1.5rem;">🏨</span> Resort Amenities Comparison
+                <h3 class="section-heading">
+                    <span class="text-lg">🏨</span> Resort Amenities Comparison
                 </h3>
                 <p style="color:#64748b;margin-bottom:20px;font-size:0.9rem;">Compare what's included at each resort so you know what to pack and what to expect.</p>
                 <div style="overflow-x:auto;">
@@ -4030,10 +4110,10 @@
             </div>
             <div class="attraction-modal-body">
                 <div class="attraction-detail-section">
-                    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:15px;">
-                        <div style="display:flex;align-items:center;gap:6px;">
+                    <div class="flex gap-20 flex-wrap mb-5">
+                        <div class="flex-center-gap-6">
                             <span style="color:#f59e0b;font-size:1.2rem;">★</span>
-                            <span id="modalRating" style="font-weight:700;"></span>
+                            <span id="modalRating" class="font-bold"></span>
                             <span id="modalReviewCount" style="color:#64748b;font-size:0.85rem;"></span>
                         </div>
                         <div id="modalPriceRange" style="font-weight:600;color:#059669;"></div>
@@ -6703,7 +6783,7 @@
 
             document.getElementById('panelBody').innerHTML = `
                 ${dealBadge ? `
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:15px;flex-wrap:wrap;">
+                <div class="flex-center-wrap-mb">
                     <span class="deal-badge ${dealBadge.class}">${dealBadge.icon} ${dealBadge.text}</span>
                     ${trendHTML}
                 </div>
@@ -7122,7 +7202,7 @@
 
             container.innerHTML = `
                 <div style="margin-bottom:10px;font-size:0.85rem;opacity:0.8;">Who's voting?</div>
-                <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+                <div class="flex flex-wrap gap-2 justify-center">
                     ${familyMembers.map(m =>
                         `<button class="voter-btn ${currentVoter === m ? 'active' : ''}" onclick="selectVoter('${m}')">${m}</button>`
                     ).join('')}
@@ -7341,7 +7421,7 @@
                     <div class="quick-pick-resort-card">
                         <div style="font-size:1.5rem;font-weight:700;color:#1e293b;margin-bottom:8px;">${resort.name}</div>
                         <div style="color:#059669;font-weight:600;margin-bottom:15px;">${reason}</div>
-                        <div style="display:flex;justify-content:center;gap:15px;flex-wrap:wrap;">
+                        <div class="flex justify-center gap-5 flex-wrap">
                             <span style="background:#f1f5f9;padding:6px 12px;border-radius:6px;">$${resort.priceMay24}/night</span>
                             <span style="background:#f1f5f9;padding:6px 12px;border-radius:6px;">★ ${resort.rating}</span>
                             <span class="budget-badge ${budgetFit.class}">${budgetFit.label}</span>
@@ -7737,7 +7817,7 @@
                                 <div class="ranked-result-item">
                                     <div class="ranked-result-position ${posClass}">${idx + 1}</div>
                                     <div style="flex-grow:1;">
-                                        <div style="font-weight:600;">${resort?.name || 'Unknown'}</div>
+                                        <div class="font-semibold">${resort?.name || 'Unknown'}</div>
                                         <div style="font-size:0.8rem;opacity:0.8;">${score} points from ${voters.length} voter(s)</div>
                                     </div>
                                 </div>
@@ -7947,7 +8027,7 @@
                     ${savings.map(s => `
                         <div class="savings-item">
                             <span>${s.label}</span>
-                            <span style="font-weight:600;">+$${s.amount.toLocaleString()}</span>
+                            <span class="font-semibold">+$${s.amount.toLocaleString()}</span>
                         </div>
                     `).join('')}
                     <div class="savings-total">
@@ -8030,8 +8110,8 @@
 
                 return `
                     <div class="comparison-item">
-                        <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
-                            <h4 style="margin:0;">${r.name}</h4>
+                        <div class="flex-between-start">
+                            <h4 class="mb-0">${r.name}</h4>
                             <button onclick="toggleCompare(${r.id})" style="background:none;border:none;cursor:pointer;font-size:1rem;">✕</button>
                         </div>
                         <span class="budget-badge ${budgetFit.class}" style="font-size:0.7rem;">${budgetFit.label}</span>
@@ -8040,7 +8120,7 @@
                             <div class="compare-section-title">Pricing</div>
                             <div class="compare-row"><span>Per night:</span><span>$${r.priceMay24}</span></div>
                             <div class="compare-row"><span>7-night accom:</span><span style="color:#059669;font-weight:600;">$${total7.toLocaleString()}</span></div>
-                            <div class="compare-row"><span>Est. total trip:</span><span style="font-weight:600;">$${estTrip.toLocaleString()}</span></div>
+                            <div class="compare-row"><span>Est. total trip:</span><span class="font-semibold">$${estTrip.toLocaleString()}</span></div>
                             <div class="compare-row"><span>Per person:</span><span>$${Math.round(estTrip/14).toLocaleString()}</span></div>
                         </div>
 
@@ -8315,7 +8395,7 @@
 
                 return `
                     <a href="${f.googleUrl}" target="_blank" style="text-decoration:none;display:block;padding:16px;background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);border-radius:12px;border:2px solid #e2e8f0;transition:all 0.2s;">
-                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                        <div class="flex-between-mb-2">
                             <div style="font-weight:700;color:#1e293b;">${f.airport}</div>
                             <span style="font-size:0.75rem;color:${trendColor};">${trendIcon}</span>
                         </div>
@@ -8460,10 +8540,10 @@
 
             container.innerHTML = `
                 <h3 style="margin-bottom:20px;color:#1e293b;">${dayInfo?.date} - ${dayInfo?.label}</h3>
-                <div style="display:flex;flex-direction:column;gap:12px;">
+                <div class="flex-col gap-4">
                     ${items.map(item => `
-                        <div style="display:flex;gap:15px;padding:15px;background:#f8fafc;border-radius:10px;border-left:4px solid #14b8a6;">
-                            <div style="font-size:1.5rem;">${categoryIcons[item.category] || '📌'}</div>
+                        <div class="roadmap-card">
+                            <div class="text-lg">${categoryIcons[item.category] || '📌'}</div>
                             <div style="flex:1;">
                                 <div style="font-weight:600;color:#1e293b;margin-bottom:4px;">${item.title}</div>
                                 <div style="font-size:0.8rem;color:#64748b;display:flex;gap:15px;">
@@ -8592,7 +8672,7 @@
 
                 return `
                     <div style="background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);border-radius:12px;padding:16px;border:2px solid ${borderColor};">
-                        <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
+                        <div class="flex-between-start">
                             <div style="font-weight:700;color:#1e293b;">${r.name}</div>
                             <span class="budget-badge ${budgetFit.class}">${budgetFit.status === 'sweet' ? '✓' : budgetFit.status === 'under' ? '💰' : '⚠️'} ${budgetFit.label}</span>
                         </div>
@@ -8609,7 +8689,7 @@
                         </div>
                         ${budgetFit.status === 'under' ? `<div style="font-size:0.75rem;color:#059669;font-weight:600;margin-bottom:8px;">💰 $${budgetFit.diff.toLocaleString()} under budget!</div>` : ''}
                         ${budgetFit.status === 'over' ? `<div style="font-size:0.75rem;color:#d97706;font-weight:600;margin-bottom:8px;">⚠️ $${budgetFit.diff.toLocaleString()} over max budget</div>` : ''}
-                        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                        <div class="flex gap-1 flex-wrap">
                             ${dealBadge ? `<span class="deal-badge ${dealBadge.class}" style="font-size:0.6rem;padding:2px 6px;">${dealBadge.icon}</span>` : ''}
                             ${r.valueScore ? `<span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${r.valueScore}/10</span>` : ''}
                             ${r.accessible ? `<span style="background:#ffedd5;color:#c2410c;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">♿</span>` : ''}
@@ -8851,13 +8931,13 @@
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.85rem;">
                             <div style="padding:10px;background:white;border-radius:6px;">
                                 <div style="color:#64748b;font-size:0.75rem;">OUTBOUND</div>
-                                <div style="font-weight:600;">${f.outbound.flight}</div>
+                                <div class="font-semibold">${f.outbound.flight}</div>
                                 <div>${f.outbound.from} → ${f.outbound.to}</div>
                                 <div style="color:#10b981;">${f.outbound.depart}</div>
                             </div>
                             <div style="padding:10px;background:white;border-radius:6px;">
                                 <div style="color:#64748b;font-size:0.75rem;">RETURN</div>
-                                <div style="font-weight:600;">${f.return.flight}</div>
+                                <div class="font-semibold">${f.return.flight}</div>
                                 <div>${f.return.from} → ${f.return.to}</div>
                                 <div style="color:#ef4444;">${f.return.depart}</div>
                             </div>
@@ -8883,13 +8963,13 @@
                 }
                 return `
                     <div style="margin-bottom:15px;padding:15px;background:#f8fafc;border-radius:10px;border-left:4px solid ${g.color};">
-                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div class="flex-between">
                             <div>
                                 <div style="font-weight:600;color:${g.color};">${g.name}</div>
                                 <div style="font-size:0.85rem;color:#64748b;">${g.members.join(', ')}</div>
                             </div>
                             <div style="text-align:right;">
-                                <div style="font-size:0.75rem;color:#64748b;">ROOMS</div>
+                                <div class="text-xs text-gray">ROOMS</div>
                                 <div style="font-weight:700;font-size:1.2rem;">${rooms.join(' & ')}</div>
                             </div>
                         </div>
@@ -9012,7 +9092,7 @@ END:VCALENDAR`;
                 return `
                     <div style="padding:12px;background:#f8fafc;border-radius:8px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
                         <div style="flex:1;">
-                            <div style="font-weight:600;">${e.desc}</div>
+                            <div class="font-semibold">${e.desc}</div>
                             <div style="font-size:0.8rem;color:#64748b;">Paid by ${payer?.name || e.paidBy}</div>
                         </div>
                         <div style="font-weight:700;color:#10b981;">$${e.amount.toFixed(2)}</div>
@@ -9323,7 +9403,7 @@ END:VCALENDAR`;
             const saved = getSavedPrepChecklist();
 
             container.innerHTML = prepChecklistData.map(section => `
-                <div style="margin-bottom:20px;">
+                <div class="mb-6">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding:8px 12px;background:#f0fdfa;border-radius:8px;border-left:4px solid #14b8a6;">
                         <span style="font-size:1.2rem;">${section.icon}</span>
                         <span style="font-weight:600;color:#0f766e;">${section.timeframe}</span>
@@ -9347,7 +9427,7 @@ END:VCALENDAR`;
             const saved = getSavedPackingList();
 
             container.innerHTML = packingListData.map(section => `
-                <div style="margin-bottom:20px;">
+                <div class="mb-6">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;" onclick="togglePackingSection('${section.category}')">
                         <span style="font-size:1.2rem;">${section.icon}</span>
                         <span style="font-weight:600;color:#1e293b;">${section.category}</span>
