@@ -6315,6 +6315,14 @@
             return resort.isVilla ? price * nights : price * TRIP.ROOMS * nights;
         };
 
+        // Get villa-specific labels for display
+        const getVillaLabels = (isVilla, nights = TRIP.NIGHTS) => ({
+            priceLabel: isVilla ? '/night (entire villa)' : '/night per room',
+            totalLabel: isVilla ? `Est. Total (${nights} nights entire villa)` : `Est. Total (${TRIP.ROOMS} rooms × ${nights} nights)`,
+            accommodationLabel: isVilla ? 'villa' : `${TRIP.ROOMS} rooms`,
+            totalHeader: isVilla ? 'Total (Villa)' : `${TRIP.ROOMS} Rooms Total`
+        });
+
         // Calculate transfer cost based on type and resort inclusions
         const getTransferCost = (transferType, hasFreeTransfer = false) => {
             if (transferType === 'included' && hasFreeTransfer) return 0;
@@ -6785,8 +6793,7 @@
             const isVilla = resort.isVilla;
             const total7May = getAccommodationCost(resort, TRIP.NIGHTS, 'priceMay24');
             const total7Jun = getAccommodationCost(resort, TRIP.NIGHTS, 'priceMay31');
-            const priceLabel = isVilla ? '/night (entire villa)' : '/night per room';
-            const totalLabel = isVilla ? 'Est. Total (7 nights entire villa)' : 'Est. Total (7 rooms × 7 nights)';
+            const { priceLabel, totalLabel, totalHeader } = getVillaLabels(isVilla);
 
             // Get deal info
             const dealBadge = getDealBadge(resort);
@@ -6838,7 +6845,7 @@
                                 <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${resort.priceMay24.toLocaleString()}</div>
                             </div>
                             <div style="text-align:center;">
-                                <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${isVilla ? 'Total (Villa)' : '7 Rooms Total'}</div>
+                                <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${totalHeader}</div>
                                 <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${total7May.toLocaleString()}</div>
                             </div>
                         </div>
@@ -6998,6 +7005,7 @@
             // Calculate totals
             const perNight = basePrice;
             const totalGroup = getAccommodationCost(selectedResort, nights, priceKey);
+            const { totalHeader } = getVillaLabels(selectedResort.isVilla, nights);
 
             // Calculate date range
             const startDates = {
@@ -7021,7 +7029,7 @@
                         <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${perNight.toLocaleString()}</div>
                     </div>
                     <div style="text-align:center;">
-                        <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${isVilla ? 'Total (Villa)' : '7 Rooms Total'}</div>
+                        <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${totalHeader}</div>
                         <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${totalGroup.toLocaleString()}</div>
                     </div>
                 </div>
@@ -8702,9 +8710,9 @@
 
             // Resort cost
             const isVilla = resort.isVilla;
-            const pricePerNight = week === 'may24' ? resort.priceMay24 : resort.priceMay31;
-            const roomsOrVilla = isVilla ? 1 : 7;
-            const accommodationTotal = pricePerNight * roomsOrVilla * nights;
+            const priceKey = week === 'may24' ? 'priceMay24' : 'priceMay31';
+            const accommodationTotal = getAccommodationCost(resort, nights, priceKey);
+            const { accommodationLabel } = getVillaLabels(isVilla, nights);
 
             // Transfer costs
             const costs = hiddenCosts[resort.id];
@@ -8740,7 +8748,7 @@
                             <span class="amount">$${totalFlights.toLocaleString()}</span>
                         </div>
                         <div class="budget-total-row">
-                            <span class="label">🏨 Accommodation (${isVilla ? 'villa' : '7 rooms'} × ${nights} nights)</span>
+                            <span class="label">🏨 Accommodation (${accommodationLabel} × ${nights} nights)</span>
                             <span class="amount">$${accommodationTotal.toLocaleString()}</span>
                         </div>
                         <div class="budget-total-row">
