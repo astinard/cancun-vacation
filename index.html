@@ -7013,29 +7013,26 @@
             `;
         }
 
-        // Filter handling
-        document.querySelectorAll('.chip[data-filter="area"]').forEach(chip => {
-            chip.addEventListener('click', () => {
-                document.querySelectorAll('.chip[data-filter="area"]').forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                renderMarkers();
+        // Filter handling helper - reduces duplicate event listener code
+        const attachFilterListener = (filterType, singleSelect = true, callback = renderMarkers) => {
+            const selector = `.chip[data-filter="${filterType}"]`;
+            document.querySelectorAll(selector).forEach(chip => {
+                chip.addEventListener('click', () => {
+                    if (singleSelect) {
+                        document.querySelectorAll(selector).forEach(c => c.classList.remove('active'));
+                        chip.classList.add('active');
+                    } else {
+                        chip.classList.toggle('active');
+                    }
+                    callback();
+                });
             });
-        });
+        };
 
-        document.querySelectorAll('.chip[data-filter="price"]').forEach(chip => {
-            chip.addEventListener('click', () => {
-                document.querySelectorAll('.chip[data-filter="price"]').forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                renderMarkers();
-            });
-        });
-
-        document.querySelectorAll('.chip[data-filter="feature"]').forEach(chip => {
-            chip.addEventListener('click', () => {
-                chip.classList.toggle('active');
-                renderMarkers();
-            });
-        });
+        // Apply filter listeners
+        attachFilterListener('area');
+        attachFilterListener('price');
+        attachFilterListener('feature', false);
 
         // Tab navigation
         document.querySelectorAll('.nav-tab').forEach(tab => {
