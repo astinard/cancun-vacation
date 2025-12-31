@@ -6301,8 +6301,9 @@
             DAILY_EXTRAS: 20
         };
 
-        // Resort lookup map for O(1) access
+        // Resort lookup maps for O(1) access
         const resortById = Object.fromEntries(resorts.map(r => [r.id, r]));
+        const resortByName = Object.fromEntries(resorts.map(r => [r.name, r]));
 
         // =====================
         // BUDGET HELPERS
@@ -6749,7 +6750,7 @@
                 const dealBadgeHTML = dealBadge ? `<span class="deal-badge ${dealBadge.class}" style="font-size:0.6rem;padding:2px 6px;">${dealBadge.icon} ${dealBadge.text}</span>` : '';
 
                 return `
-                <div class="resort-card ${selectedResort?.id === r.id ? 'selected' : ''}" onclick="showResortInfo(resorts.find(x => x.id === ${r.id}))">
+                <div class="resort-card ${selectedResort?.id === r.id ? 'selected' : ''}" onclick="showResortInfo(resortById[${r.id}])">
                     <div class="resort-header">
                         <span class="resort-name">${r.name}</span>
                         <span class="resort-rating">${r.valueScore ? '<span style="background:' + (r.valueScore >= 8 ? '#059669' : r.valueScore >= 6 ? '#d97706' : '#dc2626') + ';color:white;padding:2px 6px;border-radius:4px;font-size:0.7rem;margin-right:6px;">' + r.valueScore + '/10</span>' : ''}★ ${r.rating}</span>
@@ -7637,7 +7638,7 @@
             }
 
             const winner = sorted[0];
-            const winnerResort = resorts.find(r => r.name === winner[0]);
+            const winnerResort = resortByName[winner[0]];
             const celebration = document.getElementById('winnerCelebration');
 
             celebration.style.display = 'block';
