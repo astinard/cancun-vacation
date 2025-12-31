@@ -6276,6 +6276,16 @@
         // Resort lookup map for O(1) access
         const resortById = Object.fromEntries(resorts.map(r => [r.id, r]));
 
+        // =====================
+        // BUDGET HELPERS
+        // =====================
+
+        // Calculate accommodation cost (handles villa vs rooms)
+        const getAccommodationCost = (resort, nights = TRIP.NIGHTS, priceKey = 'priceMay24') => {
+            const price = resort[priceKey] || resort.priceMay24;
+            return resort.isVilla ? price * nights : price * TRIP.ROOMS * nights;
+        };
+
         // Initialize map
         let map;
         let markers = [];
@@ -6727,8 +6737,8 @@
 
             // Villas: price is for entire villa; Resorts: price per room
             const isVilla = resort.isVilla;
-            const total7May = isVilla ? resort.priceMay24 * 7 : resort.priceMay24 * 7 * 7;
-            const total7Jun = isVilla ? resort.priceMay31 * 7 : resort.priceMay31 * 7 * 7;
+            const total7May = getAccommodationCost(resort, TRIP.NIGHTS, 'priceMay24');
+            const total7Jun = getAccommodationCost(resort, TRIP.NIGHTS, 'priceMay31');
             const priceLabel = isVilla ? '/night (entire villa)' : '/night per room';
             const totalLabel = isVilla ? 'Est. Total (7 nights entire villa)' : 'Est. Total (7 rooms × 7 nights)';
 
@@ -6783,7 +6793,7 @@
                             </div>
                             <div style="text-align:center;">
                                 <div style="font-size:0.7rem;color:#666;text-transform:uppercase;">${isVilla ? 'Total (Villa)' : '7 Rooms Total'}</div>
-                                <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${(isVilla ? resort.priceMay24 * 7 : resort.priceMay24 * 7 * 7).toLocaleString()}</div>
+                                <div style="font-size:1.3rem;font-weight:700;color:#059669;">$${total7May.toLocaleString()}</div>
                             </div>
                         </div>
                         <div style="margin-top:12px;padding-top:12px;border-top:1px solid #a7f3d0;text-align:center;">
@@ -6936,12 +6946,12 @@
             const startDate = document.getElementById('priceStartDate').value;
             const nights = parseInt(document.getElementById('priceDuration').value);
 
-            const basePrice = startDate === 'may24' ? selectedResort.priceMay24 : selectedResort.priceMay31;
-            const isVilla = selectedResort.isVilla;
+            const priceKey = startDate === 'may24' ? 'priceMay24' : 'priceMay31';
+            const basePrice = selectedResort[priceKey];
 
             // Calculate totals
             const perNight = basePrice;
-            const totalGroup = isVilla ? basePrice * nights : basePrice * 7 * nights; // 7 rooms for group
+            const totalGroup = getAccommodationCost(selectedResort, nights, priceKey);
 
             // Calculate date range
             const startDates = {
@@ -7025,7 +7035,7 @@
 
             tbody.innerHTML = familyResorts.map(r => {
                 const isVilla = r.isVilla;
-                const total7 = isVilla ? r.priceMay24 * 7 : r.priceMay24 * 7 * 7;
+                const total7 = getAccommodationCost(r);
                 const priceNote = isVilla ? ' (villa)' : '';
                 const rowStyle = isVilla ? 'background: #f5f3ff;' : '';
                 return `
@@ -7976,14 +7986,13 @@
 
         // Estimate total trip cost for a resort (quick calculation)
         function estimateTripCost(resort, nights = TRIP.NIGHTS) {
-            const isVilla = resort.isVilla;
-            const accommodationCost = isVilla ? resort.priceMay24 * nights : resort.priceMay24 * TRIP.ROOMS * nights;
-            const flightCost = TRIP.FLIGHT_ESTIMATE;
-            const transferCost = hiddenCosts[resort.id]?.freeTransfer ? 0 : 360;
-            const excursionCost = hiddenCosts[resort.id]?.parksIncluded ? 1400 : 2800; // Reduced if parks included
-            const extrasCost = (hiddenCosts[resort.id]?.extras || 20) * nights;
+            const accommodation = getAccommodationCost(resort, nights);
+            const flights = TRIP.FLIGHT_ESTIMATE;
+            const transfers = hiddenCosts[resort.id]?.freeTransfer ? 0 : 360;
+            const excursions = hiddenCosts[resort.id]?.parksIncluded ? 1400 : 2800;
+            const extras = (hiddenCosts[resort.id]?.extras || 20) * nights;
 
-            return accommodationCost + flightCost + transferCost + excursionCost + extrasCost;
+            return accommodation + flights + transfers + excursions + extras;
         }
 
         // Check if resort fits budget
@@ -8037,9 +8046,7 @@
             grid.innerHTML = compareList.map(id => {
                 const r = resortById[id];
                 if (!r) return '';
-                const isVilla = r.isVilla;
-                const total7 = isVilla ? r.priceMay24 * TRIP.NIGHTS : r.priceMay24 * TRIP.ROOMS * TRIP.NIGHTS;
-                const perPerson = Math.round(total7 / TRIP.PEOPLE);
+                const total7 = getAccommodationCost(r);
                 const estTrip = estimateTripCost(r);
                 const budgetFit = getBudgetFit(r);
                 const hiddenCosts = getHiddenCostsForResort(r.id);
@@ -8222,7 +8229,7 @@
             container.innerHTML = valuePicks.map(pick => {
                 const resort = resortById[pick.id];
                 if (!resort) return '';
-                const total = resort.priceMay24 * 7 * 7;
+                const total = getAccommodationCost(resort);
                 return `
                     <div class="simple-pick-card" onclick="selectSimpleResort(${pick.id})">
                         <div class="simple-pick-name">${pick.name}</div>
@@ -8257,9 +8264,7 @@
 
             select.innerHTML = '<option value="">-- Select a resort --</option>' +
                 familyResorts.map(r => {
-                    const isVilla = r.isVilla;
-                    const total7 = isVilla ? r.priceMay24 * 7 : r.priceMay24 * 7 * 7;
-                    return `<option value="${r.id}">${r.name} - $${r.priceMay24}/night${isVilla ? ' (Villa)' : ''}</option>`;
+                    return `<option value="${r.id}">${r.name} - $${r.priceMay24}/night${r.isVilla ? ' (Villa)' : ''}</option>`;
                 }).join('');
 
             // Populate price alert resort dropdown
@@ -8598,9 +8603,6 @@
                 const r = resortById[pick.id];
                 if (!r) return '';
 
-                const isVilla = r.isVilla;
-                const total7 = isVilla ? r.priceMay24 * 7 : r.priceMay24 * 7 * 7;
-                const perPerson = Math.round(total7 / 14);
                 const dealBadge = getDealBadge(r);
                 const estTripCost = estimateTripCost(r);
                 const budgetFit = getBudgetFit(r);
