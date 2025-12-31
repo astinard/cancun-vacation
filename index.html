@@ -6321,6 +6321,16 @@
             return TRIP.TRANSFER_PER_PERSON * TRIP.PEOPLE;
         };
 
+        // =====================
+        // UI HELPERS
+        // =====================
+
+        // Toggle modal/panel visibility
+        const toggleModal = (elementId, show) => {
+            const el = document.getElementById(elementId);
+            if (el) el.classList.toggle('active', show);
+        };
+
         // Initialize map
         let map;
         let markers = [];
@@ -6583,19 +6593,19 @@
             // Update header color based on category
             document.getElementById('attractionModalHeader').style.background = `linear-gradient(135deg, ${config.color} 0%, ${config.color}dd 100%)`;
 
-            document.getElementById('attractionModal').classList.add('active');
+            toggleModal('attractionModal', true);
         }
 
         function closeAttractionModal() {
-            document.getElementById('attractionModal').classList.remove('active');
+            toggleModal('attractionModal', false);
         }
 
         function openAddAttractionModal() {
-            document.getElementById('addAttractionModal').classList.add('active');
+            toggleModal('addAttractionModal', true);
         }
 
         function closeAddAttractionModal() {
-            document.getElementById('addAttractionModal').classList.remove('active');
+            toggleModal('addAttractionModal', false);
         }
 
         function submitNewAttraction() {
@@ -6963,7 +6973,7 @@
                 </div>
             `;
 
-            panel.classList.add('active');
+            toggleModal('infoPanel', true);
             renderResortList(getFilteredResorts());
 
             // Pan map to resort
@@ -6971,7 +6981,7 @@
         }
 
         function closeInfoPanel() {
-            document.getElementById('infoPanel').classList.remove('active');
+            toggleModal('infoPanel', false);
             selectedResort = null;
             renderResortList(getFilteredResorts());
         }
@@ -8067,12 +8077,12 @@
             count.textContent = compareList.length;
 
             if (compareList.length === 0) {
-                panel.classList.remove('active');
+                toggleModal('comparisonPanel', false);
                 actions.style.display = 'none';
                 return;
             }
 
-            panel.classList.add('active');
+            toggleModal('comparisonPanel', true);
             actions.style.display = compareList.length >= 2 ? 'flex' : 'none';
 
             grid.innerHTML = compareList.map(id => {
