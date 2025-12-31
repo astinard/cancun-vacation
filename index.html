@@ -6209,6 +6209,38 @@
             "Dann", "Dann's Husband", "Beckett 1", "Beckett 2"
         ];
 
+        // =====================
+        // TRIP CONFIGURATION
+        // =====================
+        const TRIP = {
+            PEOPLE: familyMembers.length,
+            NIGHTS: 7,
+            ROOMS: 7,
+            BUDGET_MIN: 20000,
+            BUDGET_MAX: 25000,
+            BUDGET_SWEET: 22500,
+            FLIGHT_ESTIMATE: 5330
+        };
+
+        // Resort lookup map for O(1) access
+        const resortById = Object.fromEntries(resorts.map(r => [r.id, r]));
+
+        // Calculate accommodation total (handles villa vs rooms)
+        const calcAccommodation = (resort, nights = TRIP.NIGHTS) =>
+            resort.isVilla ? resort.priceMay24 * nights : resort.priceMay24 * TRIP.ROOMS * nights;
+
+        // =====================
+        // STORAGE HELPERS
+        // =====================
+        const storage = {
+            get: (key, defaultVal = {}) => {
+                try { return JSON.parse(localStorage.getItem(key)) || defaultVal; }
+                catch { return defaultVal; }
+            },
+            set: (key, value) => localStorage.setItem(key, JSON.stringify(value)),
+            remove: (key) => localStorage.removeItem(key)
+        };
+
         // Initialize map
         let map;
         let markers = [];
@@ -7115,14 +7147,14 @@
             const voterCountEl = document.getElementById('voterCount');
 
             if (progressBar && voterCountEl) {
-                const percent = (voterCount / 14) * 100;
+                const percent = (voterCount / TRIP.PEOPLE) * 100;
                 progressBar.style.width = `${percent}%`;
                 voterCountEl.textContent = voterCount;
             }
 
-            // Show reveal button when all 14 have voted (or simulate for testing)
+            // Show reveal button when votes exist
             const revealBtn = document.getElementById('revealBtn');
-            if (revealBtn && voterCount >= 1) { // Change to 14 for production
+            if (revealBtn && voterCount >= 1) { // Change to TRIP.PEOPLE for production
                 revealBtn.style.display = 'inline-block';
             }
         }
@@ -7139,7 +7171,7 @@
 
             // Render top 4
             const top4 = TOP_4_RESORTS.map(t => ({
-                ...resorts.find(r => r.id === t.id),
+                ...resortById[t.id],
                 reason: t.reason
             })).filter(r => r);
 
@@ -7300,7 +7332,7 @@
                 reason = "Eco-resort in beautiful Riviera Maya";
             }
 
-            const resort = resorts.find(r => r.id === recommendedId);
+            const resort = resortById[recommendedId];
             const budgetFit = getBudgetFit(resort);
 
             container.innerHTML = `
@@ -7699,7 +7731,7 @@
                     <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);">
                         <h4 style="margin-bottom:15px;">🏆 Ranked Choice Results</h4>
                         ${sortedResults.map(([resortId, score], idx) => {
-                            const resort = resorts.find(r => r.id === parseInt(resortId));
+                            const resort = resortById[parseInt(resortId)];
                             const posClass = idx === 0 ? 'gold' : idx === 1 ? 'silver' : idx === 2 ? 'bronze' : '';
                             return `
                                 <div class="ranked-result-item">
@@ -7927,10 +7959,10 @@
         }
 
         // Estimate total trip cost for a resort (quick calculation)
-        function estimateTripCost(resort, nights = 7) {
+        function estimateTripCost(resort, nights = TRIP.NIGHTS) {
             const isVilla = resort.isVilla;
-            const accommodationCost = isVilla ? resort.priceMay24 * nights : resort.priceMay24 * 7 * nights;
-            const flightCost = 5330; // Fixed estimate for 14 people
+            const accommodationCost = isVilla ? resort.priceMay24 * nights : resort.priceMay24 * TRIP.ROOMS * nights;
+            const flightCost = TRIP.FLIGHT_ESTIMATE;
             const transferCost = hiddenCosts[resort.id]?.freeTransfer ? 0 : 360;
             const excursionCost = hiddenCosts[resort.id]?.parksIncluded ? 1400 : 2800; // Reduced if parks included
             const extrasCost = (hiddenCosts[resort.id]?.extras || 20) * nights;
@@ -7987,11 +8019,11 @@
             actions.style.display = compareList.length >= 2 ? 'flex' : 'none';
 
             grid.innerHTML = compareList.map(id => {
-                const r = resorts.find(res => res.id === id);
+                const r = resortById[id];
                 if (!r) return '';
                 const isVilla = r.isVilla;
-                const total7 = isVilla ? r.priceMay24 * 7 : r.priceMay24 * 7 * 7;
-                const perPerson = Math.round(total7 / 14);
+                const total7 = isVilla ? r.priceMay24 * TRIP.NIGHTS : r.priceMay24 * TRIP.ROOMS * TRIP.NIGHTS;
+                const perPerson = Math.round(total7 / TRIP.PEOPLE);
                 const estTrip = estimateTripCost(r);
                 const budgetFit = getBudgetFit(r);
                 const hiddenCosts = getHiddenCostsForResort(r.id);
@@ -8062,7 +8094,7 @@
             const lines = ['🌴 Cancun Resort Comparison\n'];
 
             compareList.forEach(id => {
-                const r = resorts.find(res => res.id === id);
+                const r = resortById[id];
                 if (!r) return;
                 const estTrip = estimateTripCost(r);
                 const budgetFit = getBudgetFit(r);
@@ -8093,7 +8125,7 @@
             const params = new URLSearchParams(window.location.search);
             const compareIds = params.get('compare');
             if (compareIds) {
-                compareList = compareIds.split(',').map(Number).filter(id => resorts.find(r => r.id === id));
+                compareList = compareIds.split(',').map(Number).filter(id => resortById[id]);
                 updateComparisonPanel();
             }
         }
@@ -8172,7 +8204,7 @@
             ];
 
             container.innerHTML = valuePicks.map(pick => {
-                const resort = resorts.find(r => r.id === pick.id);
+                const resort = resortById[pick.id];
                 if (!resort) return '';
                 const total = resort.priceMay24 * 7 * 7;
                 return `
@@ -8502,7 +8534,7 @@
             // In production, this would call the API
             // For now, simulate success and store locally
             const alerts = JSON.parse(localStorage.getItem('priceAlerts') || '[]');
-            const resort = resorts.find(r => r.id === parseInt(resortId));
+            const resort = resortById[parseInt(resortId)];
 
             alerts.push({
                 email,
@@ -8547,7 +8579,7 @@
             ];
 
             container.innerHTML = topPicks.map(pick => {
-                const r = resorts.find(res => res.id === pick.id);
+                const r = resortById[pick.id];
                 if (!r) return '';
 
                 const isVilla = r.isVilla;
@@ -8618,7 +8650,7 @@
                 return;
             }
 
-            const resort = resorts.find(r => r.id === parseInt(resortId));
+            const resort = resortById[parseInt(resortId)];
             if (!resort) return;
 
             // Resort cost
