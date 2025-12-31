@@ -6314,6 +6314,13 @@
             return resort.isVilla ? price * nights : price * TRIP.ROOMS * nights;
         };
 
+        // Calculate transfer cost based on type and resort inclusions
+        const getTransferCost = (transferType, hasFreeTransfer = false) => {
+            if (transferType === 'included' && hasFreeTransfer) return 0;
+            if (transferType === 'private') return TRIP.TRANSFER_PRIVATE;
+            return TRIP.TRANSFER_PER_PERSON * TRIP.PEOPLE;
+        };
+
         // Initialize map
         let map;
         let markers = [];
@@ -8013,7 +8020,7 @@
         function estimateTripCost(resort, nights = TRIP.NIGHTS) {
             const accommodation = getAccommodationCost(resort, nights);
             const flights = TRIP.FLIGHT_ESTIMATE;
-            const transfers = hiddenCosts[resort.id]?.freeTransfer ? 0 : TRIP.TRANSFER_PRIVATE;
+            const transfers = getTransferCost('private', hiddenCosts[resort.id]?.freeTransfer);
             const excursions = hiddenCosts[resort.id]?.parksIncluded ? TRIP.EXCURSION_WITH_PARKS : TRIP.EXCURSION_WITHOUT_PARKS;
             const extras = (hiddenCosts[resort.id]?.extras || TRIP.DAILY_EXTRAS) * nights;
 
@@ -8689,15 +8696,8 @@
             const accommodationTotal = pricePerNight * roomsOrVilla * nights;
 
             // Transfer costs
-            let transferCost = 0;
             const costs = hiddenCosts[resort.id];
-            if (transferType === 'included' && costs?.freeTransfer) {
-                transferCost = 0;
-            } else if (transferType === 'private') {
-                transferCost = TRIP.TRANSFER_PRIVATE;
-            } else {
-                transferCost = TRIP.TRANSFER_PER_PERSON * TRIP.PEOPLE;
-            }
+            const transferCost = getTransferCost(transferType, costs?.freeTransfer);
 
             // Excursions
             const excursionTotal = excursionBudget * 14;
