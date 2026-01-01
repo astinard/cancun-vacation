@@ -6358,6 +6358,38 @@
             if (el) el.classList.toggle('active', show);
         };
 
+        // Cached modal elements for attraction modal (lazy init)
+        let attractionModalEls = null;
+        const getAttractionModalEls = () => {
+            if (!attractionModalEls) {
+                attractionModalEls = {
+                    icon: document.getElementById('modalAttractionIcon'),
+                    name: document.getElementById('modalAttractionName'),
+                    type: document.getElementById('modalAttractionType'),
+                    rating: document.getElementById('modalRating'),
+                    reviewCount: document.getElementById('modalReviewCount'),
+                    priceRange: document.getElementById('modalPriceRange'),
+                    duration: document.getElementById('modalDuration'),
+                    description: document.getElementById('modalDescription'),
+                    area: document.getElementById('modalArea'),
+                    hours: document.getElementById('modalHours'),
+                    highlights: document.getElementById('modalHighlights'),
+                    includedSection: document.getElementById('modalIncludedSection'),
+                    included: document.getElementById('modalIncluded'),
+                    notIncludedSection: document.getElementById('modalNotIncludedSection'),
+                    notIncluded: document.getElementById('modalNotIncluded'),
+                    tips: document.getElementById('modalTips'),
+                    accessibility: document.getElementById('modalAccessibility'),
+                    kidFriendly: document.getElementById('modalKidFriendly'),
+                    source: document.getElementById('modalSource'),
+                    bookingBtn: document.getElementById('modalBookingBtn'),
+                    sourceBtn: document.getElementById('modalSourceBtn'),
+                    header: document.getElementById('attractionModalHeader')
+                };
+            }
+            return attractionModalEls;
+        };
+
         // Initialize map
         let map;
         let markers = [];
@@ -6525,71 +6557,62 @@
 
         function openAttractionModal(attraction) {
             const config = categoryConfig[attraction.category] || { icon: '📍', color: '#64748b' };
+            const els = getAttractionModalEls();
 
-            document.getElementById('modalAttractionIcon').textContent = config.icon;
-            document.getElementById('modalAttractionName').textContent = attraction.name;
-            document.getElementById('modalAttractionType').textContent = attraction.type + ' • ' + attraction.areaName;
-            document.getElementById('modalRating').textContent = attraction.rating;
-            document.getElementById('modalReviewCount').textContent = `(${attraction.reviewCount?.toLocaleString() || 'N/A'} reviews on ${attraction.ratingSource || 'N/A'})`;
-            document.getElementById('modalPriceRange').textContent = attraction.priceRange + (attraction.priceAdult ? ` (~$${attraction.priceAdult}/person)` : '');
-            document.getElementById('modalDuration').textContent = attraction.duration || '';
-            document.getElementById('modalDescription').textContent = attraction.description || '';
-            document.getElementById('modalArea').textContent = attraction.areaName;
-            document.getElementById('modalHours').textContent = attraction.hours || 'Check website';
+            // Basic info
+            els.icon.textContent = config.icon;
+            els.name.textContent = attraction.name;
+            els.type.textContent = attraction.type + ' • ' + attraction.areaName;
+            els.rating.textContent = attraction.rating;
+            els.reviewCount.textContent = `(${attraction.reviewCount?.toLocaleString() || 'N/A'} reviews on ${attraction.ratingSource || 'N/A'})`;
+            els.priceRange.textContent = attraction.priceRange + (attraction.priceAdult ? ` (~$${attraction.priceAdult}/person)` : '');
+            els.duration.textContent = attraction.duration || '';
+            els.description.textContent = attraction.description || '';
+            els.area.textContent = attraction.areaName;
+            els.hours.textContent = attraction.hours || 'Check website';
 
             // Highlights
-            const highlightsEl = document.getElementById('modalHighlights');
-            if (attraction.highlights && attraction.highlights.length > 0) {
-                highlightsEl.innerHTML = attraction.highlights.map(h => `<span class="highlight-tag">${h}</span>`).join('');
-            } else {
-                highlightsEl.innerHTML = '<span style="color:#64748b;">No highlights listed</span>';
-            }
+            els.highlights.innerHTML = (attraction.highlights?.length > 0)
+                ? attraction.highlights.map(h => `<span class="highlight-tag">${h}</span>`).join('')
+                : '<span style="color:#64748b;">No highlights listed</span>';
 
             // Included
-            const includedSection = document.getElementById('modalIncludedSection');
-            const includedEl = document.getElementById('modalIncluded');
-            if (attraction.included && attraction.included.length > 0) {
-                includedEl.innerHTML = attraction.included.map(i => `<div>✓ ${i}</div>`).join('');
-                includedSection.style.display = 'block';
+            if (attraction.included?.length > 0) {
+                els.included.innerHTML = attraction.included.map(i => `<div>✓ ${i}</div>`).join('');
+                els.includedSection.style.display = 'block';
             } else {
-                includedSection.style.display = 'none';
+                els.includedSection.style.display = 'none';
             }
 
             // Not Included
-            const notIncludedSection = document.getElementById('modalNotIncludedSection');
-            const notIncludedEl = document.getElementById('modalNotIncluded');
-            if (attraction.notIncluded && attraction.notIncluded.length > 0) {
-                notIncludedEl.innerHTML = attraction.notIncluded.map(i => `<div>✗ ${i}</div>`).join('');
-                notIncludedSection.style.display = 'block';
+            if (attraction.notIncluded?.length > 0) {
+                els.notIncluded.innerHTML = attraction.notIncluded.map(i => `<div>✗ ${i}</div>`).join('');
+                els.notIncludedSection.style.display = 'block';
             } else {
-                notIncludedSection.style.display = 'none';
+                els.notIncludedSection.style.display = 'none';
             }
 
             // Tips
-            document.getElementById('modalTips').textContent = attraction.tips || 'No tips available';
+            els.tips.textContent = attraction.tips || 'No tips available';
 
-            // Accessibility & Kid-friendly
-            const accessEl = document.getElementById('modalAccessibility');
+            // Accessibility
             if (attraction.wheelchairAccessible === true) {
-                accessEl.innerHTML = '<span style="color:#10b981;">♿ Wheelchair Accessible</span>';
+                els.accessibility.innerHTML = '<span style="color:#10b981;">♿ Wheelchair Accessible</span>';
             } else if (attraction.wheelchairAccessible === 'partial') {
-                accessEl.innerHTML = '<span style="color:#f59e0b;">♿ Partially Accessible</span>';
+                els.accessibility.innerHTML = '<span style="color:#f59e0b;">♿ Partially Accessible</span>';
             } else {
-                accessEl.innerHTML = '<span style="color:#ef4444;">♿ Limited Accessibility</span>';
+                els.accessibility.innerHTML = '<span style="color:#ef4444;">♿ Limited Accessibility</span>';
             }
 
-            const kidEl = document.getElementById('modalKidFriendly');
-            if (attraction.kidFriendly) {
-                kidEl.innerHTML = `<span style="color:#10b981;">👶 Kid-Friendly ${attraction.kidAgeMin > 0 ? `(Ages ${attraction.kidAgeMin}+)` : '(All ages)'}</span>`;
-            } else {
-                kidEl.innerHTML = '<span style="color:#f59e0b;">👶 Check age restrictions</span>';
-            }
+            // Kid-friendly
+            els.kidFriendly.innerHTML = attraction.kidFriendly
+                ? `<span style="color:#10b981;">👶 Kid-Friendly ${attraction.kidAgeMin > 0 ? `(Ages ${attraction.kidAgeMin}+)` : '(All ages)'}</span>`
+                : '<span style="color:#f59e0b;">👶 Check age restrictions</span>';
 
             // Source/Provenance
-            const sourceEl = document.getElementById('modalSource');
             if (attraction.source) {
                 const verified = attraction.verified ? '<span class="source-verified">✓ Verified</span>' : '<span style="color:#f59e0b;">Unverified</span>';
-                sourceEl.innerHTML = `
+                els.source.innerHTML = `
                     ${verified}
                     <span>Source: ${attraction.source.name}</span>
                     <span>•</span>
@@ -6597,28 +6620,26 @@
                     ${attraction.source.url ? `<a href="${attraction.source.url}" target="_blank" style="color:#0891b2;">View Source →</a>` : ''}
                 `;
             } else {
-                sourceEl.innerHTML = '<span>No source information available</span>';
+                els.source.innerHTML = '<span>No source information available</span>';
             }
 
             // Buttons
-            const bookingBtn = document.getElementById('modalBookingBtn');
             if (attraction.bookingUrl || attraction.website) {
-                bookingBtn.href = attraction.bookingUrl || attraction.website;
-                bookingBtn.style.display = 'flex';
+                els.bookingBtn.href = attraction.bookingUrl || attraction.website;
+                els.bookingBtn.style.display = 'flex';
             } else {
-                bookingBtn.style.display = 'none';
+                els.bookingBtn.style.display = 'none';
             }
 
-            const sourceBtn = document.getElementById('modalSourceBtn');
-            if (attraction.source && attraction.source.url) {
-                sourceBtn.href = attraction.source.url;
-                sourceBtn.style.display = 'flex';
+            if (attraction.source?.url) {
+                els.sourceBtn.href = attraction.source.url;
+                els.sourceBtn.style.display = 'flex';
             } else {
-                sourceBtn.style.display = 'none';
+                els.sourceBtn.style.display = 'none';
             }
 
             // Update header color based on category
-            document.getElementById('attractionModalHeader').style.background = `linear-gradient(135deg, ${config.color} 0%, ${config.color}dd 100%)`;
+            els.header.style.background = `linear-gradient(135deg, ${config.color} 0%, ${config.color}dd 100%)`;
 
             toggleModal('attractionModal', true);
         }
