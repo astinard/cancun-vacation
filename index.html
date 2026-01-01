@@ -2519,6 +2519,15 @@
         .gap-5 { gap: 15px; }
         .gap-6 { gap: 20px; }
 
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .text-sm { font-size: 0.85rem; }
+        .text-xs { font-size: 0.75rem; }
+        .rounded { border-radius: 8px; }
+        .rounded-lg { border-radius: 12px; }
+
         .mb-2 { margin-bottom: 8px; }
         .mb-3 { margin-bottom: 10px; }
         .mb-4 { margin-bottom: 12px; }
@@ -6349,6 +6358,20 @@
         };
 
         // =====================
+        // RESORT FILTER HELPERS
+        // =====================
+
+        // Get family resorts sorted by price (villas at end)
+        const getFamilyResortsSorted = () => resorts.filter(r => r.family).sort((a, b) => {
+            if (a.isVilla && !b.isVilla) return 1;
+            if (!a.isVilla && b.isVilla) return -1;
+            return a.priceMay24 - b.priceMay24;
+        });
+
+        // Get top family resorts with minimum value score
+        const getTopFamilyResorts = (minScore = 7) => resorts.filter(r => r.family && r.valueScore >= minScore);
+
+        // =====================
         // UI HELPERS
         // =====================
 
@@ -6771,7 +6794,7 @@
         function getFilteredResorts() {
             const areaFilter = document.querySelector('.chip[data-filter="area"].active')?.dataset.value || 'all';
             const priceFilter = document.querySelector('.chip[data-filter="price"].active')?.dataset.value || 'all';
-            const featureFilters = Array.from(document.querySelectorAll('.chip[data-filter="feature"].active')).map(c => c.dataset.value);
+            const featureFilters = [...document.querySelectorAll('.chip[data-filter="feature"].active')].map(c => c.dataset.value);
 
             return resorts.filter(r => {
                 if (areaFilter !== 'all' && r.area !== areaFilter) return false;
@@ -6849,7 +6872,7 @@
                 ${isVilla ? `
                 <div class="info-section" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); color: white; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
                     <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Private Villa Rental</div>
-                    <div style="display: flex; gap: 20px;">
+                    <div class="flex gap-6">
                         <div><span style="opacity: 0.8;">Bedrooms:</span> <strong>${resort.bedrooms}</strong></div>
                         <div><span style="opacity: 0.8;">Sleeps:</span> <strong>${resort.sleeps}</strong></div>
                     </div>
@@ -7116,12 +7139,7 @@
         // Matrix rendering
         function renderMatrix() {
             const tbody = document.getElementById('matrixBody');
-            const familyResorts = resorts.filter(r => r.family).sort((a, b) => {
-                // Sort villas at the end, otherwise by price
-                if (a.isVilla && !b.isVilla) return 1;
-                if (!a.isVilla && b.isVilla) return -1;
-                return a.priceMay24 - b.priceMay24;
-            });
+            const familyResorts = getFamilyResortsSorted();
 
             tbody.innerHTML = familyResorts.map(r => {
                 const isVilla = r.isVilla;
@@ -7301,7 +7319,7 @@
             if (!topContainer) return;
 
             const votes = getVotes();
-            const familyResorts = resorts.filter(r => r.family && r.valueScore >= 7);
+            const familyResorts = getTopFamilyResorts();
 
             // Render top 4
             const top4 = TOP_4_RESORTS.map(t => ({
@@ -7763,7 +7781,7 @@
             const voterRankings = rankedChoices[currentVoter] || [];
 
             // Top family-friendly resorts for ranked choice
-            const topResorts = resorts.filter(r => r.family && r.valueScore >= 7).slice(0, 8);
+            const topResorts = getTopFamilyResorts().slice(0, 8);
 
             container.innerHTML = topResorts.map(r => {
                 const rankIndex = voterRankings.indexOf(r.id);
@@ -8356,11 +8374,7 @@
             if (!select) return;
 
             // Populate resort dropdown
-            const familyResorts = resorts.filter(r => r.family).sort((a, b) => {
-                if (a.isVilla && !b.isVilla) return 1;
-                if (!a.isVilla && b.isVilla) return -1;
-                return a.priceMay24 - b.priceMay24;
-            });
+            const familyResorts = getFamilyResortsSorted();
 
             select.innerHTML = '<option value="">-- Select a resort --</option>' +
                 familyResorts.map(r => {
@@ -9054,7 +9068,7 @@ END:VCALENDAR`;
             const desc = document.getElementById('expenseDesc').value.trim();
             const amount = parseFloat(document.getElementById('expenseAmount').value);
             const paidBy = document.getElementById('expensePaidBy').value;
-            const splitBetween = Array.from(document.querySelectorAll('.expenseSplit:checked')).map(cb => cb.value);
+            const splitBetween = [...document.querySelectorAll('.expenseSplit:checked')].map(cb => cb.value);
 
             if (!desc || !amount || splitBetween.length === 0) {
                 alert('Please fill in all fields and select at least one group to split between.');
