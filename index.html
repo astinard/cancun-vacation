@@ -8079,17 +8079,47 @@
             return accommodation + flights + transfers + excursions + extras;
         }
 
+        // Budget status helper - returns styling info for any total amount
+        const getBudgetStatus = (total) => {
+            if (total <= BUDGET_TARGET.min) {
+                return {
+                    status: 'under',
+                    label: 'Under Budget!',
+                    icon: '💰',
+                    class: 'budget-under',
+                    borderColor: '#10b981',
+                    bgColor: 'rgba(16,185,129,0.2)',
+                    textColor: '#059669',
+                    diff: BUDGET_TARGET.min - total
+                };
+            } else if (total <= BUDGET_TARGET.max) {
+                return {
+                    status: 'sweet',
+                    label: 'In Budget!',
+                    icon: '✓',
+                    class: 'budget-sweet',
+                    borderColor: '#3b82f6',
+                    bgColor: 'rgba(59,130,246,0.2)',
+                    textColor: '#059669',
+                    diff: 0
+                };
+            } else {
+                return {
+                    status: 'over',
+                    label: 'Over Budget',
+                    icon: '⚠️',
+                    class: 'budget-over',
+                    borderColor: '#f59e0b',
+                    bgColor: 'rgba(245,158,11,0.2)',
+                    textColor: '#d97706',
+                    diff: total - BUDGET_TARGET.max
+                };
+            }
+        };
+
         // Check if resort fits budget
         function getBudgetFit(resort, nights = 7) {
-            const total = estimateTripCost(resort, nights);
-
-            if (total <= BUDGET_TARGET.min) {
-                return { status: 'under', label: 'Under Budget!', class: 'budget-under', diff: BUDGET_TARGET.min - total };
-            } else if (total <= BUDGET_TARGET.max) {
-                return { status: 'sweet', label: 'In Budget!', class: 'budget-sweet', diff: 0 };
-            } else {
-                return { status: 'over', label: 'Over Budget', class: 'budget-over', diff: total - BUDGET_TARGET.max };
-            }
+            return getBudgetStatus(estimateTripCost(resort, nights));
         }
 
         // Comparison feature
@@ -8670,27 +8700,25 @@
                 const dealBadge = getDealBadge(r);
                 const estTripCost = estimateTripCost(r);
                 const budgetFit = getBudgetFit(r);
-                const borderColor = budgetFit.status === 'sweet' ? '#3b82f6' : budgetFit.status === 'under' ? '#10b981' : '#f59e0b';
 
                 return `
-                    <div style="background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);border-radius:12px;padding:16px;border:2px solid ${borderColor};">
+                    <div style="background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);border-radius:12px;padding:16px;border:2px solid ${budgetFit.borderColor};">
                         <div class="flex-between-start">
                             <div style="font-weight:700;color:#1e293b;">${r.name}</div>
-                            <span class="budget-badge ${budgetFit.class}">${budgetFit.status === 'sweet' ? '✓' : budgetFit.status === 'under' ? '💰' : '⚠️'} ${budgetFit.label}</span>
+                            <span class="budget-badge ${budgetFit.class}">${budgetFit.icon} ${budgetFit.label}</span>
                         </div>
                         <div style="font-size:0.8rem;color:#64748b;margin-bottom:10px;">${pick.reason}</div>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.8rem;margin-bottom:8px;">
                             <div style="background:white;padding:8px;border-radius:6px;text-align:center;">
                                 <div style="color:#64748b;font-size:0.7rem;">Est. Total Trip</div>
-                                <div style="font-weight:700;color:${budgetFit.status === 'over' ? '#f59e0b' : '#059669'};">$${estTripCost.toLocaleString()}</div>
+                                <div style="font-weight:700;color:${budgetFit.textColor};">$${estTripCost.toLocaleString()}</div>
                             </div>
                             <div style="background:white;padding:8px;border-radius:6px;text-align:center;">
                                 <div style="color:#64748b;font-size:0.7rem;">Per Person</div>
                                 <div style="font-weight:700;color:#0891b2;">$${Math.round(estTripCost/14).toLocaleString()}</div>
                             </div>
                         </div>
-                        ${budgetFit.status === 'under' ? `<div style="font-size:0.75rem;color:#059669;font-weight:600;margin-bottom:8px;">💰 $${budgetFit.diff.toLocaleString()} under budget!</div>` : ''}
-                        ${budgetFit.status === 'over' ? `<div style="font-size:0.75rem;color:#d97706;font-weight:600;margin-bottom:8px;">⚠️ $${budgetFit.diff.toLocaleString()} over max budget</div>` : ''}
+                        ${budgetFit.diff > 0 ? `<div style="font-size:0.75rem;color:${budgetFit.textColor};font-weight:600;margin-bottom:8px;">${budgetFit.icon} $${budgetFit.diff.toLocaleString()} ${budgetFit.status === 'under' ? 'under budget!' : 'over max budget'}</div>` : ''}
                         <div class="flex gap-1 flex-wrap">
                             ${dealBadge ? `<span class="deal-badge ${dealBadge.class}" style="font-size:0.6rem;padding:2px 6px;">${dealBadge.icon}</span>` : ''}
                             ${r.valueScore ? `<span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${r.valueScore}/10</span>` : ''}
@@ -8754,6 +8782,7 @@
             // Grand total
             const grandTotal = totalFlights + accommodationTotal + transferCost + excursionTotal + hiddenCostTotal;
             const perPerson = Math.round(grandTotal / 14);
+            const budgetStatus = getBudgetStatus(grandTotal);
 
             // Deal badge
             const dealBadge = getDealBadge(resort);
@@ -8797,30 +8826,21 @@
                     </div>
 
                     <!-- Budget Fit Indicator -->
-                    <div style="margin-top:20px;padding:15px;border-radius:12px;${
-                        grandTotal <= BUDGET_TARGET.min ? 'background:rgba(16,185,129,0.2);border:2px solid #10b981;' :
-                        grandTotal <= BUDGET_TARGET.max ? 'background:rgba(59,130,246,0.2);border:2px solid #3b82f6;' :
-                        'background:rgba(245,158,11,0.2);border:2px solid #f59e0b;'
-                    }">
+                    <div style="margin-top:20px;padding:15px;border-radius:12px;background:${budgetStatus.bgColor};border:2px solid ${budgetStatus.borderColor};">
                         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
                             <div>
-                                <div style="font-weight:700;font-size:1.1rem;">${
-                                    grandTotal <= BUDGET_TARGET.min ? '💰 Under Budget!' :
-                                    grandTotal <= BUDGET_TARGET.max ? '✓ Within Budget!' :
-                                    '⚠️ Over Budget'
-                                }</div>
+                                <div style="font-weight:700;font-size:1.1rem;">${budgetStatus.icon} ${budgetStatus.label}</div>
                                 <div style="font-size:0.85rem;opacity:0.9;">Target: $20K - $25K</div>
                             </div>
                             <div style="text-align:right;">
-                                ${grandTotal <= BUDGET_TARGET.min ?
-                                    `<div style="font-size:1.2rem;font-weight:700;">$${(BUDGET_TARGET.min - grandTotal).toLocaleString()} to spare</div>` :
-                                grandTotal <= BUDGET_TARGET.max ?
-                                    `<div style="font-size:1.2rem;font-weight:700;">Perfect fit!</div>` :
-                                    `<div style="font-size:1.2rem;font-weight:700;">$${(grandTotal - BUDGET_TARGET.max).toLocaleString()} over</div>`
-                                }
+                                <div style="font-size:1.2rem;font-weight:700;">${
+                                    budgetStatus.status === 'under' ? `$${budgetStatus.diff.toLocaleString()} to spare` :
+                                    budgetStatus.status === 'sweet' ? 'Perfect fit!' :
+                                    `$${budgetStatus.diff.toLocaleString()} over`
+                                }</div>
                             </div>
                         </div>
-                        ${grandTotal > BUDGET_TARGET.max ? `
+                        ${budgetStatus.status === 'over' ? `
                         <div style="margin-top:10px;font-size:0.8rem;opacity:0.9;">
                             💡 Tip: Try 5-6 nights, reduce excursions, or choose a lower-cost resort
                         </div>
